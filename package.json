@@ -1,0 +1,34 @@
+{
+  "name": "@gkd-kit/docs",
+  "author": "lisonge",
+  "version": "0.0.0",
+  "type": "module",
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "files": [
+    "./.vitepress/dist"
+  ],
+  "scripts": {
+    "docs:dev": "vitepress dev",
+    "docs:build": "vitepress build",
+    "docs:preview": "vitepress preview",
+    "docs:build-mirror": "cross-env MIRROR=ON vitepress build",
+    "format": "prettier --cache --write ."
+  },
+  "dependencies": {
+    "@gkd-kit/selector": "0.0.16",
+    "@types/node": "^20.10.6",
+    "medium-zoom": "^1.1.0",
+    "prettier": "^3.1.1",
+    "tsx": "^4.7.0",
+    "typescript": "^5.3.3",
+    "vitepress": "^1.0.0-rc.34",
+    "cross-env": "^7.0.3"
+  },
+  "volta": {
+    "node": "20.10.0"
+  },
+  "packageManager": "pnpm@8.11.0"
+}

@@ -1,0 +1,40 @@
+name: gh-pages
+
+on:
+  push:
+    branches: ['main']
+
+permissions:
+  contents: write
+
+jobs:
+  gh-pages:
+    runs-on: ubuntu-latest
+    steps:
+      - uses: actions/checkout@v3
+
+      - uses: actions/setup-node@v3
+        with:
+          node-version: 20
+
+      - uses: pnpm/action-setup@v2
+      - run: pnpm -v
+
+      - run: pnpm install
+
+      - run: pnpm exec tsx ./.vitepress/scripts/updateVersion.ts
+      - run: pnpm run docs:build-mirror
+      
+      - name: Publish package
+        run: |
+          pnpm config set //registry.npmjs.org/:_authToken ${{ secrets.NPM_TOKEN }}
+          pnpm publish --no-git-checks
+
+      - run: git checkout .
+      - run: curl -X PUT 'https://registry-direct.npmmirror.com/@gkd-kit/docs/sync'
+
+      - uses: peaceiris/actions-gh-pages@v3
+        with:
+          github_token: ${{ secrets.GITHUB_TOKEN }}
+          publish_dir: ./.vitepress/dist
+          cname: gkd.li
