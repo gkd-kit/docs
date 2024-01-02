@@ -1,1 +1,0 @@
-import{_ as a,c as e,o as t,U as o}from"./chunks/framework.dca-i8aQ.js";const m=JSON.parse('{"title":"疑难解答","description":"","frontmatter":{},"headers":[],"relativePath":"faq/index.md","filePath":"faq/index.md"}'),r={name:"faq/index.md"},n=o("",16),p=[n];function i(d,s,c,_,h,l){return t(),e("div",null,p)}const u=a(r,[["render",i]]);export{m as __pageData,u as default};
