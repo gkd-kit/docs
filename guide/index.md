@@ -6,11 +6,15 @@ import { apkUrl, apkName, apkImgUrl } from '/.vitepress/utils/apk';
 
 ## 下载安装
 
+<ClientOnly>
 大陆用户可点击 <a rel="noopener noreferrer" :href="apkUrl">{{ apkName }}</a> 下载
+</ClientOnly>
 
 或者扫描下方二维码即可下载最新版本
 
+<ClientOnly>
 <img :src="apkImgUrl" data-zoomable alt="" />
+</ClientOnly>
 
 请注意上面的链接/二维码为动态生成, 如需分享请复制地址栏链接
 

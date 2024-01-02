@@ -15,7 +15,7 @@ watchEffect(async () => {
   });
 });
 
-if (globalThis.window) {
+if (!import.meta.env.SSR) {
   // only run in browser
   apkUrl.value = localStorage.getItem('apkUrl') || '';
   const versionUrl = 'https://registry.npmmirror.com/@gkd-kit/app/latest/files';
