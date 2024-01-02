@@ -20,12 +20,14 @@
   "dependencies": {
     "@gkd-kit/selector": "0.0.16",
     "@types/node": "^20.10.6",
+    "@types/qrcode": "1.5.5",
+    "cross-env": "^7.0.3",
     "medium-zoom": "^1.1.0",
     "prettier": "^3.1.1",
+    "qrcode": "1.5.3",
     "tsx": "^4.7.0",
     "typescript": "^5.3.3",
-    "vitepress": "^1.0.0-rc.34",
-    "cross-env": "^7.0.3"
+    "vitepress": "^1.0.0-rc.34"
   },
   "volta": {
     "node": "20.10.0"

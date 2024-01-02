@@ -7,7 +7,7 @@ const useMirror = process.env.MIRROR == `ON`;
 export default defineConfig({
   title: 'GKD',
   description: '自定义屏幕点击应用',
-  assetsDir:'',
+  assetsDir: '',
   head: [
     [
       'link',
@@ -33,6 +33,7 @@ export default defineConfig({
         ],
       },
     ],
+    outline: { label: '页面导航' },
     editLink: {
       pattern: 'https://github.com/gkd-kit/docs/edit/main/:path',
       text: '为此页提供修改建议',
