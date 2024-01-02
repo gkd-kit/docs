@@ -14,9 +14,6 @@ dependencies:
   '@types/qrcode':
     specifier: 1.5.5
     version: 1.5.5
-  '@types/qrcode-svg':
-    specifier: 1.1.4
-    version: 1.1.4
   cross-env:
     specifier: ^7.0.3
     version: 7.0.3
@@ -29,9 +26,6 @@ dependencies:
   qrcode:
     specifier: 1.5.3
     version: 1.5.3
-  qrcode-svg:
-    specifier: 1.1.0
-    version: 1.1.0
   tsx:
     specifier: ^4.7.0
     version: 4.7.0
@@ -576,10 +570,6 @@ packages:
       undici-types: 5.26.5
     dev: false
 
-  /@types/qrcode-svg@1.1.4:
-    resolution: {integrity: sha512-gh+atEBHXpU5iO72Tg4q03YdGKoY0zH1Yr4mGl+NSzFpyPuJcgurs8F3aRpH0Gs93GFuB1rDoQj6U4Xshn72PA==}
-    dev: false
-
   /@types/qrcode@1.5.5:
     resolution: {integrity: sha512-CdfBi/e3Qk+3Z/fXYShipBT13OJ2fDO2Q2w5CIP5anLTLIndQG9z6P1cnm+8zCWSpm5dnxMFd/uREtb0EXuQzg==}
     dependencies:
@@ -1020,11 +1010,6 @@ packages:
   /prettier@3.1.1:
     resolution: {integrity: sha512-22UbSzg8luF4UuZtzgiUOfcGM8s4tjBv6dJRT7j275NXsy2jb4aJa4NNveul5x4eqlF1wuhuR2RElK71RvmVaw==}
     engines: {node: '>=14'}
-    hasBin: true
-    dev: false
-
-  /qrcode-svg@1.1.0:
-    resolution: {integrity: sha512-XyQCIXux1zEIA3NPb0AeR8UMYvXZzWEhgdBgBjH9gO7M48H9uoHzviNz8pXw3UzrAcxRRRn9gxHewAVK7bn9qw==}
     hasBin: true
     dev: false
 
