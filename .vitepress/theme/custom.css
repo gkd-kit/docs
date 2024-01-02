@@ -5,3 +5,7 @@
 .medium-zoom-image {
   z-index: 101;
 }
+
+img.VPImage.logo {
+  border-radius: 50%;
+}
