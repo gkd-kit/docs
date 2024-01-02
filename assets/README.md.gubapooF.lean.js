@@ -1,0 +1,1 @@
+import{_ as e,c as t,o as a,U as r}from"./chunks/framework.IfVPbLD4.js";const f=JSON.parse('{"title":"@gkd-kit/docs","description":"","frontmatter":{},"headers":[],"relativePath":"README.md","filePath":"README.md"}'),o={name:"README.md"},d=r("",3),s=[d];function i(c,_,n,l,p,k){return a(),t("div",null,s)}const m=e(o,[["render",i]]);export{f as __pageData,m as default};
