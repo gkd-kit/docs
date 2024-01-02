@@ -14,7 +14,7 @@
     "docs:dev": "vitepress dev",
     "docs:build": "vitepress build",
     "docs:preview": "vitepress preview",
-    "docs:build-mirror": "cross-env MIRROR=ON vitepress build",
+    "docs:build-mirror": "pnpm exec cross-env MIRROR=ON vitepress build",
     "format": "prettier --cache --write ."
   },
   "dependencies": {
