@@ -26,7 +26,7 @@ import { apkUrl, apkName, apkImgUrl } from '/.vitepress/utils/apk';
 
 打开后您会看到如下界面
 
-TODO
+TO-DO
 
 点击无障碍权限右侧的 `授权` 按钮即可前往设置的无障碍界面授权
 
