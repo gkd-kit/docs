@@ -1,13 +1,10 @@
 import { defineConfig } from 'vitepress';
-import { mirror } from './plugins';
-
-const useMirror = process.env.MIRROR == `ON`;
+import { mirror, transformHtml } from './plugins';
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
   title: 'GKD',
   description: '自定义屏幕点击应用',
-  assetsDir: '',
   head: [
     [
       'link',
@@ -18,6 +15,7 @@ export default defineConfig({
       },
     ],
   ],
+  lastUpdated: true,
   themeConfig: {
     // https://vitepress.dev/reference/default-theme-config
     logo: '/logo.svg',
@@ -47,10 +45,11 @@ export default defineConfig({
       copyright: `Copyright © ${new Date().getFullYear()} GKD. All rights reserved`,
     },
   },
+  transformHtml,
   vite: {
-    plugins: [useMirror && mirror()].filter(Boolean),
+    plugins: [mirror()],
     server: {
-      host: '0.0.0.0',
+      host: '127.0.0.1',
       port: 8633,
     },
   },
