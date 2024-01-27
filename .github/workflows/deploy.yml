@@ -1,4 +1,4 @@
-name: gh-pages
+name: deploy
 
 on:
   push:
@@ -8,7 +8,7 @@ permissions:
   contents: write
 
 jobs:
-  gh-pages:
+  deploy:
     runs-on: ubuntu-latest
     steps:
       - uses: actions/checkout@v3
@@ -33,8 +33,9 @@ jobs:
       - run: git checkout .
       - run: curl -X PUT 'https://registry-direct.npmmirror.com/@gkd-kit/docs/sync'
 
-      - uses: peaceiris/actions-gh-pages@v3
+      - uses: cloudflare/pages-action@v1
         with:
-          github_token: ${{ secrets.GITHUB_TOKEN }}
-          publish_dir: ./.vitepress/dist
-          cname: gkd.li
+          apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
+          accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
+          projectName: gkd-docs
+          directory: ./.vitepress/dist
