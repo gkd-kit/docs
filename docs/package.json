@@ -1,0 +1,22 @@
+{
+  "name": "@gkd-kit/docs",
+  "author": "lisonge",
+  "version": "0.0.0",
+  "type": "module",
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/"
+  },
+  "files": [
+    "./.vitepress/dist"
+  ],
+  "scripts": {
+    "docs:dev": "vitepress dev",
+    "docs:build": "vitepress build",
+    "docs:preview": "vitepress preview",
+    "docs:build-mirror": "cross-env MIRROR=ON vitepress build"
+  },
+  "volta": {
+    "extends": "../package.json"
+  }
+}

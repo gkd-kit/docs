@@ -22,15 +22,16 @@ jobs:
 
       - run: pnpm install
 
-      - run: pnpm exec tsx ./.vitepress/scripts/updateVersion.ts
-      - run: pnpm run docs:build-mirror
+      - run: pnpm -F @gkd-kit/docs exec tsx ./.vitepress/scripts/updateVersion.ts
+
+      - run: pnpm -F @gkd-kit/api run predocs:dev
+      - run: pnpm -F @gkd-kit/docs run docs:build-mirror
       
       - name: Publish package
         run: |
           pnpm config set //registry.npmjs.org/:_authToken ${{ secrets.NPM_TOKEN }}
-          pnpm publish --no-git-checks
+          pnpm -F @gkd-kit/docs publish --no-git-checks
 
-      - run: git checkout .
       - run: curl -X PUT 'https://registry-direct.npmmirror.com/@gkd-kit/docs/sync'
 
       - uses: cloudflare/pages-action@v1
@@ -38,4 +39,4 @@ jobs:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
           accountId: ${{ secrets.CLOUDFLARE_ACCOUNT_ID }}
           projectName: gkd-docs
-          directory: ./.vitepress/dist
+          directory: ./docs/.vitepress/dist

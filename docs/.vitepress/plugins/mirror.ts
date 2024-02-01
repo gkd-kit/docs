@@ -84,11 +84,7 @@ export const transformHtml = (code: string) => {
   });
   const links = DomUtils.findAll((e) => {
     const href = e.attribs.href;
-    return (
-      e.name === 'link' &&
-      !!href &&
-      (href.startsWith('/assets/') || href.startsWith('/logo.svg'))
-    );
+    return e.name === 'link' && !!href && href.startsWith('/assets/');
   }, doc.children);
   links.forEach((e) => {
     e.attribs.href = mirrorBaseUrl + e.attribs.href;

@@ -18,5 +18,7 @@ node_modules
 *.sln
 *.sw?
 .eslintcache
-.vitepress/dist
-.vitepress/cache
+docs/.vitepress/dist
+docs/.vitepress/cache
+
+/docs/api

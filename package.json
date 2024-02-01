@@ -1,40 +1,30 @@
 {
-  "name": "@gkd-kit/docs",
-  "author": "lisonge",
-  "version": "0.0.0",
+  "name": "gkd-monorepo",
+  "private": true,
   "type": "module",
-  "publishConfig": {
-    "access": "public",
-    "registry": "https://registry.npmjs.org/"
-  },
-  "files": [
-    "./.vitepress/dist"
-  ],
   "scripts": {
-    "docs:dev": "vitepress dev",
-    "docs:build": "vitepress build",
-    "docs:preview": "vitepress preview",
-    "docs:build-mirror": "cross-env MIRROR=ON vitepress build",
     "format": "prettier --cache --write --ignore-unknown ."
   },
   "dependencies": {
-    "@gkd-kit/selector": "0.0.18",
-    "@types/node": "^20.11.5",
     "@types/qrcode": "^1.5.5",
     "acorn-walk": "^8.3.2",
     "cross-env": "^7.0.3",
     "dom-serializer": "^2.0.0",
     "htmlparser2": "^9.1.0",
-    "magic-string": "^0.30.5",
+    "magic-string": "^0.30.6",
     "medium-zoom": "^1.1.0",
-    "prettier": "^3.2.4",
     "qrcode": "^1.5.3",
+    "typedoc": "^0.25.7",
+    "typedoc-plugin-markdown": "^4.0.0-next.47",
+    "typedoc-vitepress-theme": "^1.0.0-next.8",
+    "vitepress": "^1.0.0-rc.40",
+    "@gkd-kit/selector": "0.0.20",
+    "@types/node": "^20.11.15",
+    "prettier": "^3.2.4",
     "tsx": "^4.7.0",
-    "typescript": "^5.3.3",
-    "vitepress": "^1.0.0-rc.39"
+    "typescript": "^5.3.3"
   },
   "volta": {
-    "node": "20.10.0"
-  },
-  "packageManager": "pnpm@8.11.0"
+    "node": "20.11.0"
+  }
 }
