@@ -32,7 +32,10 @@ jobs:
           pnpm config set //registry.npmjs.org/:_authToken ${{ secrets.NPM_TOKEN }}
           pnpm -F @gkd-kit/docs publish --no-git-checks
 
-      - run: curl -X PUT 'https://registry-direct.npmmirror.com/@gkd-kit/docs/sync'
+      - run: |
+          curl -X PUT 'https://registry-direct.npmmirror.com/@gkd-kit/docs/sync'
+          sleep 5
+          curl https://registry.npmmirror.com/@gkd-kit/docs/latest/files/package.json
 
       - uses: cloudflare/pages-action@v1
         with:
