@@ -1,12 +1,23 @@
 import mediumZoom from 'medium-zoom';
 import DefaultTheme from 'vitepress/theme';
-import { onMounted } from 'vue';
+import { onMounted, onUnmounted } from 'vue';
 import './custom.css';
 
 const zoomImages = () => {
-  const images = Array.from(
-    document.querySelectorAll<HTMLImageElement>('img[data-zoomable]'),
-  );
+  const images: HTMLImageElement[] = [];
+  document
+    .querySelectorAll<HTMLImageElement>('img[data-zoomable]')
+    .forEach((v) => {
+      images.push(v);
+    });
+  document
+    .querySelectorAll<HTMLImageElement>(
+      'img[src^="https://github.com/gkd-kit/gkd/assets/"]',
+    )
+    .forEach((v) => {
+      images.push(v);
+    });
+
   for (const img of images) {
     if (!img.getAttribute('zoom-inited')) {
       img.setAttribute('zoom-inited', 'true');
@@ -19,9 +30,13 @@ const zoomImages = () => {
 export default {
   ...DefaultTheme,
   setup() {
+    let task = 0;
     onMounted(() => {
       zoomImages();
-      setInterval(zoomImages, 2000);
+      task = window.setInterval(zoomImages, 3000);
+    });
+    onUnmounted(() => {
+      task && window.clearInterval(task);
     });
   },
 };
