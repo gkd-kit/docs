@@ -30,10 +30,10 @@ import { apkUrl, apkName, apkImgUrl } from '/.vitepress/utils/apk';
 
 以 XiaoMi HyperOS 为例, 下面为完整的授权流程截图
 
-|                                                                                               |                                                                                               |                                                                                               |                                                                                               |
-| --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- | --------------------------------------------------------------------------------------------- |
-| ![image](https://github.com/gkd-kit/gkd/assets/38517192/67e95d38-cb49-49e8-8e18-dc202f4cf0cd) | ![image](https://github.com/gkd-kit/gkd/assets/38517192/ca223f0f-b50c-402c-b9e3-6f65d0f1c124) | ![image](https://github.com/gkd-kit/gkd/assets/38517192/31adea39-dc6a-432b-a2d6-d7b35d27c413) | ![image](https://github.com/gkd-kit/gkd/assets/38517192/d2670ae0-c12c-4bc2-9d1c-e781bc48d086) |
-| ![image](https://github.com/gkd-kit/gkd/assets/38517192/36fdf384-d0bc-4e16-bcbd-83d6f7030061) | ![image](https://github.com/gkd-kit/gkd/assets/38517192/74d6b3d8-e68f-4940-b12b-5641eaac496f) | ![image](https://github.com/gkd-kit/gkd/assets/38517192/447ed454-f8ef-41d7-8d50-757e6d51ae4f) | ![image](https://github.com/gkd-kit/gkd/assets/38517192/ba03fd71-7ef9-4a7a-ab25-aac1838082c0) |
+|                                                                                           |                                                                                           |                                                                                           |                                                                                           |
+| ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
+| ![image](https://a.gkd.li/png/0001.png) | ![image](https://a.gkd.li/png/0002.png) | ![image](https://a.gkd.li/png/0003.png) | ![image](https://a.gkd.li/png/0004.png) |
+| ![image](https://a.gkd.li/png/0005.png) | ![image](https://a.gkd.li/png/0006.png) | ![image](https://a.gkd.li/png/0007.png) | ![image](https://a.gkd.li/png/0008.png) |
 
 如果您的手机的无障碍列表界面无法授权 GKD 或者显示 `受限制的设置(出于安全考虑，此设置目前不可用)`
 

@@ -12,7 +12,7 @@ const zoomImages = () => {
     });
   document
     .querySelectorAll<HTMLImageElement>(
-      'img[src^="https://github.com/gkd-kit/gkd/assets/"]',
+      'img[src^="https://a.gkd.li/"]',
     )
     .forEach((v) => {
       images.push(v);
