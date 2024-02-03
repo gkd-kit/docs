@@ -2,7 +2,8 @@ import { defineConfig } from 'vitepress';
 import { mirror, transformHtml } from './plugins';
 import typedocSidebar from '../api/typedoc-sidebar.json';
 
-const logoUrl = 'https://registry.npmmirror.com/@gkd-kit/docs/0.0.1706371840771/files/.vitepress/dist/logo.svg'
+const logoUrl =
+  'https://registry.npmmirror.com/@gkd-kit/docs/0.0.1706371840771/files/.vitepress/dist/logo.svg';
 
 // https://vitepress.dev/reference/site-config
 export default defineConfig({
@@ -40,10 +41,7 @@ export default defineConfig({
         text: 'API',
         link: '/api/',
         collapsed: true,
-        items: typedocSidebar.map((s) => ({
-          ...s,
-          link: s.link.replace('/..\\docs\\api/', '/api/'),
-        })),
+        items: typedocSidebar,
       },
     ],
     outline: { label: '页面导航' },

@@ -1,12 +1,169 @@
 /**
- * 一个或者多个值类型
+ * 订阅配置类型
  */
-export type IArray<T> = T | T[];
+export interface RawSubscription {
+  /**
+   * 当前订阅文件的标识, 如果新旧订阅文件id不一致则更新失败
+   *
+   * 负数 id 内部使用, 不允许用户添加负数 id 的订阅
+   *
+   */
+  id: number;
+
+  /**
+   * 订阅的名称
+   */
+  name: string;
+
+  /**
+   * 订阅的版本号, 用于检测更新
+   *
+   * 只有当新订阅的 version 大于本地旧订阅的 version 才执行更新替换本地
+   */
+  version: number;
+
+  /**
+   * 作者名称
+   */
+  author?: string;
+
+  /**
+   * GKD 会定时或者用户手动刷新请求这个链接, 如果返回的订阅的 version 大于应用订阅当前的 version , 则更新
+   *
+   * 如果这个字段不存在, 则使用添加订阅时填写的链接
+   */
+  updateUrl?: string;
+
+  /**
+   * 一个自定义 uri 链接, 用户点击[用户反馈]时, 打开此链接
+   *
+   * 可以是一个网页链接, 也可以是一个应用内部的 uri 链接
+   */
+  supportUri?: string;
+
+  /**
+   * 一个只需要 id 和 version 的 json 文件链接, 检测更新时, 优先检测此链接, 如果 id 相等并且 version 增加, 则再去请求 updateUrl
+   *
+   * 目的是防止订阅文件过大而消耗过多的流量
+   */
+  checkUpdateUrl?: string;
+
+  /**
+   * 此订阅的应用列表
+   */
+  apps?: RawApp[];
+
+  /**
+   * 此订阅的全局规则组列表
+   */
+  globalGroups?: RawGlobalGroup[];
+
+  /**
+   * 此订阅的应用规则分类列表
+   */
+  categories?: RawCategory[];
+}
+
+/**
+ * 应用规则应用配置
+ */
+export interface RawApp {
+  /**
+   * 应用包名
+   */
+  id: string;
+
+  /**
+   * 如果设备没有安装这个应用, 则使用这个名称显示
+   */
+  name?: string;
+
+  /**
+   * 此应用的规则组列表
+   */
+  groups: RawAppGroup[];
+}
+
+/**
+ * 全局规则组
+ */
+export interface RawGlobalGroup extends RawGroupProps, RawGlobalRuleProps {
+  rules: RawGlobalRule[];
+}
+
+/**
+ * 应用规则分类
+ */
+export interface RawCategory {
+  /**
+   * 当前分类在列表中的唯一标识
+   *
+   * 也是客户端禁用/启用此分类组的依据
+   */
+  key: number;
+
+  /**
+   * 分类名称
+   *
+   * 同时也是分类的依据, 捕获以 name 开头的所有应用规则组, 不捕获全局规则组
+   *
+   * 示例: `开屏广告` 将捕获 `开屏广告-1` `开屏广告-2` `开屏广告-233` 这类应用规则组
+   */
+  name: string;
+
+  /**
+   * null => 跟随捕获的规则组的 enable 的默认值
+   *
+   * true => 全部启用捕获的规则组
+   *
+   * false => 全部禁用捕获的规则组
+   */
+  enable?: boolean;
+}
+
+/**
+ * 应用规则
+ */
+export interface RawAppRule extends RawRuleProps, RawAppRuleProps {}
+
+/**
+ * 应用规则组
+ */
+export interface RawAppGroup extends RawGroupProps, RawAppRuleProps {
+  /**
+   * string => { matches: string }
+   *
+   * string[] => { matches: string }[]
+   */
+  rules: IArray<RawAppRule | string>;
+}
+
+/**
+ * 全局规则
+ */
+export interface RawGlobalRule extends RawRuleProps, RawGlobalRuleProps {}
+
+/**
+ * 全局规则应用配置
+ */
+export interface RawGlobalApp extends RawAppRuleProps {
+  /**
+   * 目标应用的包名
+   */
+  id: string;
+
+  /**
+   * 在此应用启用/禁用此规则
+   *
+   * @default true
+   */
+  enable?: boolean;
+}
 
 /**
  * 全局规则(组)和应用规则(组)的基础通用属性
  */
-export type RawCommonProps = {
+export interface RawCommonProps {
   /**
    * 单位: 毫秒
    *
@@ -146,12 +303,12 @@ export type RawCommonProps = {
    * 如果规则是多个规则组合起来的, 可以更好看懂规则到底在干啥, 比如 点击关闭按钮-选择关闭原因-确认关闭 这种广告用 gif 看着更清楚在干啥
    */
   exampleUrls?: IArray<string>;
-};
+}
 
 /**
  * 全局规则和应用规则的基础通用属性
  */
-export type RawRuleProps = RawCommonProps & {
+export interface RawRuleProps extends RawCommonProps {
   /**
    * 当前规则在列表中的唯一标识
    *
@@ -231,12 +388,12 @@ export type RawRuleProps = RawCommonProps & {
    * 一个或者多个合法的 GKD 选择器, 如果存在一个选择器匹配上节点, 则停止匹配此规则
    */
   excludeMatches?: IArray<string>;
-};
+}
 
 /**
  * 全局规则组和应用规则组的基础通用属性
  */
-export type RawGroupProps = RawCommonProps & {
+export interface RawGroupProps extends RawCommonProps {
   /**
    * 当前规则组在列表中的唯一标识
    *
@@ -278,12 +435,12 @@ export type RawGroupProps = RawCommonProps & {
   scopeKeys?: IArray<number>;
 
   // rules: RawRuleProps[];
-};
+}
 
 /**
  * 应用规则(组)的基础通用属性
  */
-export type RawAppRuleProps = {
+export interface RawAppRuleProps {
   /**
    * 如果 设备界面Id startWith activityIds 的任意一项, 则匹配
    *
@@ -297,35 +454,17 @@ export type RawAppRuleProps = {
    * 优先级高于 activityIds
    */
   excludeActivityIds?: IArray<string>;
-};
-
-// <--全局规则相关--
-/**
- * 全局规则应用配置
- */
-export type RawGlobalApp = RawAppRuleProps & {
-  /**
-   * 目标应用的包名
-   */
-  id: string;
-
-  /**
-   * 在此应用启用/禁用此规则
-   * 
-   * @default true
-   */
-  enable?: boolean;
-};
+}
 
 /**
  * 全局规则的基础通用属性
  */
-export type RawGlobalRuleProps = {
+export interface RawGlobalRuleProps {
   /**
    * true => 匹配任意应用
    *
    * false => 仅匹配 apps 里面的应用
-   * 
+   *
    * @default true
    */
   matchAnyApp?: boolean;
@@ -334,14 +473,14 @@ export type RawGlobalRuleProps = {
    * 是否匹配桌面, 仅全局规则可用
    *
    * 如果你切换了桌面, 你需要打开 GKD 的界面触发识别新桌面
-   * 
+   *
    * @default false
    */
   matchLauncher?: boolean;
 
   /**
    * 是否匹配系统应用, 仅全局规则可用
-   * 
+   *
    * @default false
    */
   matchSystemApp?: boolean;
@@ -350,155 +489,9 @@ export type RawGlobalRuleProps = {
    * 应用配置列表, 配置应用内界面如何匹配或不匹配
    */
   apps?: RawGlobalApp[];
-};
+}
 
 /**
- * 全局规则
+ * 一个或者多个值类型
  */
-export type RawGlobalRule = RawRuleProps & RawGlobalRuleProps;
-
-/**
- * 全局规则组
- */
-export type RawGlobalGroup = RawGroupProps &
-  RawGlobalRuleProps & {
-    rules: RawGlobalRule[];
-  };
-// --全局规则相关-->
-
-// <--APP规则相关--
-
-/**
- * 应用规则分类
- */
-export type RawCategory = {
-  /**
-   * 当前分类在列表中的唯一标识
-   *
-   * 也是客户端禁用/启用此分类组的依据
-   */
-  key: number;
-
-  /**
-   * 分类名称
-   *
-   * 同时也是分类的依据, 捕获以 name 开头的所有应用规则组, 不捕获全局规则组
-   *
-   * 示例: `开屏广告` 将捕获 `开屏广告-1` `开屏广告-2` `开屏广告-233` 这类应用规则组
-   */
-  name: string;
-
-  /**
-   * null => 跟随捕获的规则组的 enable 的默认值
-   *
-   * true => 全部启用捕获的规则组
-   *
-   * false => 全部禁用捕获的规则组
-   */
-  enable?: boolean;
-};
-
-/**
- * 应用规则
- */
-export type RawAppRule = RawRuleProps & RawAppRuleProps;
-
-/**
- * 应用规则组
- */
-export type RawAppGroup = RawGroupProps &
-  RawAppRuleProps & {
-    /**
-     * string => { matches: string }
-     *
-     * string[] => { matches: string }[]
-     */
-    rules: IArray<RawAppRule | string>;
-  };
-
-/**
- * 应用规则应用配置
- */
-export type RawApp = {
-  /**
-   * 应用包名
-   */
-  id: string;
-
-  /**
-   * 如果设备没有安装这个应用, 则使用这个名称显示
-   */
-  name?: string;
-
-  /**
-   * 此应用的规则组列表
-   */
-  groups: RawAppGroup[];
-};
-// --APP规则相关-->
-
-/**
- * 订阅配置类型
- */
-export type RawSubscription = {
-  /**
-   * 当前订阅文件的标识, 如果新旧订阅文件id不一致则更新失败\
-   * 范围: `[0, Number.MAX_SAFE_INTEGER]`\
-   * 建议值: `new Date().getTime()`
-   *
-   * GKD默认订阅是 0, 负数 id 内部使用, 不允许用户添加负数 id 的订阅
-   *
-   * 负数订阅由应用内部使用, 如本地订阅是 -2, 内存订阅是 -1
-   */
-  id: number;
-
-  /**
-   * 订阅的名称
-   */
-  name: string;
-
-  /**
-   * 订阅的版本号, 用于检测更新
-   *
-   * 只有当新订阅的 version 大于本地旧订阅的 version 才执行更新替换本地
-   */
-  version: number;
-
-  author?: string;
-
-  /**
-   * GKD 会定时或者用户手动刷新请求这个链接, 如果返回的订阅的 version 大于应用订阅当前的 version , 则更新
-   *
-   * 如果这个字段不存在, 则使用添加订阅时填写的链接
-   */
-  updateUrl?: string;
-
-  /**
-   * 一个自定义 uri 链接, 用户点击[用户反馈]时, 打开此链接
-   *
-   * 可以是一个网页链接, 也可以是一个应用内部的 uri 链接
-   */
-  supportUri?: string;
-
-  /**
-   * 一个只需要 id 和 version 的 json 文件链接, 检测更新时, 优先检测此链接, 如果 id 相等并且 version 增加, 则再去请求 updateUrl
-   *
-   * 目的是防止订阅文件过大而消耗过多的流量
-   */
-  checkUpdateUrl?: string;
-
-  /**
-   * 此订阅的全局规则组列表
-   */
-  globalGroups?: RawGlobalGroup[];
-
-  /**
-   * 此订阅的应用规则分类列表
-   */
-  categories?: RawCategory[];
-
-  /**
-   * 此订阅的应用列表
-   */
-  apps?: RawApp[];
-};
+export type IArray<T> = T | T[];

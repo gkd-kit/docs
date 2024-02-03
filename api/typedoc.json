@@ -13,4 +13,5 @@
   "out": "../docs/api",
   "docsRoot": "../docs",
   "hideBreadcrumbs": true,
+  "sort": ["source-order"]
 }
