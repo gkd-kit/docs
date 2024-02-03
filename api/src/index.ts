@@ -3,12 +3,13 @@
  */
 export interface RawSubscription {
   /**
+   *
    * 当前订阅文件的标识, 如果新旧订阅文件id不一致则更新失败
    *
-   * 负数 id 内部使用, 不允许用户添加负数 id 的订阅
+   * 负数 id 被 GKD 内部使用, 用户无法添加负数 id 的订阅
    *
    */
-  id: number;
+  id: Integer;
 
   /**
    * 订阅的名称
@@ -20,7 +21,7 @@ export interface RawSubscription {
    *
    * 只有当新订阅的 version 大于本地旧订阅的 version 才执行更新替换本地
    */
-  version: number;
+  version: Integer;
 
   /**
    * 作者名称
@@ -100,7 +101,7 @@ export interface RawCategory {
    *
    * 也是客户端禁用/启用此分类组的依据
    */
-  key: number;
+  key: Integer;
 
   /**
    * 分类名称
@@ -171,7 +172,7 @@ export interface RawCommonProps {
    *
    * @default 1000
    */
-  actionCd?: number;
+  actionCd?: Integer;
 
   /**
    * 单位: 毫秒
@@ -179,7 +180,7 @@ export interface RawCommonProps {
    * 延迟执行: 查询到节点->等待一段时间->再次查询到节点则执行对应 action
    *
    */
-  actionDelay?: number;
+  actionDelay?: Integer;
 
   /**
    *
@@ -221,7 +222,7 @@ export interface RawCommonProps {
    * 规则准备匹配/或被唤醒时, 等待一段时间, 使此规则参与查询屏幕节点
    *
    */
-  matchDelay?: number;
+  matchDelay?: Integer;
 
   /**
    * 单位: 毫秒
@@ -231,7 +232,7 @@ export interface RawCommonProps {
    * 例如某些应用的 开屏广告 的 activityId 容易误触/太广泛, 而开屏广告几乎只在应用切出来时出现, 设置一个有限匹配时间能避免后续的误触
    *
    */
-  matchTime?: number;
+  matchTime?: Integer;
 
   /**
    * 最大执行次数
@@ -243,7 +244,7 @@ export interface RawCommonProps {
    * 当规则准备匹配/或被唤醒时, 将重新计算次数
    *
    */
-  actionMaximum?: number;
+  actionMaximum?: Integer;
 
   /**
    * 当规则因为 matchTime/actionMaximum 而休眠时, 如何唤醒此规则
@@ -269,7 +270,7 @@ export interface RawCommonProps {
    *
    * 如果你对这个 key 的 rule 设置 actionCd=3000, 那么当这个 rule 和 本 rule 触发任意一个时, 在 3000毫秒 内两个 rule 都将进入 cd
    */
-  actionCdKey?: number;
+  actionCdKey?: Integer;
 
   /**
    * 与这个 key 的 rule 共享次数
@@ -278,7 +279,7 @@ export interface RawCommonProps {
    *
    * 如果你对这个 key 的 rule 设置 actionMaximum=1, 那么当这个 rule 和 本 rule 触发任意一个时, 两个 rule 都将进入休眠
    */
-  actionMaximumKey?: number;
+  actionMaximumKey?: Integer;
 
   /**
    * 规则参与匹配的顺序, 数字越小越先匹配
@@ -290,7 +291,7 @@ export interface RawCommonProps {
    * @default 0
    *
    */
-  order?: number;
+  order?: Integer;
 
   /**
    * 当前 规则/规则组 的快照链接, 增强订阅可维护性
@@ -316,7 +317,7 @@ export interface RawRuleProps extends RawCommonProps {
    *
    * 设置后不可更改, 否则造成点击记录错乱
    */
-  key?: number;
+  key?: Integer;
 
   /**
    * 规则名称
@@ -333,7 +334,7 @@ export interface RawRuleProps extends RawCommonProps {
    * 否则后面的规则不会触发, 也就是要求规则按顺序执行, 这是为了防止规则匹配范围太过广泛而误触
    *
    */
-  preKeys?: IArray<number>;
+  preKeys?: IArray<Integer>;
 
   /**
    * @example
@@ -403,7 +404,7 @@ export interface RawGroupProps extends RawCommonProps {
    *
    * key 没有顺序大小之分, 可以是任意数字
    */
-  key: number;
+  key: Integer;
 
   /**
    * 规则组名称
@@ -432,7 +433,7 @@ export interface RawGroupProps extends RawCommonProps {
    * 如果存在相同 key 的 rule, 优先使用本组的 rule, 其次按 scopeKeys 的顺序查找其它组的 rule
    *
    */
-  scopeKeys?: IArray<number>;
+  scopeKeys?: IArray<Integer>;
 
   // rules: RawRuleProps[];
 }
@@ -495,3 +496,12 @@ export interface RawGlobalRuleProps {
  * 一个或者多个值类型
  */
 export type IArray<T> = T | T[];
+
+/**
+ * 此类型表示一个整数
+ *
+ * @example
+ * 114514 // ✅
+ * 2.5 // ❌
+ */
+export type Integer = number & {};
