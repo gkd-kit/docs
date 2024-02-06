@@ -494,6 +494,11 @@ export interface RawGlobalRuleProps {
 
 /**
  * 一个或者多个值类型
+ * @example
+ * const n1: IArray<number> = 1; // ✅
+ * const n2: IArray<number> = [1]; // ✅
+ * const s1: IArray<string> = 'hello'; // ✅
+ * const a2: IArray<string> = ['hello']; // ✅
  */
 export type IArray<T> = T | T[];
 

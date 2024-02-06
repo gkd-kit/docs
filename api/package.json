@@ -4,7 +4,11 @@
   "description": "a typescript kit for gkd",
   "type": "module",
   "main": "./src/index.ts",
+  "files": [
+    "src"
+  ],
   "publishConfig": {
+    "access": "public",
     "registry": "https://registry.npmjs.org/"
   },
   "scripts": {
