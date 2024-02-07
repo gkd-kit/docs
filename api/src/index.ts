@@ -89,6 +89,9 @@ export interface RawApp {
  * 全局规则组
  */
 export interface RawGlobalGroup extends RawGroupProps, RawGlobalRuleProps {
+  /**
+   * 全局规则组的规则列表
+   */
   rules: RawGlobalRule[];
 }
 
@@ -132,6 +135,8 @@ export interface RawAppRule extends RawRuleProps, RawAppRuleProps {}
  */
 export interface RawAppGroup extends RawGroupProps, RawAppRuleProps {
   /**
+   * 应用规则组的规则列表, 支持多种类型
+   * 
    * string => { matches: string }
    *
    * string[] => { matches: string }[]
@@ -434,8 +439,6 @@ export interface RawGroupProps extends RawCommonProps {
    *
    */
   scopeKeys?: IArray<Integer>;
-
-  // rules: RawRuleProps[];
 }
 
 /**
