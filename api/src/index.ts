@@ -188,7 +188,6 @@ export interface RawCommonProps {
   actionDelay?: Integer;
 
   /**
-   *
    * 如果开启, 此规则下的所有 `末尾属性选择器`的`第一个属性选择表达式`符合下面的结构之一的选择器 将使用快速查找
    *
    * - [id='abc']
@@ -204,18 +203,13 @@ export interface RawCommonProps {
    *
    * 大多数情况下都能查询到, 在少数某些复杂结构下, 即使目标节点存在, 快速查询也不一定查询到
    *
-   * 比如 [Image < &#64;View + View >2 [text*='广告']](https://github.com/gkd-kit/subscription/blob/1ae87452d287b558f58f9c4e4448a3190e212ca1/src/apps/com.zidongdianji.ts#L26) 虽然符合快速查询的条件但是使用 `findAccessibilityNodeInfosByText("广告")` 并不能查询到节点
+   * 比如 [Image &lt; \@View + View &gt;2 [text*='广告']](https://github.com/gkd-kit/subscription/blob/1ae87452d287b558f58f9c4e4448a3190e212ca1/src/apps/com.zidongdianji.ts#L26) 虽然符合快速查询的条件但是使用 `findAccessibilityNodeInfosByText("广告")` 并不能查询到节点
    *
    * 它是优点是快速, 因为遍历所有节点是一个耗时行为, 虽然多数情况下这种耗时较低
    *
    * 但是在某些软件比如 哔哩哔哩 的开屏广告在这种耗时下延迟可达 1-2s, 这也是导致 [gkd-kit/gkd#60](https://github.com/gkd-kit/gkd/issues/60) 的原因
-   *
-   * ---
-   *
-   * v1.4.1 版本后生成的快照时将标识每个节点是否可 quickFind, 网页审查工具属性面板顶部会注明这个标识, 同时节点树如果字体的标粗体也表示这个节点可 quickFind
-   *
-   * [![image](https://github.com/gkd-kit/subscription/assets/38517192/80cdbad1-fa8d-4415-81a1-cecaa7d69e33)](https://i.gkd.li/import/13316168)
-   *
+   * 
+   * 如果你想对某个局部选择器关闭快速查找,只需要调整你的选择器的属性选择表达式的顺序使得它不符合快速查找的条件即可
    */
   quickFind?: boolean;
 
