@@ -136,7 +136,7 @@ export interface RawAppRule extends RawRuleProps, RawAppRuleProps {}
 export interface RawAppGroup extends RawGroupProps, RawAppRuleProps {
   /**
    * 应用规则组的规则列表, 支持多种类型
-   * 
+   *
    * string => { matches: string }
    *
    * string[] => { matches: string }[]
@@ -208,7 +208,7 @@ export interface RawCommonProps {
    * 它是优点是快速, 因为遍历所有节点是一个耗时行为, 虽然多数情况下这种耗时较低
    *
    * 但是在某些软件比如 哔哩哔哩 的开屏广告在这种耗时下延迟可达 1-2s, 这也是导致 [gkd-kit/gkd#60](https://github.com/gkd-kit/gkd/issues/60) 的原因
-   * 
+   *
    * 如果你想对某个局部选择器关闭快速查找,只需要调整你的选择器的属性选择表达式的顺序使得它不符合快速查找的条件即可
    */
   quickFind?: boolean;
@@ -430,6 +430,8 @@ export interface RawGroupProps extends RawCommonProps {
    * 如果 group1 的 scopeKeys=[2] 并且 group2 没有被禁用, 那么 rule1 的 preKeys/actionCdKey/actionMaximumKey 可以是 11/22/23
    *
    * 如果存在相同 key 的 rule, 优先使用本组的 rule, 其次按 scopeKeys 的顺序查找其它组的 rule
+   * 
+   * @version 1.7.0
    *
    */
   scopeKeys?: IArray<Integer>;
@@ -452,6 +454,34 @@ export interface RawAppRuleProps {
    * 优先级高于 activityIds
    */
   excludeActivityIds?: IArray<string>;
+
+  /**
+   * 如果应用版本名称包含在此列表中, 则匹配
+   * 
+   * @version 1.7.0
+   */
+  versionNames?: IArray<string>;
+
+  /**
+   * 如果应用版本名称包含在此列表中, 则排除匹配, 优先级高于 versionNames
+   * 
+   * @version 1.7.0
+   */
+  excludeVersionNames?: IArray<string>;
+
+  /**
+   * 如果应用版本代码包含在此列表中, 则匹配
+   * 
+   * @version 1.7.0
+   */
+  versionCodes?: IArray<Integer>;
+
+  /**
+   * 如果应用版本代码包含在此列表中, 则排除匹配, 优先级高于 versionCodes
+   * 
+   * @version 1.7.0
+   */
+  excludeVersionCodes?: IArray<Integer>;
 }
 
 /**
