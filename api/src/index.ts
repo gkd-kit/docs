@@ -537,28 +537,32 @@ export interface RawGlobalRuleProps {
  *
  * 合法的定位组合为: left-top, left-bottom, right-top, right-bottom
  *
- * @example
- * // 点击目标节点的中心
+ * 示例1-点击目标节点的中心
+ * ```json5
  * {
  *  left: 'width/2',
  *  top: 'height/2',
  * }
+ * ```
  *
- * // 点击目标节点的左上顶点
+ * 示例2-点击目标节点的左上顶点
+ * ```json5
  * {
  *  left: 0,
  *  top: 0,
  * }
+ * ```
  *
- * // 点击目标节点的右上区域
- * // https://i.gkd.li/import/14112390
- * // https://i.gkd.li/import/14319672
- * // https://github.com/gkd-kit/gkd/assets/38517192/2cac0614-5eba-48a1-9149-4e564cb79945
+ * 示例2-点击目标节点的右上区域
+ * - <https://i.gkd.li/import/14112390>
+ * - <https://i.gkd.li/import/14319672>
+ * - <https://github.com/gkd-kit/gkd/assets/38517192/2cac0614-5eba-48a1-9149-4e564cb79945>
+ * ```json5
  * {
  *  right: 'width*0.1352',
  *  top: 'width*0.0852',
  * }
- *
+ * ```
  */
 export type Position = {
   /**
