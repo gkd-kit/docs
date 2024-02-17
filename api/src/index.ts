@@ -554,9 +554,9 @@ export interface RawGlobalRuleProps {
  * ```
  *
  * 示例2-点击目标节点的右上区域
- * - <https://i.gkd.li/import/14112390>
- * - <https://i.gkd.li/import/14319672>
- * - <https://github.com/gkd-kit/gkd/assets/38517192/2cac0614-5eba-48a1-9149-4e564cb79945>
+ * - https://i.gkd.li/import/14112390
+ * - https://i.gkd.li/import/14319672
+ * - https://github.com/gkd-kit/gkd/assets/38517192/2cac0614-5eba-48a1-9149-4e564cb79945
  * ```json5
  * {
  *  right: 'width*0.1352',
