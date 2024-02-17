@@ -572,7 +572,7 @@ export type Position = {
    *
    * 支持两种值类型, 字符串和数字, 数字等价于相同内容的字符串, 如 2.5 等价于 '2.5'
    *
-   * 字符串类型支持来自快照属性面板上的 left/top/right/bottom/width/height 的数学表达式运算
+   * 字符串类型支持来自快照属性面板上的 left/top/right/bottom/width/height 的数学计算表达式
    *
    * @example
    * 2.5 // ✅
