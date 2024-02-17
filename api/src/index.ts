@@ -380,6 +380,17 @@ export interface RawRuleProps extends RawCommonProps {
     | 'longClickCenter';
 
   /**
+   * 在使用 clickCenter/longClickCenter 时的自定义点击位置
+   *
+   * 默认坐标为节点中心
+   *
+   * 如果计算出的坐标不在屏幕内部, 当作未匹配
+   *
+   * @version 1.7.0
+   */
+  position?: Position;
+
+  /**
    * 一个或者多个合法的 GKD 选择器, 如果每个选择器都能匹配上节点, 那么点击最后一个选择器的目标节点
    */
   matches?: IArray<string>;
@@ -430,7 +441,7 @@ export interface RawGroupProps extends RawCommonProps {
    * 如果 group1 的 scopeKeys=[2] 并且 group2 没有被禁用, 那么 rule1 的 preKeys/actionCdKey/actionMaximumKey 可以是 11/22/23
    *
    * 如果存在相同 key 的 rule, 优先使用本组的 rule, 其次按 scopeKeys 的顺序查找其它组的 rule
-   * 
+   *
    * @version 1.7.0
    *
    */
@@ -457,28 +468,28 @@ export interface RawAppRuleProps {
 
   /**
    * 如果应用版本名称包含在此列表中, 则匹配
-   * 
+   *
    * @version 1.7.0
    */
   versionNames?: IArray<string>;
 
   /**
    * 如果应用版本名称包含在此列表中, 则排除匹配, 优先级高于 versionNames
-   * 
+   *
    * @version 1.7.0
    */
   excludeVersionNames?: IArray<string>;
 
   /**
    * 如果应用版本代码包含在此列表中, 则匹配
-   * 
+   *
    * @version 1.7.0
    */
   versionCodes?: IArray<Integer>;
 
   /**
    * 如果应用版本代码包含在此列表中, 则排除匹配, 优先级高于 versionCodes
-   * 
+   *
    * @version 1.7.0
    */
   excludeVersionCodes?: IArray<Integer>;
@@ -518,6 +529,70 @@ export interface RawGlobalRuleProps {
    */
   apps?: RawGlobalApp[];
 }
+
+/**
+ * 位置类型, 用以描述自定义点击位置
+ *
+ * 使用 left/top/right/bottom 实现定位, 此对象只能有两个属性
+ *
+ * 合法的定位组合为: left-top, left-bottom, right-top, right-bottom
+ *
+ * @example
+ * // 点击目标节点的中心
+ * {
+ *  left: 'width/2',
+ *  top: 'height/2',
+ * }
+ *
+ * // 点击目标节点的左上顶点
+ * {
+ *  left: 0,
+ *  top: 0,
+ * }
+ *
+ * // 点击目标节点的右上区域
+ * // https://i.gkd.li/import/14112390
+ * // https://i.gkd.li/import/14319672
+ * // https://github.com/gkd-kit/gkd/assets/38517192/2cac0614-5eba-48a1-9149-4e564cb79945
+ * {
+ *  right: 'width*0.1352',
+ *  top: 'width*0.0852',
+ * }
+ *
+ */
+export type Position = {
+  /**
+   * 距离目标节点左边的距离
+   *
+   * 方向: 边 -> 节点中心, 负数表示反方向(也可点击节点外部区域)
+   *
+   * 支持两种值类型, 字符串和数字, 数字等价于相同内容的字符串, 如 2.5 等价于 '2.5'
+   *
+   * 字符串类型支持来自快照属性面板上的 left/top/right/bottom/width/height 的数学表达式运算
+   *
+   * @example
+   * 2.5 // ✅
+   * '2.5' // ✅
+   * '2.5 + 1 - 2 * 3 / 4 ^ 5 % 6' // ✅
+   * '(right + left) / 2' // ✅
+   */
+  left?: string | number;
+
+  /**
+   * 距离目标节点上边的距离
+   */
+  top?: string | number;
+
+  /**
+   * 距离目标节点右边的距离
+   */
+  right?: string | number;
+
+  /**
+   * 距离目标节点下边的距离
+   */
+  bottom?: string | number;
+};
 
 /**
  * 一个或者多个值类型
