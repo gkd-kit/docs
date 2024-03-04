@@ -288,7 +288,8 @@ export interface RawCommonProps {
    * 属于不同订阅的规则按照订阅列表中顺序匹配, 长按订阅卡片可以拖动排序
    *
    * @default 0
-   *
+   * 
+   * @version 1.7.0
    */
   order?: Integer;
 
@@ -302,6 +303,8 @@ export interface RawCommonProps {
    * 但是某些基于 flutter/webview 开发的应用/页面在变化时并不会通知系统去触发 onAccessibilityEvent, 但是屏幕上的节点信息确实产生变化
    *
    * 唯一的办法是在开始匹配的一定时间内主动查询屏幕节点
+   * 
+   * @version 1.7.0
    */
   forcedTime?: Integer;
 
