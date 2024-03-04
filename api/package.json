@@ -1,6 +1,6 @@
 {
   "name": "@gkd-kit/api",
-  "version": "0.0.0",
+  "version": "0.0.1",
   "description": "a typescript kit for gkd",
   "type": "module",
   "main": "./src/index.ts",
