@@ -355,7 +355,7 @@ export interface RawRuleProps extends RawCommonProps {
    * 
    * 规则匹配后的操作行为
    * 
-   * 在 position 存在的情况下, action 的默认值为 `clickCenter`
+   * 在 {@link position} 存在的情况下, action 的默认值为 `clickCenter`
    * 
    * @example
    * `click`
@@ -407,7 +407,7 @@ export interface RawRuleProps extends RawCommonProps {
    *
    * 如果计算出的坐标不在屏幕内部, 当作未匹配
    * 
-   * 在 position 存在的情况下, action 的默认值为 `clickCenter`
+   * 在 position 存在的情况下, {@link action} 的默认值为 `clickCenter`
    *
    * @version 1.7.0
    */
