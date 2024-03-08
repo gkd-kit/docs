@@ -352,6 +352,11 @@ export interface RawRuleProps extends RawCommonProps {
   preKeys?: IArray<Integer>;
 
   /**
+   * 
+   * 规则匹配后的操作行为
+   * 
+   * 在 position 存在的情况下, action 的默认值为 `clickCenter`
+   * 
    * @example
    * `click`
    * // 为默认值, 如果目标节点是 clickable 的, 则使用 `clickNode`, 反之使用 `clickCenter`
@@ -401,6 +406,8 @@ export interface RawRuleProps extends RawCommonProps {
    * 默认坐标为节点中心
    *
    * 如果计算出的坐标不在屏幕内部, 当作未匹配
+   * 
+   * 在 position 存在的情况下, action 的默认值为 `clickCenter`
    *
    * @version 1.7.0
    */
