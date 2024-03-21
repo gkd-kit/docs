@@ -46,6 +46,14 @@ export interface RawSubscription {
    * 一个只需要 id 和 version 的 json 文件链接, 检测更新时, 优先检测此链接, 如果 id 相等并且 version 增加, 则再去请求 updateUrl
    *
    * 目的是防止订阅文件过大而消耗过多的流量
+   *
+   * 如下是一个简单的示例
+   * ```json
+   * {
+   *   "id": 114514,
+   *   "version": 1919810
+   * }
+   * ```
    */
   checkUpdateUrl?: string;
 
@@ -135,11 +143,46 @@ export interface RawAppRule extends RawRuleProps, RawAppRuleProps {}
  */
 export interface RawAppGroup extends RawGroupProps, RawAppRuleProps {
   /**
-   * 应用规则组的规则列表, 支持多种类型
-   *
-   * string => { matches: string }
-   *
-   * string[] => { matches: string }[]
+   * 应用规则组的规则列表, 支持多种类型, 下面介绍它的两种简单类型的表示意义
+   * 
+   * ---
+   * 
+   * 示例-1: 简单的字符串直接表示规则的 matches
+   * ```json5
+   * {
+   *   rules: 'A > B'
+   * }
+   * ```
+   * 等价于
+   * ```json5
+   * {
+   *   rules: {
+   *     matches: 'A > B',
+   *   }
+   * }
+   * ```
+   * 
+   * ---
+   * 
+   * 示例-2: 也可以是字符串数组表示多个规则的 matches
+   * ```json5
+   * {
+   *   rules: ['A > B', 'A > B']
+   * }
+   * ```
+   * 等价于
+   * ```json5
+   * {
+   *   rules: [
+   *     {
+   *       matches: 'A > B',
+   *     },
+   *     {
+   *       matches: 'A > B',
+   *     },
+   *   ],
+   * }
+   * ```
    */
   rules: IArray<RawAppRule | string>;
 }
@@ -288,7 +331,7 @@ export interface RawCommonProps {
    * 属于不同订阅的规则按照订阅列表中顺序匹配, 长按订阅卡片可以拖动排序
    *
    * @default 0
-   * 
+   *
    * @version 1.7.0
    */
   order?: Integer;
@@ -303,7 +346,7 @@ export interface RawCommonProps {
    * 但是某些基于 flutter/webview 开发的应用/页面在变化时并不会通知系统去触发 onAccessibilityEvent, 但是屏幕上的节点信息确实产生变化
    *
    * 唯一的办法是在开始匹配的一定时间内主动查询屏幕节点
-   * 
+   *
    * @version 1.7.0
    */
   forcedTime?: Integer;
@@ -352,11 +395,11 @@ export interface RawRuleProps extends RawCommonProps {
   preKeys?: IArray<Integer>;
 
   /**
-   * 
+   *
    * 规则匹配后的操作行为
-   * 
+   *
    * 在 {@link position} 存在的情况下, action 的默认值为 `clickCenter`
-   * 
+   *
    * @example
    * `click`
    * // 为默认值, 如果目标节点是 clickable 的, 则使用 `clickNode`, 反之使用 `clickCenter`
@@ -406,7 +449,7 @@ export interface RawRuleProps extends RawCommonProps {
    * 默认坐标为节点中心
    *
    * 如果计算出的坐标不在屏幕内部, 当作未匹配
-   * 
+   *
    * 在 position 存在的情况下, {@link action} 的默认值为 `clickCenter`
    *
    * @version 1.7.0
@@ -556,7 +599,7 @@ export interface RawGlobalRuleProps {
 /**
  * 位置类型, 用以描述自定义点击位置
  *
- * 使用 left/top/right/bottom 实现定位, 此对象只能有两个属性
+ * 使用 left/top/right/bottom 四条边实现定位, 此对象只能有两个属性, 也就是两条相邻边
  *
  * 合法的定位组合为: left-top, left-bottom, right-top, right-bottom
  *
@@ -577,9 +620,9 @@ export interface RawGlobalRuleProps {
  * ```
  *
  * 示例2-点击目标节点的右上区域
- * - https://i.gkd.li/import/14112390
- * - https://i.gkd.li/import/14319672
- * - https://github.com/gkd-kit/gkd/assets/38517192/2cac0614-5eba-48a1-9149-4e564cb79945
+ * - [快照-1](https://i.gkd.li/i/14112390)
+ * - [快照-2](https://i.gkd.li/i/14319672)
+ * - [图片-1](https://github.com/gkd-kit/gkd/assets/38517192/2cac0614-5eba-48a1-9149-4e564cb79945)
  * ```json5
  * {
  *  right: 'width*0.1352',
