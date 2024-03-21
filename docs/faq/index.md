@@ -1,10 +1,10 @@
-# 疑难解答
+# 疑难解答 {#title}
 
 一些可能影响使用体验的问题和对应解决方案, 某些方案可能并不适用您的机型系统
 
 如您有更好的方案或想对现有方案进行补充, 请点击底部 `为此页提供修改建议`
 
-## 受限制的设置
+## 受限制的设置 {#restriction}
 
 无障碍列表界面提示 `受限制的设置(出于安全考虑，此设置目前不可用)`
 
@@ -19,7 +19,7 @@
 | ![image](https://a.gkd.li/png/0013.png) | ![image](https://a.gkd.li/png/0014.png) | ![image](https://a.gkd.li/png/0015.png) | ![image](https://a.gkd.li/png/0016.png) |
 | ![image](https://a.gkd.li/png/0017.png) | ![image](https://a.gkd.li/png/0018.png) |                                         |                                         |
 
-## 后台运行
+## 后台运行 {#persistent}
 
 如何尽量保持后台运行不被系统回收
 
@@ -32,7 +32,7 @@
 - 允许后台活动, 关闭省电策略, 或者设置 GKD 的省电策略为无限制
 - 允许 GKD 自启动
 
-## 关闭无障碍警告弹窗
+## 关闭无障碍警告弹窗 {#close_warn_dialog}
 
 请注意: **这个方案不一定适用所有机型**
 

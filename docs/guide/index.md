@@ -1,10 +1,10 @@
-# 开始使用
+# 开始使用 {#title}
 
 <script setup>
 import { apkUrl, apkName, apkImgUrl } from '/.vitepress/utils/apk';
 </script>
 
-## 下载安装
+## 下载安装 {#install}
 
 <ClientOnly>
 大陆用户可点击 <a rel="noopener noreferrer" :href="apkUrl">{{ apkName }}</a> 下载
@@ -22,7 +22,7 @@ import { apkUrl, apkName, apkImgUrl } from '/.vitepress/utils/apk';
 
 下载完毕后, 在您的 Android 手机上安装并打开
 
-## 授权使用
+## 授权使用 {#usage}
 
 打开后进入 GKD 的首页, 要想 GKD 正常工作需要授权无障碍权限
 
