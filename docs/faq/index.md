@@ -19,6 +19,8 @@
 | ![image](https://a.gkd.li/png/0013.png) | ![image](https://a.gkd.li/png/0014.png) | ![image](https://a.gkd.li/png/0015.png) | ![image](https://a.gkd.li/png/0016.png) |
 | ![image](https://a.gkd.li/png/0017.png) | ![image](https://a.gkd.li/png/0018.png) |                                         |                                         |
 
+如果您按照以上步骤设置后回到 无障碍列表 仍然提示不可用, 您可以试试 **重启手机**, 此解决方案来自 [Herobrine2005928](https://github.com/orgs/gkd-kit/discussions/433#discussioncomment-8899920)
+
 ## 后台运行 {#persistent}
 
 如何尽量保持后台运行不被系统回收
