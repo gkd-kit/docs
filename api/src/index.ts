@@ -43,17 +43,20 @@ export interface RawSubscription {
   supportUri?: string;
 
   /**
-   * 一个只需要 id 和 version 的 json 文件链接, 检测更新时, 优先检测此链接, 如果 id 相等并且 version 增加, 则再去请求 updateUrl
+   * 一个只需要 id 和 version 的 json5 文件链接, 检测更新时, 优先检测此链接, 如果 id 相等并且 version 增加, 则再去请求 updateUrl
    *
-   * 目的是防止订阅文件过大而消耗过多的流量
-   *
-   * 如下是一个简单的示例
-   * ```json
+   * 目的是防止订阅文件过大而消耗过多的流量, 如下是一个简单的示例
+   * ```json5
    * {
-   *   "id": 114514,
-   *   "version": 1919810
+   *   id: 114514,
+   *   version: 1919810
    * }
    * ```
+   * 
+   * 支持相对地址, 如果 {@link updateUrl} 或者用户添加订阅时填写的链接是 `https://gkd.li/gkd.json5` 并且 {@link checkUpdateUrl} 是 `./gkd.version.json5`
+   * 
+   * 那么最终请求的链接是 `https://gkd.li/gkd.version.json5`
+   *
    */
   checkUpdateUrl?: string;
 
