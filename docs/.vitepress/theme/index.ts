@@ -1,6 +1,7 @@
 import mediumZoom from 'medium-zoom';
+import { useRoute } from 'vitepress';
 import DefaultTheme from 'vitepress/theme';
-import { onMounted, onUnmounted } from 'vue';
+import { nextTick, onMounted, watch } from 'vue';
 import './custom.css';
 
 const zoomImages = () => {
@@ -11,9 +12,7 @@ const zoomImages = () => {
       images.push(v);
     });
   document
-    .querySelectorAll<HTMLImageElement>(
-      'img[src^="https://a.gkd.li/"]',
-    )
+    .querySelectorAll<HTMLImageElement>('img[src^="https://a.gkd.li/"]')
     .forEach((v) => {
       images.push(v);
     });
@@ -21,7 +20,6 @@ const zoomImages = () => {
   for (const img of images) {
     if (!img.getAttribute('zoom-inited')) {
       img.setAttribute('zoom-inited', 'true');
-      // https://github.com/vuejs/vitepress/issues/854#issuecomment-1232938474
       mediumZoom(img, { background: 'rgba(0,0,0,0.7)' });
     }
   }
@@ -30,13 +28,11 @@ const zoomImages = () => {
 export default {
   ...DefaultTheme,
   setup() {
-    let task = 0;
-    onMounted(() => {
-      zoomImages();
-      task = window.setInterval(zoomImages, 3000);
-    });
-    onUnmounted(() => {
-      task && window.clearInterval(task);
-    });
+    onMounted(zoomImages);
+    const route = useRoute();
+    watch(
+      () => route.path,
+      () => nextTick(zoomImages),
+    );
   },
 };
