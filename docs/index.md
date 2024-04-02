@@ -18,7 +18,7 @@ hero:
       link: /selector/
     - theme: alt
       text: 订阅规则
-      link: /scription/
+      link: /subscription/
     - theme: alt
       text: 疑难解答
       link: /faq/
