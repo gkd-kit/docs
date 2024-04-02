@@ -33,7 +33,7 @@ export default defineConfig({
         items: [
           { text: '开始使用', link: '/guide/' },
           { text: '高级选择器', link: '/selector/' },
-          { text: '订阅规则', link: '/scription/' },
+          { text: '订阅规则', link: '/subscription/' },
           { text: '疑难解答', link: '/faq/' },
         ],
       },
