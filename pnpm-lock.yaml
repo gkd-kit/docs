@@ -9,8 +9,8 @@ importers:
   .:
     dependencies:
       '@gkd-kit/selector':
-        specifier: 0.0.22
-        version: 0.0.22
+        specifier: 0.0.25
+        version: 0.0.25
       '@types/node':
         specifier: 20.11.30
         version: 20.11.30
@@ -680,8 +680,8 @@ packages:
     dev: false
     optional: true
 
-  /@gkd-kit/selector@0.0.22:
-    resolution: {integrity: sha512-ru+QzuraI3ITzeUH9INp8/oNVcyK+WQhlanSu+unspMCeMnXc0cF1uEQtm7utIKNSCOUTfuWlHDxR4rROZKnLw==}
+  /@gkd-kit/selector@0.0.25:
+    resolution: {integrity: sha512-bW3nFcvKZH5I/DasukPcKEbnSCrEI1ioup9+mUUTj0RoPwPBZri/MRKIu8fQg2WWfZ3D38otpwO1ilG7fJI/cA==}
     dev: false
 
   /@jridgewell/sourcemap-codec@1.4.15:
