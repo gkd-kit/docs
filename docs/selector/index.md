@@ -118,6 +118,8 @@ import ValueField from '/.vitepress/components/ValueField.vue';
 |  ~=  |    -     |    -     |    -     | &#10004; |
 | !~=  |    -     |    -     |    -     | &#10004; |
 
+除 `=`/`!=` 以外的操作符, 当节点属性是 `null` 如 a>0 当 a 是 `null` 时返回 `false`
+
 ## 关系选择器 {#connect}
 
 关系选择器 由 关系操作符 和 关系表达式 构成, 用于连接两个属性选择器, 简单示例: `div > a`, 它 表示/约束 两个节点之间的关系
