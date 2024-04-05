@@ -24,7 +24,7 @@ import ValueField from '/.vitepress/components/ValueField.vue';
 
 示例 `div > img` 的结构是 `属性选择器 关系选择器 属性选择器`, 它表示选择父节点是 `div` 的 `img` 节点, 这与 [相同 CSS 语法](https://developer.mozilla.org/zh-CN/docs/Web/CSS/Child_combinator) 语义一致
 
-另外 属性选择器 和 关系选择器 之前必须强制用 空白字符(空格/换行/回车/制表) 隔开
+另外 属性选择器 和 关系选择器 之间必须**强制**用 空白字符(空格/换行/回车/制表) 隔开
 
 即 `div>img` 非法, 必须写成 `div > img`
 
@@ -50,6 +50,8 @@ import ValueField from '/.vitepress/components/ValueField.vue';
 - 布尔表达式 -> `name='TextView'`
 
 逻辑表达式 有两个操作符 `||` 和 `&&`. `&&` 优先级更高, 即 `[a>1||b>1&&c>1||d>1]` 等价于 `[a>1||(b>1&&c>1)||d>1]`
+
+并列的 `[]` 视为使用 `&&` 的逻辑表达式, 即 `[a=1][b=1]` 等价于 `[a=1&&b=1]`
 
 布尔表达式 由 [属性名](#attr-name) [操作符](#attr-operator) [值](#attr-value) 顺序构成
 
@@ -90,7 +92,7 @@ import ValueField from '/.vitepress/components/ValueField.vue';
 
 - null
 - boolean 使用 `true`/`false`
-- int 匹配 `^-?[0-9]$`, 仅支持 10 进制自然数
+- int 匹配 `^-?[0-9]$`, 即10进制自然数, 示例 `-1`,`0`,`1`
 - string 使用 ' &#96; " 之一成对包裹, 内部字符转义使用 `\`\
    所有的转义字符示例 `\\`, `\'`, `\"`, `` \` ``, `\n`, `\r`, `\t`, `\b`, `\xfF`, `\uffFF`\
    不支持多行字符, 处于 `[0, 0x1F]` 的控制字符必须使用转义字符表示
@@ -118,11 +120,9 @@ import ValueField from '/.vitepress/components/ValueField.vue';
 
 ## 关系选择器 {#connect}
 
-用于连接两个属性选择器, 简单示例: `div > a`, 它 表示/约束 两个节点之间的关系
+关系选择器 由 关系操作符 和 关系表达式 构成, 用于连接两个属性选择器, 简单示例: `div > a`, 它 表示/约束 两个节点之间的关系
 
-关系选择器 由 关系操作符 和 关系表达式 构成
-
-关系操作符 表示查找节点的方向, 有 5 种关系操作符, `+`, `-`, `>`, `<`, `<<`
+### 关系表达式 {#connect-exp}
 
 关系表达式 有两种
 
@@ -134,6 +134,10 @@ import ValueField from '/.vitepress/components/ValueField.vue';
   当 a>0 时, 它表示无限的元组表达式\
   示例 `(n)`, 它表示 `(1,2,3,...)` 一个无限的元组\
   示例 `(2n-1)`, 它表示 `(1,3,5,...)` 一个无限的元组
+
+### 关系操作符 {#connect-operator}
+
+关系操作符 表示查找节点的方向, 有 5 种关系操作符, `+`, `-`, `>`, `<`, `<<`
 
 将 关系操作符 和 关系表达式 连接起来就得到了 关系选择器
 
@@ -147,7 +151,11 @@ import ValueField from '/.vitepress/components/ValueField.vue';
 
 `A <<(a1,a2,a3,a_n) B` : A 是 B 的子孙节点, 并且 A.order 满足 a_m-1, A.order 是深度优先先序遍历的索引
 
-一些表达式的简写
+### 表达式简写 {#connect-shortcut}
+
+一般情况下, 并不需要写严格完整的表达式, 使用简化写法更方便快捷
+
+下面是一些特殊情况下的简写表示
 
 当 a=0 或 b=0 时, 括号可以省略, 比如 `A +(3n+0) B` -> `A +(3n) B` -> `A +3n B`, `A +(0n+3) B` -> `A +(+3) B` -> `A +3 B`
 
@@ -161,7 +169,7 @@ import ValueField from '/.vitepress/components/ValueField.vue';
 @LinearLayout > TextView[id=`com.byted.pangle:id/tt_item_tv`][text=`不感兴趣`]
 ```
 
-首先找到 id=&#96;com.byted.pangle:id/tt_item_tv&#96; 和 text=&#96;不感兴趣&#96; 的 TextView, 并且父节点是 LinearLayout 的节点
+选择器从末尾开始查找, 首先找到 id=&#96;com.byted.pangle:id/tt_item_tv&#96; 和 text=&#96;不感兴趣&#96; 的 TextView, 并且父节点是 LinearLayout 的节点
 
 此时我们得到两个节点 [LinearLayout, TextView] 根据 `@` 知道目标节点是 LinearLayout
 
@@ -175,8 +183,6 @@ TextView[id=`com.byted.pangle:id/tt_item_tv`][text=`不感兴趣`] <n LinearLayo
 
 如下是网页无障碍快照审查工具, 使用它的搜索框的选择器查询可以实时测试编写的选择器
 
-- <https://i.gkd.li/i/14045424>
-- <https://i.gkd.li/i/14045424>
 - <https://i.gkd.li/i/14045424>
 - <https://i.gkd.li/i/14034770>
 - <https://i.gkd.li/i/14031920>
