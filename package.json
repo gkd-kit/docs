@@ -6,23 +6,25 @@
     "format": "prettier --cache --write --ignore-unknown ."
   },
   "dependencies": {
+    "@gkd-kit/selector": "0.0.25",
+    "@types/node": "20.11.30",
     "@types/qrcode": "1.5.5",
     "acorn-walk": "8.3.2",
     "cross-env": "7.0.3",
     "dom-serializer": "2.0.0",
     "htmlparser2": "9.1.0",
     "magic-string": "0.30.8",
+    "markdown-it-mathjax3": "4.3.2",
     "medium-zoom": "1.1.0",
+    "prettier": "3.2.5",
     "qrcode": "1.5.3",
+    "tsx": "4.7.1",
     "typedoc": "0.25.12",
     "typedoc-plugin-markdown": "4.0.0-next.47",
     "typedoc-vitepress-theme": "1.0.0-next.10",
-    "vitepress": "1.0.1",
-    "@gkd-kit/selector": "0.0.25",
-    "@types/node": "20.11.30",
-    "prettier": "3.2.5",
-    "tsx": "4.7.1",
-    "typescript": "5.4.3"
+    "typescript": "5.4.3",
+    "unocss": "0.58.9",
+    "vitepress": "1.0.2"
   },
   "volta": {
     "node": "20.11.0"
@@ -32,7 +34,8 @@
     "peerDependencyRules": {
       "ignoreMissing": [
         "@algolia/client-search",
-        "search-insights"
+        "search-insights",
+        "vite"
       ]
     }
   }

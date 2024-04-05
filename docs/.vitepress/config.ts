@@ -21,8 +21,17 @@ export default defineConfig({
   ],
   lastUpdated: true,
   themeConfig: {
-    // https://vitepress.dev/reference/default-theme-config
     logo: logoUrl,
+    lastUpdatedText: '最后更新于',
+    outline: 'deep',
+    docFooter: {
+      prev: '上一篇',
+      next: '下一篇',
+    },
+    returnToTopLabel: '返回顶部',
+    outlineTitle: '导航栏',
+    darkModeSwitchLabel: '外观',
+    sidebarMenuLabel: '归档',
     nav: [
       { text: '首页', link: '/' },
       { text: 'API', link: '/api/' },
@@ -44,7 +53,6 @@ export default defineConfig({
         items: typedocSidebar,
       },
     ],
-    outline: { label: '页面导航' },
     editLink: {
       pattern: 'https://github.com/gkd-kit/docs/edit/main/:path',
       text: '为此页提供修改建议',

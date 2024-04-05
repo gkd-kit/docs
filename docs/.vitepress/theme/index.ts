@@ -3,6 +3,7 @@ import { useRoute } from 'vitepress';
 import DefaultTheme from 'vitepress/theme';
 import { nextTick, onMounted, watch } from 'vue';
 import './custom.css';
+import 'uno.css';
 
 const zoomImages = () => {
   const images: HTMLImageElement[] = [];
