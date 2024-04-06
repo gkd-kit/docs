@@ -143,13 +143,13 @@ import ValueField from '/.vitepress/components/ValueField.vue';
 
 关系操作符 表示查找节点的方向, 有 5 种关系操作符, `+`, `-`, `>`, `<`, `<<`
 
-| 操作符 |     名称     |                                                   图例                                                   |                                  选择器                                   |
-| :----: | :----------: | :------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------: |
-|   +    | 前置兄弟节点 | ![image](https://a.gkd.li/0020.png){width=250} |   [\* + \[\_id=33\]](https://i.gkd.li/i/14045424?gkd=KiArIFtfaWQ9MzNd)    |
-|   -    | 后置兄弟节点 | ![image](https://a.gkd.li/0021.png){width=250} |   [\* - \[\_id=32\]](https://i.gkd.li/i/14045424?gkd=KiAtIFtfaWQ9MzJd)    |
-|   >    |   祖先节点   | ![image](https://a.gkd.li/0022.png){width=250} |   [\* > \[\_id=90\]](https://i.gkd.li/i/14045424?gkd=KiA-IFtfaWQ9OTBd)    |
-|   <    |  直接子节点  | ![image](https://a.gkd.li/0023.png){width=250} |   [\* < \[\_id=89\]](https://i.gkd.li/i/14045424?gkd=KiA8IFtfaWQ9ODld)    |
-|   <<   |   子孙节点   | ![image](https://a.gkd.li/0024.png){width=250} | [\* <<2 \[\_id=29\]](https://i.gkd.li/i/14045424?gkd=KiA8PDIgW19pZD0yOV0) |
+| 操作符 |        名称        |                      图例                      |                                  选择器                                   |
+| :----: | :----------------: | :--------------------------------------------: | :-----------------------------------------------------------------------: |
+|   +    |    前置兄弟节点    | ![image](https://a.gkd.li/0020.png){width=250} |   [\* + \[\_id=33\]](https://i.gkd.li/i/14045424?gkd=KiArIFtfaWQ9MzNd)    |
+|   -    |    后置兄弟节点    | ![image](https://a.gkd.li/0021.png){width=250} |   [\* - \[\_id=32\]](https://i.gkd.li/i/14045424?gkd=KiAtIFtfaWQ9MzJd)    |
+|   >    |      祖先节点      | ![image](https://a.gkd.li/0022.png){width=250} |   [\* > \[\_id=90\]](https://i.gkd.li/i/14045424?gkd=KiA-IFtfaWQ9OTBd)    |
+|   <    |     直接子节点     | ![image](https://a.gkd.li/0023.png){width=250} |   [\* < \[\_id=89\]](https://i.gkd.li/i/14045424?gkd=KiA8IFtfaWQ9ODld)    |
+|   <<   | 子孙节点(深度先序) | ![image](https://a.gkd.li/0024.png){width=250} | [\* <<2 \[\_id=29\]](https://i.gkd.li/i/14045424?gkd=KiA8PDIgW19pZD0yOV0) |
 
 将 关系操作符 和 关系表达式 连接起来就得到了 关系选择器
 
