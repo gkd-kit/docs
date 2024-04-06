@@ -17,6 +17,13 @@ const zoomImages = () => {
     .forEach((v) => {
       images.push(v);
     });
+  document
+    .querySelectorAll<HTMLImageElement>(
+      'img[src^="https://registry.npmmirror.com/@gkd-kit/assets/"]',
+    )
+    .forEach((v) => {
+      images.push(v);
+    });
 
   for (const img of images) {
     if (!img.getAttribute('zoom-inited')) {

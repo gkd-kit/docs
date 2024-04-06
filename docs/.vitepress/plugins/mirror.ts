@@ -69,6 +69,10 @@ export const mirror = (): Plugin | undefined => {
   };
 };
 
+const imageAssetVersion = await fetch(
+  'https://registry.npmmirror.com/@gkd-kit/assets/latest/files/package.json',
+).then((r) => r.json().then((j) => j.version as string));
+
 export const transformHtml = (code: string) => {
   if (!useMirror) return;
   const doc = parseDocument(code);
@@ -88,6 +92,20 @@ export const transformHtml = (code: string) => {
   }, doc.children);
   links.forEach((e) => {
     e.attribs.href = mirrorBaseUrl + e.attribs.href;
+  });
+
+  const images = DomUtils.findAll((e) => {
+    return (
+      e.name === 'img' &&
+      !!e.attribs.src &&
+      e.attribs.src.startsWith('https://a.gkd.li/')
+    );
+  }, doc.children);
+  images.forEach((e) => {
+    e.attribs.src = e.attribs.src.replace(
+      'https://a.gkd.li/',
+      `https://registry.npmmirror.com/@gkd-kit/assets/${imageAssetVersion}/files/assets/`,
+    );
   });
   return render(doc, { encodeEntities: false });
 };

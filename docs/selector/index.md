@@ -122,11 +122,13 @@ import ValueField from '/.vitepress/components/ValueField.vue';
 
 ## 关系选择器 {#connect}
 
-关系选择器 由 关系操作符 和 关系表达式 构成, 用于连接两个属性选择器, 简单示例: `div > a`, 它 表示/约束 两个节点之间的关系
+关系选择器 由 关系操作符 和 关系表达式 构成, 用于连接两个属性选择器
+
+简单示例: `div > a`, 它 表示/约束 两个节点之间的关系, 下面介绍 [关系操作符](#connect-operator) 和 [关系表达式](#connect-exp)
 
 ### 关系表达式 {#connect-exp}
 
-关系表达式 有两种
+关系表达式 表示查找节点的范围, 有两种
 
 - 元组表达式 `(a1,a2,a3,a_n)`, 其中 a1, a2, a3, a_n 是常量有序递增正整数, 示例 `(1)`, `(2,3,5)`
 - 多项式表达式 `(an+b)`, 其中 a 和 b 是常量整数, 它是元组表达式的另一种表示, 这个元组的数字满足集合 `{an+b|an+b>=1,n>=1}` 如果集合为空集则表达式非法\
@@ -140,6 +142,14 @@ import ValueField from '/.vitepress/components/ValueField.vue';
 ### 关系操作符 {#connect-operator}
 
 关系操作符 表示查找节点的方向, 有 5 种关系操作符, `+`, `-`, `>`, `<`, `<<`
+
+| 操作符 |     名称     |                                                   图例                                                   |                                  选择器                                   |
+| :----: | :----------: | :------------------------------------------------------------------------------------------------------: | :-----------------------------------------------------------------------: |
+|   +    | 前置兄弟节点 | ![image](https://a.gkd.li/0020.png){width=250} |   [\* + \[\_id=33\]](https://i.gkd.li/i/14045424?gkd=KiArIFtfaWQ9MzNd)    |
+|   -    | 后置兄弟节点 | ![image](https://a.gkd.li/0021.png){width=250} |   [\* - \[\_id=32\]](https://i.gkd.li/i/14045424?gkd=KiAtIFtfaWQ9MzJd)    |
+|   >    |   祖先节点   | ![image](https://a.gkd.li/0022.png){width=250} |   [\* > \[\_id=90\]](https://i.gkd.li/i/14045424?gkd=KiA-IFtfaWQ9OTBd)    |
+|   <    |  直接子节点  | ![image](https://a.gkd.li/0023.png){width=250} |   [\* < \[\_id=89\]](https://i.gkd.li/i/14045424?gkd=KiA8IFtfaWQ9ODld)    |
+|   <<   |   子孙节点   | ![image](https://a.gkd.li/0024.png){width=250} | [\* <<2 \[\_id=29\]](https://i.gkd.li/i/14045424?gkd=KiA8PDIgW19pZD0yOV0) |
 
 将 关系操作符 和 关系表达式 连接起来就得到了 关系选择器
 
@@ -217,7 +227,7 @@ TextView[id=`com.byted.pangle:id/tt_item_tv`][text=`不感兴趣`] <n LinearLayo
 
 Kotlin Wasm 需要你的浏览器支持 [WasmGC](https://developer.chrome.com/blog/wasmgc?hl=zh-cn), 也就是版本需要满足下列条件
 
-![image](https://github.com/gkd-kit/gkd/assets/38517192/15c8dee9-6480-428b-be4f-45939b4046e5)
+![image](https://a.gkd.li/0025.png)
 
 如果你的浏览器版本不满足, 正则表达式将自动回退到 Js 端实现, 以下是在 Js 端使用正则表达式需要注意的地方
 

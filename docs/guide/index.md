@@ -32,8 +32,8 @@ import { apkUrl, apkName, apkImgUrl } from '/.vitepress/utils/apk';
 
 |                                                                                           |                                                                                           |                                                                                           |                                                                                           |
 | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
-| ![image](https://a.gkd.li/png/0001.png) | ![image](https://a.gkd.li/png/0002.png) | ![image](https://a.gkd.li/png/0003.png) | ![image](https://a.gkd.li/png/0004.png) |
-| ![image](https://a.gkd.li/png/0005.png) | ![image](https://a.gkd.li/png/0006.png) | ![image](https://a.gkd.li/png/0007.png) | ![image](https://a.gkd.li/png/0008.png) |
+| ![image](https://a.gkd.li/0001.png) | ![image](https://a.gkd.li/0002.png) | ![image](https://a.gkd.li/0003.png) | ![image](https://a.gkd.li/0004.png) |
+| ![image](https://a.gkd.li/0005.png) | ![image](https://a.gkd.li/0006.png) | ![image](https://a.gkd.li/0007.png) | ![image](https://a.gkd.li/0008.png) |
 
 如果您的手机的无障碍列表界面无法授权 GKD 或者显示 `受限制的设置(出于安全考虑，此设置目前不可用)`
 

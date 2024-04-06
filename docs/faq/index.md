@@ -16,8 +16,8 @@
 
 |                                         |                                         |                                         |                                         |
 | --------------------------------------- | --------------------------------------- | --------------------------------------- | --------------------------------------- |
-| ![image](https://a.gkd.li/png/0013.png) | ![image](https://a.gkd.li/png/0014.png) | ![image](https://a.gkd.li/png/0015.png) | ![image](https://a.gkd.li/png/0016.png) |
-| ![image](https://a.gkd.li/png/0017.png) | ![image](https://a.gkd.li/png/0018.png) |                                         |                                         |
+| ![image](https://a.gkd.li/0013.png) | ![image](https://a.gkd.li/0014.png) | ![image](https://a.gkd.li/0015.png) | ![image](https://a.gkd.li/0016.png) |
+| ![image](https://a.gkd.li/0017.png) | ![image](https://a.gkd.li/0018.png) |                                         |                                         |
 
 如果您按照以上步骤设置后回到 无障碍列表 仍然提示不可用, 您可以试试 **重启手机**, 此解决方案来自 [Herobrine2005928](https://github.com/orgs/gkd-kit/discussions/433#discussioncomment-8899920)
 
@@ -42,7 +42,7 @@
 
 |                                         |                                         |
 | --------------------------------------- | --------------------------------------- |
-| ![image](https://a.gkd.li/png/0004.png) | ![image](https://a.gkd.li/png/0005.png) |
+| ![image](https://a.gkd.li/0004.png) | ![image](https://a.gkd.li/0005.png) |
 
 你可能已经看到这个界面还有一个开关, 也就是下方的 `快捷方式` 开关
 
@@ -54,4 +54,4 @@
 
 |                                         |                                         |                                         |                                         |
 | --------------------------------------- | --------------------------------------- | --------------------------------------- | --------------------------------------- |
-| ![image](https://a.gkd.li/png/0009.png) | ![image](https://a.gkd.li/png/0010.png) | ![image](https://a.gkd.li/png/0011.png) | ![image](https://a.gkd.li/png/0012.png) |
+| ![image](https://a.gkd.li/0009.png) | ![image](https://a.gkd.li/0010.png) | ![image](https://a.gkd.li/0011.png) | ![image](https://a.gkd.li/0012.png) |
