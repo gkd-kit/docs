@@ -132,6 +132,8 @@ export interface RawCategory {
    * true => 全部启用捕获的规则组
    *
    * false => 全部禁用捕获的规则组
+   * 
+   * @default null
    */
   enable?: boolean;
 }
@@ -256,6 +258,8 @@ export interface RawCommonProps {
    * 但是在某些软件比如 哔哩哔哩 的开屏广告在这种耗时下延迟可达 1-2s, 这也是导致 [gkd-kit/gkd#60](https://github.com/gkd-kit/gkd/issues/60) 的原因
    *
    * 如果你想对某个局部选择器关闭快速查找,只需要调整你的选择器的属性选择表达式的顺序使得它不符合快速查找的条件即可
+   * 
+   * @default false
    */
   quickFind?: boolean;
 
