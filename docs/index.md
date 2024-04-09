@@ -20,9 +20,6 @@ hero:
       text: 订阅规则
       link: /subscription/
     - theme: alt
-      text: API
-      link: /api/
-    - theme: alt
       text: 疑难解答
       link: /faq/
 
