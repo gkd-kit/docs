@@ -59,6 +59,19 @@ export default defineConfig({
     },
     search: {
       provider: 'local',
+      options: {
+        _render(src, env, md) {
+          const html = md.render(src, env);
+          if (env.frontmatter?.search === false) return '';
+          if (
+            env.relativePath.startsWith('api/interfaces/') &&
+            env.relativePath.endsWith('Props.md')
+          ) {
+            return '';
+          }
+          return html;
+        },
+      },
     },
     socialLinks: [{ icon: 'github', link: 'https://github.com/gkd-kit' }],
     footer: {
