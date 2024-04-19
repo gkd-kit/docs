@@ -259,7 +259,7 @@ Kotlin Wasm 需要你的浏览器支持 [WasmGC](https://developer.chrome.com/bl
 
 如果你的选择器没有使用正则表达式则不用关心此问题
 
-## 嵌套转义字符 {#nest-escape}
+### 嵌套转义字符 {#nest-escape}
 
 转义字符一般用于表示不能直接显示具体特殊意义的字符
 
