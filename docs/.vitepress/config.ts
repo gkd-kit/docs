@@ -54,7 +54,7 @@ export default defineConfig({
       },
     ],
     editLink: {
-      pattern: 'https://github.com/gkd-kit/docs/edit/main/:path',
+      pattern: 'https://github.com/gkd-kit/docs/edit/main/docs/:path',
       text: '为此页提供修改建议',
     },
     search: {
