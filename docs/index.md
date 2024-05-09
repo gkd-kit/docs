@@ -20,6 +20,9 @@ hero:
       text: 订阅规则
       link: /subscription/
     - theme: alt
+      text: 快照审查
+      link: https://i.gkd.li/
+    - theme: alt
       text: 疑难解答
       link: /faq/
 
