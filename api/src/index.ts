@@ -52,9 +52,9 @@ export interface RawSubscription {
    *   version: 1919810
    * }
    * ```
-   * 
+   *
    * 支持相对地址, 如果 {@link updateUrl} 或者用户添加订阅时填写的链接是 `https://gkd.li/gkd.json5` 并且 {@link checkUpdateUrl} 是 `./gkd.version.json5`
-   * 
+   *
    * 那么最终请求的链接是 `https://gkd.li/gkd.version.json5`
    *
    */
@@ -132,7 +132,7 @@ export interface RawCategory {
    * true => 全部启用捕获的规则组
    *
    * false => 全部禁用捕获的规则组
-   * 
+   *
    * @default null
    */
   enable?: boolean;
@@ -149,9 +149,9 @@ export interface RawAppRule extends RawRuleProps, RawAppRuleProps {}
 export interface RawAppGroup extends RawGroupProps, RawAppRuleProps {
   /**
    * 应用规则组的规则列表, 支持多种类型, 下面介绍它的两种简单类型的表示意义
-   * 
+   *
    * ---
-   * 
+   *
    * 示例-1: 简单的字符串直接表示规则的 matches
    * ```json5
    * {
@@ -166,9 +166,9 @@ export interface RawAppGroup extends RawGroupProps, RawAppRuleProps {
    *   }
    * }
    * ```
-   * 
+   *
    * ---
-   * 
+   *
    * 示例-2: 也可以是字符串数组表示多个规则的 matches
    * ```json5
    * {
@@ -258,7 +258,7 @@ export interface RawCommonProps {
    * 但是在某些软件比如 哔哩哔哩 的开屏广告在这种耗时下延迟可达 1-2s, 这也是导致 [gkd-kit/gkd#60](https://github.com/gkd-kit/gkd/issues/60) 的原因
    *
    * 如果你想对某个局部选择器关闭快速查找,只需要调整你的选择器的属性选择表达式的顺序使得它不符合快速查找的条件即可
-   * 
+   *
    * @default false
    */
   quickFind?: boolean;
@@ -464,9 +464,23 @@ export interface RawRuleProps extends RawCommonProps {
   position?: Position;
 
   /**
-   * 一个或者多个合法的 GKD 选择器, 如果每个选择器都能匹配上节点, 那么点击最后一个选择器的目标节点
+   * 一个或者多个合法的 GKD 选择器, 如果所有选择器都能匹配上节点, 那么点击最后一个选择器的目标节点
+   * 
+   * 点击优先级大于 {@link anyMatches}
    */
   matches?: IArray<string>;
+
+  /**
+   * 一个或者多个合法的 GKD 选择器, 如果存在一个选择器能匹配上节点, 那么点击这个节点
+   * 
+   * 如果 anyMatches 的所有选择器都无法匹配, 则停止匹配此规则
+   * 
+   * 与 {@link matches} 一起使用时, 仍然点击 {@link matches} 的最后一项
+   * 
+   * @version 1.8.0
+   * 
+   */
+  anyMatches?: IArray<string>;
 
   /**
    * 一个或者多个合法的 GKD 选择器, 如果存在一个选择器匹配上节点, 则停止匹配此规则
