@@ -120,7 +120,22 @@ import ValueField from '/.vitepress/components/ValueField.vue';
 |  ~=  |    -     |    -     |    -     | &#10004; |
 | !~=  |    -     |    -     |    -     | &#10004; |
 
-除 `=`/`!=` 以外的操作符, 当节点属性是 `null` 如 a>0 当 a 是 `null` 时返回 `false`
+除 `=`/`!=` 以外的操作符, 当节点属性是 null 时表达式为 `false`
+
+- a  >  233
+- a  >= 233
+- a  <  233
+- a  <= 233
+- a  ^= 'xxx'
+- a !^= 'xxx'
+- a \*= 'xxx'
+- a !\* 'xxx'
+- a  $= 'xxx'
+- a !$= 'xxx'
+- a  ~= 'xxx'
+- a !~= 'xxx'
+
+即当 a 是 `null` 时以上表达式为 `false`
 
 ## 关系选择器 {#connect}
 
