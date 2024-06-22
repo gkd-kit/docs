@@ -1,19 +1,7 @@
-import QRCode from 'qrcode';
-import { computed, shallowRef, watchEffect } from 'vue';
+import { computed, shallowRef } from 'vue';
 
 export const apkUrl = shallowRef('');
 export const apkName = computed(() => apkUrl.value.split('/').at(-1) || '');
-export const apkImgUrl = shallowRef('');
-watchEffect(async () => {
-  if (!apkUrl.value) {
-    apkImgUrl.value = '';
-    return;
-  }
-  apkImgUrl.value = await QRCode.toDataURL(apkUrl.value, {
-    width: 256,
-    margin: 2,
-  });
-});
 
 if (!import.meta.env.SSR) {
   // only run in browser

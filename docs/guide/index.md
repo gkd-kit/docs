@@ -1,24 +1,14 @@
 # 开始使用 {#title}
 
 <script setup>
-import { apkUrl, apkName, apkImgUrl } from '/.vitepress/utils/apk';
+import ApkDownloadButton from '/.vitepress/components/ApkDownloadButton.vue';
 </script>
 
 ## 下载安装 {#install}
 
-<ClientOnly>
-大陆用户可点击 <a rel="noopener noreferrer" :href="apkUrl">{{ apkName }}</a> 下载
-</ClientOnly>
+- 镜像加速 <ApkDownloadButton />
 
-或者扫描下方二维码即可下载最新版本
-
-<ClientOnly>
-<img :src="apkImgUrl" data-zoomable alt="" />
-</ClientOnly>
-
-请注意上面的链接/二维码为动态生成, 如需分享请复制地址栏链接
-
-海外用户可前往源仓库 [github-releases](https://github.com/gkd-kit/gkd/releases/latest) 下载
+- Github [releases](https://github.com/gkd-kit/gkd/releases/latest)
 
 下载完毕后, 在您的 Android 手机上安装并打开
 
@@ -30,8 +20,8 @@ import { apkUrl, apkName, apkImgUrl } from '/.vitepress/utils/apk';
 
 以 Xiaomi HyperOS 为例, 下面为完整的授权流程截图
 
-|                                                                                           |                                                                                           |                                                                                           |                                                                                           |
-| ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- | ----------------------------------------------------------------------------------------- |
+|                                     |                                     |                                     |                                     |
+| ----------------------------------- | ----------------------------------- | ----------------------------------- | ----------------------------------- |
 | ![image](https://a.gkd.li/0001.png) | ![image](https://a.gkd.li/0002.png) | ![image](https://a.gkd.li/0003.png) | ![image](https://a.gkd.li/0004.png) |
 | ![image](https://a.gkd.li/0005.png) | ![image](https://a.gkd.li/0006.png) | ![image](https://a.gkd.li/0007.png) | ![image](https://a.gkd.li/0008.png) |
 
