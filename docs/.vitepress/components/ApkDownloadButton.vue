@@ -1,5 +1,6 @@
 <script setup lang="ts">
 import { computed, shallowRef, onMounted } from 'vue';
+import { saveAs } from 'file-saver';
 
 const apkUrl = shallowRef('');
 const apkName = computed(() =>
@@ -10,16 +11,18 @@ const loading = shallowRef(false);
 const downloadApk = async () => {
   if (!apkUrl.value || loading.value) return;
   loading.value = true;
-  const blob = await fetch(apkUrl.value)
-    .then((r) => r.blob())
+  const file = await fetch(apkUrl.value)
+    .then((r) => r.arrayBuffer())
+    .then(
+      (b) =>
+        new File([b], apkName.value, {
+          type: 'application/vnd.android.package-archive',
+        }),
+    )
     .finally(() => {
       loading.value = false;
     });
-  const url = URL.createObjectURL(blob);
-  const a = document.createElement('a');
-  a.download = apkName.value;
-  a.href = url;
-  a.click();
+  saveAs(file, apkName.value);
 };
 
 onMounted(async () => {
