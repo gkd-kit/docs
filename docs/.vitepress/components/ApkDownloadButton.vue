@@ -25,8 +25,9 @@ const downloadApk = async () => {
 onMounted(async () => {
   apkUrl.value = localStorage.getItem('apkUrl') || '';
   const versionUrl = 'https://registry.npmmirror.com/@gkd-kit/app/latest/files';
-  const r = await fetch(versionUrl).then((r) => r.json());
-  apkUrl.value = new URL(r.downloadUrl, r.url).href;
+  const r = await fetch(versionUrl);
+  const data = await r.json();
+  apkUrl.value = new URL(data.downloadUrl, r.url).href;
   localStorage.setItem('apkUrl', apkUrl.value);
 });
 </script>
