@@ -1,10 +1,10 @@
-# 高级选择器 {#title}
+# 选择器 {#title}
 
 <script setup>
-import ValueField from '/.vitepress/components/ValueField.vue';
+import IdentifierField from '/.vitepress/components/IdentifierField.vue';
 </script>
 
-一个类似 CSS 选择器的高级选择器, 能联系节点上下文信息, 更容易也更精确找到目标节点
+一个类似 CSS 选择器的选择器, 能联系节点上下文信息, 更容易也更精确找到目标节点
 
 ## 为什么需要选择器 {#why}
 
@@ -30,11 +30,11 @@ import ValueField from '/.vitepress/components/ValueField.vue';
 
 下面分别介绍 [属性选择器](#attr) 和 [关系选择器](#connect)
 
-## 属性选择器 {#attr}
+## 属性选择 {#attr}
 
 它和 CSS 语法的 属性选择器很相似, 但更强大, 如下是一个示例
 
-`@TextView[a=1][b^='2'][c*='a'||d.length>7&&e=false]`
+`@TextView[a=1][b^='2'][c*='a'||d.length>7&&e=false][!(f=true)][g.plus(1)>0]`
 
 `@` 表示选择此节点, 一条规则最后属性选择器 `@` 生效, 如果没有 `@`, 取最后一个属性选择器
 
@@ -44,28 +44,131 @@ import ValueField from '/.vitepress/components/ValueField.vue';
 
 为了方便书写规则, 上述 `TextView` 等价 `[name='TextView'||name$='.TextView']`
 
-`[]` 内部是一个 逻辑表达式/布尔表达式
+`[]` 内部是一个 逻辑表达式/布尔表达式/取反表达式
 
 - 逻辑表达式 -> `name='TextView'||name$='.TextView'`
 - 布尔表达式 -> `name='TextView'`
+- 取反表达式 -> `!(name$='TextView')`, `!(name='TextView'||name$='.TextView')`
 
-逻辑表达式 有两个操作符 `||` 和 `&&`. `&&` 优先级更高, 即 `[a>1||b>1&&c>1||d>1]` 等价于 `[a>1||(b>1&&c>1)||d>1]`
+注意 取反表达式 后面必须是 `(...)`, `!!(...)` 是非法的
+
+逻辑表达式 有两个操作符 `||` 和 `&&`. `&&` 优先级更高
+
+即 `[a>1||b>1&&c>1||d>1]` 等价于 `[a>1||(b>1&&c>1)||d>1]`
 
 并列的 `[]` 视为使用 `&&` 的逻辑表达式, 即 `[a=1][b=1]` 等价于 `[a=1&&b=1]`
 
-布尔表达式 由 [属性名](#attr-name) [操作符](#attr-operator) [值](#attr-value) 顺序构成
+布尔表达式 由 `左值 操作符 右值` 构成, 左值/右值 是一个 值表达式
 
-### 属性名 {#attr-name}
+下面分别介绍 [值表达式](#value-exp) 和 [操作符](#attr-operator)
 
-正则匹配 `^[_a-zA-Z][a-zA-Z0-9_]*(\.[_a-zA-Z][a-zA-Z0-9_]*)*$` 的字符串
+## 值表达式 {#value-exp}
 
-类似合法变量名 `a`/`a.length`, 下面可输入属性名测试否是合法
+值表达式分两类: 变量 和 字面量, 下图是关系表格
+
+<table>
+  <thead>
+    <tr>
+      <th colspan="2"> <div text-center>值表达式</div> </th>
+      <th>示例</th>
+    </tr>
+  </thead>
+  <tbody>
+    <tr>
+      <td rowspan="3">变量</td>
+      <td>标识符</td>
+      <td>
+        <code> a </code>
+      </td>
+    </tr>
+    <tr>
+      <td>成员表达式</td>
+      <td>
+        <code>a.b</code>
+      </td>
+    </tr>
+    <tr>
+      <td>调用表达式</td>
+      <td><code>a(b,c)</code></td>
+    </tr>
+    <tr>
+      <td rowspan="4">字面量</td>
+      <td>null</td>
+      <td><code>null</code></td>
+    </tr>
+    <tr>
+      <td>boolean</td>
+      <td><code>false</code></td>
+    </tr>
+    <tr>
+      <td>int</td>
+      <td><code>114514</code></td>
+    </tr>
+    <tr>
+      <td>string</td>
+      <td><code>'ikun'</code></td>
+    </tr>
+  </tbody>
+</table>
+
+每个值表达式都有其类型, 可细分为两类
+
+基础类型: `null` `boolean` `int` `string`
+
+对象类型: `object`
+
+对象类型可细分为 `context` 和 `node` 两种类型
+
+比如选择器 `[parent=null]` 代表选择一个父节点是 null 的节点, 即根节点
+
+上面的 `parent` 属于 值表达式/变量/标识符, 类型是 `node`
+
+`context` 类型指代当前节点的上下文, 当想使用不属于 `node` 上的属性方法时就需要 `context`
+
+### 变量 {#var}
+
+首先需要了解 **标识符**: 正则匹配 `^[_a-zA-Z][a-zA-Z0-9_]*$` 并且不是 `null`/`true`/`false` 的字符串
+
+示例合法变量名: `a` `ikun` `manbaout`, 下面可输入字符测试否是合法
 
 ::: raw
-<ValueField />
+<IdentifierField />
 :::
 
-### 操作符 {#attr-operator}
+---
+
+接下来了解 **成员表达式** `a.b`, 它被 `.` 分为两个部分, 前部分是另一个变量, 后部分是一个标识符作为属性
+
+同理 `a.b.c` 也是一个 成员表达式, 其中 `a.b` 是它的变量部分, `c` 是一个合法的标识符作为属性
+
+根据上面标识符的规则, `a.1`, `a.null`, `a.true` 都是非法成员表达式
+
+---
+
+最后了解 **调用表达式** `a(b,c)`, 它由两个部分构成, `(` 的左侧 `a` 是一个变量作为 调用者
+
+`(c,d)` 作为调用参数(值类型), 调用参数数量可以是 0 或任意个, 即 `a()` 也是合法的
+
+合法的其它例子: `a.b(c,d).e(f).g(1,2,true)`
+
+需要注意调用者不能是 调用表达式, 即 `a()()` 非法
+
+### 字面量 {#literal}
+
+根据上面的表格, 字面量有 4 种: `null`, `boolean`, `int`, `string`
+
+- null
+- boolean 使用 `true`/`false`
+- int 匹配 `^-?[0-9]$`, 即10进制自然数, 示例 `-1`,`0`,`1`, 不支持 `+1` 这种写法
+- string 使用 ' &#96; " 之一成对包裹, 内部字符转义使用 `\`\
+   所有的转义字符示例 `\\`, `\'`, `\"`, `` \` ``, `\n`, `\r`, `\t`, `\b`, `\xfF`, `\uffFF`\
+   不支持多行字符, 处于 `[0, 0x1F]` 的控制字符必须使用转义字符表示
+
+此外使用 string 时需要了解 [嵌套转义字符](#nest-escape) 以避免出现错误
+
+## 操作符 {#attr-operator}
+
+操作符 用于连接两个 值表达式
 
 | 操作符 |     名称      |     说明      |
 | :----: | :-----------: | :-----------: |
@@ -86,20 +189,7 @@ import ValueField from '/.vitepress/components/ValueField.vue';
 
 附加说明: `matches`/`notMatches` 要求 值 必须是合法的 [Java/Kotlin 正则表达式](https://docs.oracle.com/javase/8/docs/api/java/util/regex/Pattern.html), 否则提示语法错误
 
-### 值 {#attr-value}
-
-值: 4 种类型, `null`, `boolean`, `string`, `int`
-
-- null
-- boolean 使用 `true`/`false`
-- int 匹配 `^-?[0-9]$`, 即10进制自然数, 示例 `-1`,`0`,`1`
-- string 使用 ' &#96; " 之一成对包裹, 内部字符转义使用 `\`\
-   所有的转义字符示例 `\\`, `\'`, `\"`, `` \` ``, `\n`, `\r`, `\t`, `\b`, `\xfF`, `\uffFF`\
-   不支持多行字符, 处于 `[0, 0x1F]` 的控制字符必须使用转义字符表示
-
-此外使用 string 类型需要了解 [嵌套转义字符](#nest-escape) 以避免出现错误
-
-操作符只能使用在对应的类型的值, 比如 `a>''` 类型不匹配, 将提示 `非法类型`/`非法选择器`
+操作符只能使用在对应的类型的值, 比如 `a>''` 类型不匹配, 将提示 `非法类型`
 
 下面表格中 `-` 表示类型不匹配
 
@@ -122,22 +212,26 @@ import ValueField from '/.vitepress/components/ValueField.vue';
 
 除 `=`/`!=` 以外的操作符, 当节点属性是 null 时表达式为 `false`
 
-- a  >  233
-- a  >= 233
-- a  <  233
-- a  <= 233
-- a  ^= 'xxx'
+- a > 233
+- a >= 233
+- a < 233
+- a <= 233
+- a ^= 'xxx'
 - a !^= 'xxx'
 - a \*= 'xxx'
 - a !\* 'xxx'
-- a  $= 'xxx'
+- a $= 'xxx'
 - a !$= 'xxx'
-- a  ~= 'xxx'
+- a ~= 'xxx'
 - a !~= 'xxx'
 
 即当 a 是 `null` 时以上表达式为 `false`
 
-## 关系选择器 {#connect}
+你可能会对 `a !$= 'xxx'` 在 a 是 `null` 表达式为 `false` 感到奇怪
+
+那你可以换一种写法使用 `a=null || a!$='xxx'` 或 `!(a$='xxx')`
+
+## 关系选择 {#connect}
 
 关系选择器 由 关系操作符 和 关系表达式 构成, 用于连接两个属性选择器
 

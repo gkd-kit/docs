@@ -41,15 +41,20 @@ export default defineConfig({
         text: '指引',
         items: [
           { text: '开始使用', link: '/guide/' },
-          { text: '高级选择器', link: '/selector/' },
           { text: '订阅规则', link: '/subscription/' },
           { text: '疑难解答', link: '/faq/' },
         ],
       },
       {
+        text: '选择器',
+        items: [
+          { text: '语法介绍', link: '/selector/' },
+          { text: '属性方法', link: '/selector/node' },
+        ],
+      },
+      {
         text: 'API',
         link: '/api/',
-        collapsed: true,
         items: typedocSidebar,
       },
     ],
