@@ -189,6 +189,8 @@ import IdentifierField from '/.vitepress/components/IdentifierField.vue';
 
 附加说明: `matches`/`notMatches` 要求 值 必须是合法的 [Java/Kotlin 正则表达式](https://docs.oracle.com/javase/8/docs/api/java/util/regex/Pattern.html), 否则提示语法错误
 
+并且 `matches`/`notMatches` 右侧的值只能是 字面量/字符串
+
 操作符只能使用在对应的类型的值, 比如 `a>''` 类型不匹配, 将提示 `非法类型`
 
 下面表格中 `-` 表示类型不匹配
