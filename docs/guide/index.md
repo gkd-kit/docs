@@ -2,6 +2,7 @@
 
 <script setup>
 import ApkDownloadButton from '/.vitepress/components/ApkDownloadButton.vue';
+import ImageTable from '/.vitepress/components/ImageTable.vue';
 </script>
 
 ## 下载安装 {#install}
@@ -20,10 +21,7 @@ import ApkDownloadButton from '/.vitepress/components/ApkDownloadButton.vue';
 
 以 Xiaomi HyperOS 为例, 下面为完整的授权流程截图
 
-|                                     |                                     |                                     |                                     |
-| ----------------------------------- | ----------------------------------- | ----------------------------------- | ----------------------------------- |
-| ![image](https://a.gkd.li/0001.png) | ![image](https://a.gkd.li/0002.png) | ![image](https://a.gkd.li/0003.png) | ![image](https://a.gkd.li/0004.png) |
-| ![image](https://a.gkd.li/0005.png) | ![image](https://a.gkd.li/0006.png) | ![image](https://a.gkd.li/0007.png) | ![image](https://a.gkd.li/0008.png) |
+<ImageTable :images="[['0001.png','0002.png','0003.png','0004.png'], ['0005.png','0006.png','0007.png','0008.png']]" />
 
 如果您的手机的无障碍列表界面无法授权 GKD 或者显示 `受限制的设置(出于安全考虑，此设置目前不可用)`
 

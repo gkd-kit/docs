@@ -1,5 +1,9 @@
 # 疑难解答 {#title}
 
+<script setup>
+import ImageTable from '/.vitepress/components/ImageTable.vue';
+</script>
+
 一些可能影响使用体验的问题和对应解决方案, 某些方案可能并不适用您的机型系统
 
 如您有更好的方案或想对现有方案进行补充, 请点击底部 `为此页提供修改建议`
@@ -14,10 +18,7 @@
 
 以 LineageOS 20 为例, 下面为完整的解除限制流程截图, 此处感谢来自 [CyrusYip](https://github.com/gkd-kit/docs/issues/2) 的截图
 
-|                                         |                                         |                                         |                                         |
-| --------------------------------------- | --------------------------------------- | --------------------------------------- | --------------------------------------- |
-| ![image](https://a.gkd.li/0013.png) | ![image](https://a.gkd.li/0014.png) | ![image](https://a.gkd.li/0015.png) | ![image](https://a.gkd.li/0016.png) |
-| ![image](https://a.gkd.li/0017.png) | ![image](https://a.gkd.li/0018.png) |                                         |                                         |
+<ImageTable :images="[['0013.png', '0014.png', '0015.png', '0016.png'], ['0017.png', '0018.png']]" />
 
 如果您按照以上步骤设置后回到 无障碍列表 仍然提示不可用, 您可以试试 **重启手机**, 此解决方案来自 [Herobrine2005928](https://github.com/orgs/gkd-kit/discussions/433#discussioncomment-8899920)
 
@@ -40,9 +41,7 @@
 
 大多数设备开启无障碍时都会出现 10s 的无障碍警告弹窗, 若是只需要开启一次则无所谓, 但是如果开启次数比较多每次都有这个警告等待就很烦人了
 
-|                                         |                                         |
-| --------------------------------------- | --------------------------------------- |
-| ![image](https://a.gkd.li/0004.png) | ![image](https://a.gkd.li/0005.png) |
+<ImageTable :images="[['0004.png', '0005.png']]" />
 
 你可能已经看到这个界面还有一个开关, 也就是下方的 `快捷方式` 开关
 
@@ -52,9 +51,7 @@
 
 以 Xiaomi HyperOS 为例子, 下面是完整的关闭弹窗流程截图
 
-|                                         |                                         |                                         |                                         |
-| --------------------------------------- | --------------------------------------- | --------------------------------------- | --------------------------------------- |
-| ![image](https://a.gkd.li/0009.png) | ![image](https://a.gkd.li/0010.png) | ![image](https://a.gkd.li/0011.png) | ![image](https://a.gkd.li/0012.png) |
+<ImageTable :images="[['0009.png', '0010.png', '0011.png', '0012.png']]" />
 
 ## 耗电说明 {#power}
 

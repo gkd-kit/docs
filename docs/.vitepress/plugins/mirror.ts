@@ -16,17 +16,6 @@ const mirrorBaseUrl = `https://registry.npmmirror.com/@gkd-kit/docs/${selfPkg.ve
 
 const includesDynamicImport = /import\s*\(/;
 
-const imageAssetVersion = await fetch(
-  'https://registry.npmmirror.com/@gkd-kit/assets/latest/files/package.json',
-).then((r) => r.json().then((j) => j.version as string));
-
-const replaceImageSrc = (src: string): string => {
-  return src.replaceAll(
-    'https://a.gkd.li/',
-    `https://registry.npmmirror.com/@gkd-kit/assets/${imageAssetVersion}/files/assets/`,
-  );
-};
-
 export const mirror = (): Plugin | undefined => {
   if (!useMirror) return;
   return {
@@ -44,9 +33,6 @@ export const mirror = (): Plugin | undefined => {
             '/assets/',
             `${mirrorBaseUrl}/assets/`,
           );
-        }
-        if (chunk.type == 'chunk' && chunk.fileName.endsWith(`.js`)) {
-          chunk.code = replaceImageSrc(chunk.code);
         }
         if (
           chunk.type == 'chunk' &&
@@ -102,17 +88,6 @@ export const transformHtml = (code: string) => {
   }, doc.children);
   links.forEach((e) => {
     e.attribs.href = mirrorBaseUrl + e.attribs.href;
-  });
-
-  const images = DomUtils.findAll((e) => {
-    return (
-      e.name === 'img' &&
-      !!e.attribs.src &&
-      e.attribs.src.startsWith('https://a.gkd.li/')
-    );
-  }, doc.children);
-  images.forEach((e) => {
-    e.attribs.src = replaceImageSrc(e.attribs.src);
   });
   return render(doc, { encodeEntities: false });
 };
