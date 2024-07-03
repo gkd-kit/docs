@@ -339,7 +339,6 @@ export interface RawCommonProps {
    *
    * @default 0
    *
-   * @version 1.7.0
    */
   order?: Integer;
 
@@ -354,7 +353,6 @@ export interface RawCommonProps {
    *
    * 唯一的办法是在开始匹配的一定时间内主动查询屏幕节点
    *
-   * @version 1.7.0
    */
   forcedTime?: Integer;
 
@@ -459,26 +457,23 @@ export interface RawRuleProps extends RawCommonProps {
    *
    * 在 position 存在的情况下, {@link action} 的默认值为 `clickCenter`
    *
-   * @version 1.7.0
    */
   position?: Position;
 
   /**
    * 一个或者多个合法的 GKD 选择器, 如果所有选择器都能匹配上节点, 那么点击最后一个选择器的目标节点
-   * 
+   *
    * 点击优先级大于 {@link anyMatches}
    */
   matches?: IArray<string>;
 
   /**
    * 一个或者多个合法的 GKD 选择器, 如果存在一个选择器能匹配上节点, 那么点击这个节点
-   * 
+   *
    * 如果 anyMatches 的所有选择器都无法匹配, 则停止匹配此规则
-   * 
+   *
    * 与 {@link matches} 一起使用时, 仍然点击 {@link matches} 的最后一项
-   * 
-   * @version 1.8.0
-   * 
+   *
    */
   anyMatches?: IArray<string>;
 
@@ -529,8 +524,6 @@ export interface RawGroupProps extends RawCommonProps {
    *
    * 如果存在相同 key 的 rule, 优先使用本组的 rule, 其次按 scopeKeys 的顺序查找其它组的 rule
    *
-   * @version 1.7.0
-   *
    */
   scopeKeys?: IArray<Integer>;
 }
@@ -556,28 +549,24 @@ export interface RawAppRuleProps {
   /**
    * 如果应用版本名称包含在此列表中, 则匹配
    *
-   * @version 1.7.0
    */
   versionNames?: IArray<string>;
 
   /**
    * 如果应用版本名称包含在此列表中, 则排除匹配, 优先级高于 versionNames
    *
-   * @version 1.7.0
    */
   excludeVersionNames?: IArray<string>;
 
   /**
    * 如果应用版本代码包含在此列表中, 则匹配
    *
-   * @version 1.7.0
    */
   versionCodes?: IArray<Integer>;
 
   /**
    * 如果应用版本代码包含在此列表中, 则排除匹配, 优先级高于 versionCodes
    *
-   * @version 1.7.0
    */
   excludeVersionCodes?: IArray<Integer>;
 }
