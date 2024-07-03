@@ -3,7 +3,9 @@
   "private": true,
   "type": "module",
   "scripts": {
-    "format": "prettier --cache --write --ignore-unknown ."
+    "format": "prettier --cache --write --ignore-unknown .",
+    "dev": "pnpm build:api && pnpm -F @gkd-kit/docs docs:dev",
+    "build:api": "pnpm -F @gkd-kit/api predocs:build"
   },
   "dependencies": {
     "@gkd-kit/selector": "0.0.25",
@@ -29,7 +31,7 @@
   "volta": {
     "node": "20.11.0"
   },
-  "packageManager": "pnpm@9.0.4",
+  "packageManager": "pnpm@9.4.0",
   "pnpm": {
     "peerDependencyRules": {
       "ignoreMissing": [

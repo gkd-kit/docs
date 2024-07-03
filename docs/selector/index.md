@@ -16,7 +16,11 @@ import IdentifierField from '/.vitepress/components/IdentifierField.vue';
 
 另一种常见的情况是节点没有有效属性, 这时我们需要根据周围的节点去定位
 
-选择器就是为了解决这些问题而开发的, 下面是对选择器的详细介绍
+选择器就是为了解决这些问题而开发的, 下面是对选择器语法的详细介绍
+
+> [!TIP] 提示
+> 本文是从 **抽象语法树(AST)** 的角度去完备地介绍选择器结构\
+> 如果你是初学者, 建议你直接看 [选择器-示例](./example.md)
 
 ## 语法 {#syntax}
 
@@ -124,6 +128,8 @@ import IdentifierField from '/.vitepress/components/IdentifierField.vue';
 上面的 `parent` 属于 值表达式/变量/标识符, 类型是 `node`
 
 `context` 类型指代当前节点的上下文, 当想使用不属于 `node` 上的属性方法时就需要 `context`
+
+你可以在 [选择器-属性方法](./node.md) 查看所有类型和对应属性方法
 
 ### 变量 {#var}
 

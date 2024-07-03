@@ -12,7 +12,7 @@
     "registry": "https://registry.npmjs.org/"
   },
   "scripts": {
-    "predocs:dev": "typedoc"
+    "predocs:build": "typedoc"
   },
   "volta": {
     "extends": "../package.json"

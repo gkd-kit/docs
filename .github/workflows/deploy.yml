@@ -24,7 +24,7 @@ jobs:
 
       - run: pnpm -F @gkd-kit/docs exec tsx ./.vitepress/scripts/updateVersion.ts
 
-      - run: pnpm -F @gkd-kit/api run predocs:dev
+      - run: pnpm -F @gkd-kit/api run predocs:build
       - run: pnpm -F @gkd-kit/docs run docs:build-mirror
       
       - name: Publish package
