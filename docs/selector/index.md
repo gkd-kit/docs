@@ -359,7 +359,7 @@ Kotlin Wasm 需要你的浏览器支持 [WasmGC](https://developer.chrome.com/bl
 
 ![image](https://a.gkd.li/0025.png)
 
-如果你的 nodejs, 需要 node>=22 版本
+如果你在 nodejs 使用 gkd 选择器, 需要 node>=22 版本
 
 如果你的 浏览器/nodejs 版本不满足, 正则表达式将自动回退到 Js 端实现, 以下是在 Js 端使用正则表达式需要注意的地方
 
