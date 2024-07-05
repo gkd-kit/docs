@@ -281,7 +281,7 @@ export interface RawCommonProps {
    * 
    * 在 matchRoot=false 的情况下, 你的匹配范围如下蓝框
    * 
-   * ![image](https://github.com/gkd-kit/gkd/assets/38517192/c02ab180-804d-47c8-be06-2df0b14318cf)
+   * ![image](https://github.com/gkd-kit/gkd/assets/38517192/ec60677f-f0d7-4b0d-8ac2-56306852e4a0)
    * 
    * 而在 matchRoot=true 的情况下, 你的匹配范围如下蓝框
    * 
