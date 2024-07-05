@@ -277,6 +277,16 @@ export interface RawCommonProps {
    * 
    * 为了解决这个问题, 你可以设置 matchRoot=true, 这样每次匹配都会从根节点开始匹配
    * 
+   * 以 [快照-16105497](https://i.gkd.li/i/16105497) 为例, 事件节点总是 _id=8 的节点, 此时如果你的选择器是 `[text*="15秒"] - [text*="跳过"]`
+   * 
+   * 在 matchRoot=false 的情况下, 你的匹配范围如下蓝框
+   * 
+   * ![image](https://github.com/gkd-kit/gkd/assets/38517192/c02ab180-804d-47c8-be06-2df0b14318cf)
+   * 
+   * 而在 matchRoot=true 的情况下, 你的匹配范围如下蓝框
+   * 
+   * ![image](https://github.com/gkd-kit/gkd/assets/38517192/33eb9029-c3c3-4a2e-ab60-a1f099371fef)
+   * 
    * @default false
    */
   matchRoot?:boolean
