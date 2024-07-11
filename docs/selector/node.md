@@ -96,4 +96,4 @@ context 具有 [node](#node) 的所有属性方法, 下面只介绍额外属性�
 
 | 方法名  | 参数 | 返回类型              | 描述                                            |
 | ------- | ---- | --------------------- | ----------------------------------------------- |
-| getPrev | int  | [`context`](#context) | 快捷获取 prev <br> getPrev(0) -> prev <br> getPrev(1) -> prev.prev <br> getPrev(2) -> prev.prev.prev |
+| getPrev | int  | [`context`](#context) | 快捷获取深层 prev <br> getPrev(0) -> prev <br> getPrev(1) -> prev.prev <br> getPrev(2) -> prev.prev.prev |
