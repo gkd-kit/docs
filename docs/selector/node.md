@@ -5,11 +5,13 @@
 ## null
 
 > [!NOTE] 提示
-> `null` 无任何属性方法, 并且属性方法当调用者是 `null` 时, 均返回 `null`
+> `null` 无任何属性方法, 并且属性方法当调用者或者参数是 `null` 时, 均返回 `null`
 
 当 `name` 是 `null` 时, `name.length` 为 `null`
 
 当 `parent` 是 `null` 时, `parent.getChild(0)` 为 `null`
+
+当 `index` 是 `null` 时, `parent.getChild(index)` 为 `null`
 
 ## boolean
 
@@ -84,4 +86,14 @@
 
 ## context
 
-属性方法暂与 [node](#node) 一致
+context 具有 [node](#node) 的所有属性方法, 下面只介绍额外属性方法
+
+| 标识符 | 属性类型              | 描述                                             |
+| ------ | --------------------- | ------------------------------------------------ |
+| prev   | [`context`](#context) | 右侧属性选择器的节点上下文 <br> 最右侧的 prev=null |
+
+例 `FrameLayout[prev.name$='ImageView'] > ImageView` 中的 prev 就是 FrameLayout 右侧的 ImageView
+
+| 方法名  | 参数 | 返回类型              | 描述                                            |
+| ------- | ---- | --------------------- | ----------------------------------------------- |
+| getPrev | int  | [`context`](#context) | 快捷获取 prev <br> getPrev(0) -> prev <br> getPrev(1) -> prev.prev <br> getPrev(2) -> prev.prev.prev |
