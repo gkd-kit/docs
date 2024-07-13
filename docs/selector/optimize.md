@@ -52,17 +52,17 @@
 
 所有 `末尾属性选择器`的`第一个属性选择表达式`符合下面的结构之一
 
-- [id='abc']
-- [vid='abc']
-- [text='abc']
-- [text^='abc']
-- [text*='abc']
-- [text$='abc']
+- `[id='abc']`
+- `[vid='abc']`
+- `[text='abc']`
+- `[text^='abc']`
+- `[text*='abc']`
+- `[text$='abc']`
 
 或者任意数量符合格式并使用 `||` 连接形成逻辑表达式也符合条件, 即如下格式
 
-- [id='abc' || id='abc2']
-- [id='abc' || vid='abc' || text='abc' || text^='abc' || text*='abc' || text$='abc']
+- `[id='abc' || id='abc2']`
+- `[id='abc' || vid='abc' || text='abc' || text^='abc' || text*='abc' || text$='abc']`
 
 这些规定的格式都是为了提取 `id`/`vid`/`text` 来调用上面的两个 Android Api
 
