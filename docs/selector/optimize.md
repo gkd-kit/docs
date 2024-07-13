@@ -40,15 +40,18 @@
 ## 快速查询 {#fast-query}
 
 > [!TIP] 提示
-> 此优化需要设置 [fastQuery](https://gkd.li/api/interfaces/RawCommonProps#fastquery) 来启用
+> 此优化需要设置 [fastQuery](/api/interfaces/RawCommonProps#fastquery) 来启用
 
 一般情况下, 选择器 `[vid="name"]` 需要从 根节点/事件节点 使用深度先序顺序遍历子孙节点并判断是否满足条件
 
-但是 Android 提供了 [findAccessibilityNodeInfosByViewId](https://developer.android.google.cn/reference/android/view/accessibility/AccessibilityNodeInfo#findAccessibilityNodeInfosByViewId(java.lang.String)) / [findAccessibilityNodeInfosByText](https://developer.android.google.cn/reference/android/view/accessibility/AccessibilityNodeInfo#findAccessibilityNodeInfosByText(java.lang.String)) 两个 Api
+但是 Android 提供了如下两个快速获取节点的 Api
+
+- [findAccessibilityNodeInfosByViewId](https://developer.android.google.cn/reference/android/view/accessibility/AccessibilityNodeInfo#findAccessibilityNodeInfosByViewId(java.lang.String))
+- [findAccessibilityNodeInfosByText](https://developer.android.google.cn/reference/android/view/accessibility/AccessibilityNodeInfo#findAccessibilityNodeInfosByText(java.lang.String))
 
 这使得可以通过 `id`/`vid`/`text` 直接获取子孙节点
 
-于是我们需要规定符合特定条件的选择器来调用这些 Api 从而跳过手动遍历子孙节点
+对此我们需要规定符合特定条件的选择器来调用这些 Api 从而跳过手动遍历子孙节点
 
 所有 `末尾属性选择器`的`第一个属性选择表达式`符合下面的结构之一
 
@@ -59,7 +62,7 @@
 - `[text*='abc']`
 - `[text$='abc']`
 
-或者任意数量符合格式并使用 `||` 连接形成逻辑表达式也符合条件, 即如下格式
+或者使用 `||` 将它们连接形成的逻辑表达式也符合条件, 即如下格式
 
 - `[id='abc' || id='abc2']`
 - `[id='abc' || vid='abc' || text='abc' || text^='abc' || text*='abc' || text$='abc']`
@@ -73,11 +76,14 @@
 - `A > B + C[id='x' || text='manbaout' || text*='ikun'][childCount=2]` ✅
 - `A > B + C[childCount=2][id='x' || text='manbaout' || text*='ikun']` ❎
 
-此外某个属性选择器如果符合上面格式并且使用 `>>n` 连接, 也将使用局部快速查找
+这样一个选择器只能在右侧使用快速查询, 为了在中间的子选择器也能使用
+
+额外规定如果属性选择器如果符合上面格式并且右侧是 `>>n`, 也能在局部使用快速查找
 
 示例 `A > B + C[id='x'][childCount=2] >>n D` 中的 `C[id='x'][childCount=2] >>n` 可以使用局部快速查找
 
-实际上所有的选择器如 `A > B + C` 都可以等价看待为 `A > B + @C <<n [parent=null]`, 即从根节点开始查询
+> [!TIP] 提示
+> 实际上从根节点开始匹配的选择器如 `A > B` 都可等价为 `A > @B <<n [parent=null]`
 
 下面给出满足局部查询优化的示例: ✅ 表示符合格式, ❎ 表示不符合格式
 
@@ -88,10 +94,20 @@
 
 如 `A > C[id='x'] >>n D[id='y'] >>n E`, 其中的 `C[id='x'] >>n` 和 `D[id='y'] >>n` 都可以使用局部快速查找
 
-以 [`[vid="image"] <<n [vid="recyclerView"] <<n [vid="content_layout"]`](https://i.gkd.li/i/1620160d=W3ZpZD0iaW1hZ2UiXSA8PG4gW3ZpZD0icmVjeWNsZXJWaWV3Il0gPDxuIFt2aWQ9ImNvbnRlbnRfbGF5b3V0Il0) 为例
+---
+
+以 [`[vid="image"] <<n [vid="recyclerView"] <<n [vid="content_layout"]`](https://i.gkd.li/i/16201605?gkd=W3ZpZD0iaW1hZ2UiXSA8PG4gW3ZpZD0icmVjeWNsZXJWaWV3Il0gPDxuIFt2aWQ9ImNvbnRlbnRfbGF5b3V0Il0) 为例
 
 上面的选择器存在 3 个快速查找优化
 
 - `[vid="content_layout"]` 从 根节点 优化查询找到 `content_layout`
 - `[vid="recyclerView"]` 从 `content_layout` 优化查询找到 `recyclerView`
 - `[vid="image"]` 从 `recyclerView` 优化查询找到 `image`
+
+也就是只需要调用 `findAccessibilityNodeInfosByViewId` 3 次即可得到目标节点
+
+如果是从根节点开始查询, 根据快照内的 选择器路径视图
+
+- `[vid="content_layout"]` 从 根节点 需要 7 次找到 `content_layout`
+- `[vid="recyclerView"]` 从 `content_layout` 需要 48 次找到 `recyclerView`
+- `[vid="image"]` 从 `recyclerView` 需要 44 次找到 `image`

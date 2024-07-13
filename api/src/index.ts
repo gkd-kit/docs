@@ -268,7 +268,7 @@ export interface RawCommonProps {
   /**
    * 如果开启, 此规则下的所有满足 **特定格式的选择器** 将使用快速查找优化查询速度
    * 
-   * 详细文档请查看 [查询优化](https://gkd.li/selector/optimize)
+   * 详细文档请查看 [查询优化](/selector/optimize)
    * 
    * @default false
    */
@@ -572,9 +572,13 @@ export interface RawGroupProps extends RawCommonProps {
  */
 export interface RawAppRuleProps {
   /**
-   * 如果 设备界面Id startWith activityIds 的任意一项, 则匹配
+   * 如果 界面Id startWith activityIds 的任意一项, 则匹配
    *
    * 如果要匹配所有界面: `undefined` (不填写) 或者 `[]` (避免使用上级属性)
+   * 
+   * 如果 activityId 以 `.` 开头, 则等价于 appId + activityId
+   * 
+   * 示例: `com.tencent.mm` (微信) 的某界面 `.MainActivity` 等价于 `com.tencent.mm.MainActivity`
    */
   activityIds?: IArray<string>;
 
@@ -582,6 +586,8 @@ export interface RawAppRuleProps {
    * 如果 设备界面Id startWith excludeActivityIds 的任意一项, 则排除匹配
    *
    * 优先级高于 activityIds
+   * 
+   * 当 activityId 以 `.` 开头时, 与 activityIds 识别规则一致
    */
   excludeActivityIds?: IArray<string>;
 
