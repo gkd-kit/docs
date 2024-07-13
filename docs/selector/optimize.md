@@ -11,7 +11,7 @@
 
 即只需存在一个 `[parent=null]` 就满足条件, 以下是对此的优化
 
-### 主动查询 {enforce}
+### 主动查询 {#enforce}
 
 一般的选择器如 `LinearLayout > TextView`, 选择器需要从 根节点/事件节点 使用深度先序顺序遍历子孙节点并判断是否满足条件
 
@@ -27,7 +27,7 @@
 
 实际上, 在初始匹配节点是 根节点 的情况下, `TextView` 和 `@TextView <<(n) [parent=null]` 完全等价
 
-### 祖先节点 {ancestor}
+### 祖先节点 {#ancestor}
 
 在示例 `A <3 [parent=null] >n TextView` 中, 选择器找到 `TextView` 后, 根据 `>n` 表示任意祖先节点
 
