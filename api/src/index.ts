@@ -236,6 +236,8 @@ export interface RawCommonProps {
   actionDelay?: Integer;
 
   /**
+   * 注意: 将在未来版本弃用此属性, 请使用 {@link fastQuery} 代替
+   * 
    * 如果开启, 此规则下的所有 `末尾属性选择器`的`第一个属性选择表达式`符合下面的结构之一的选择器 将使用快速查找
    *
    * - [id='abc']
@@ -262,6 +264,15 @@ export interface RawCommonProps {
    * @default false
    */
   quickFind?: boolean;
+
+  /**
+   * 如果开启, 此规则下的所有满足 **特定格式的选择器** 将使用快速查找优化查询速度
+   * 
+   * 详细文档请查看 [查询优化](https://gkd.li/selector/optimize)
+   * 
+   * @default false
+   */
+  fastQuery?: boolean;
 
 
   /**

@@ -50,6 +50,7 @@ export default defineConfig({
           { text: '语法介绍', link: '/selector/' },
           { text: '属性方法', link: '/selector/node' },
           { text: '选择示例', link: '/selector/example' },
+          { text: '查询优化', link: '/selector/optimize' },
         ],
       },
       {
