@@ -1,11 +1,10 @@
+import * as walk from 'acorn-walk';
+import jsdom from 'jsdom';
+import MagicString from 'magic-string';
 import fs from 'node:fs/promises';
+import process from 'node:process';
 import type { Plugin } from 'vite';
 import type selfPkgT from '../../package.json';
-import * as walk from 'acorn-walk';
-import MagicString from 'magic-string';
-import { DomUtils, parseDocument } from 'htmlparser2';
-import render from 'dom-serializer';
-import process from 'node:process';
 
 const selfPkg: typeof selfPkgT = JSON.parse(
   await fs.readFile(process.cwd() + '/package.json', 'utf-8'),
@@ -70,25 +69,17 @@ export const mirror = (): Plugin | undefined => {
   };
 };
 
+const Parser = globalThis.DOMParser || new jsdom.JSDOM().window.DOMParser;
 export const transformHtml = (code: string) => {
   if (!useMirror) return;
-  const doc = parseDocument(code);
-  const scripts = DomUtils.findAll((e) => {
-    return (
-      e.name === 'script' &&
-      !!e.attribs.src &&
-      e.attribs.src.startsWith('/assets/')
-    );
-  }, doc.children);
-  scripts.forEach((e) => {
-    e.attribs.src = mirrorBaseUrl + e.attribs.src;
+  if (!code.includes('/assets/')) return;
+  // 注意: 如果使用 htmlparser2+dom-serializer, 当 md 文件包含 `<<n` 将出现 Hydration mismatches 错误
+  const doc = new Parser().parseFromString(code, 'text/html');
+  doc.querySelectorAll('link[href^="/assets/"]').forEach((e) => {
+    e.setAttribute('href', mirrorBaseUrl + e.getAttribute('href'));
   });
-  const links = DomUtils.findAll((e) => {
-    const href = e.attribs.href;
-    return e.name === 'link' && !!href && href.startsWith('/assets/');
-  }, doc.children);
-  links.forEach((e) => {
-    e.attribs.href = mirrorBaseUrl + e.attribs.href;
+  doc.querySelectorAll('script[src^="/assets/"]').forEach((e) => {
+    e.setAttribute('href', mirrorBaseUrl + e.getAttribute('src'));
   });
-  return render(doc, { encodeEntities: false });
+  return doc.documentElement.outerHTML;
 };
