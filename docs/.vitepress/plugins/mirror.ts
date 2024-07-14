@@ -5,6 +5,7 @@ import * as walk from 'acorn-walk';
 import MagicString from 'magic-string';
 import { DomUtils, parseDocument } from 'htmlparser2';
 import render from 'dom-serializer';
+import process from 'node:process';
 
 const selfPkg: typeof selfPkgT = JSON.parse(
   await fs.readFile(process.cwd() + '/package.json', 'utf-8'),

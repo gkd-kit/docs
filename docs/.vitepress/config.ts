@@ -1,6 +1,6 @@
 import { defineConfig } from 'vitepress';
-import { mirror, transformHtml } from './plugins';
 import typedocSidebar from '../api/typedoc-sidebar.json';
+import { transformHtml } from './plugins';
 
 const logoUrl =
   'https://registry.npmmirror.com/@gkd-kit/docs/0.0.1706371840771/files/.vitepress/dist/logo.svg';
@@ -85,12 +85,6 @@ export default defineConfig({
       copyright: `Copyright © ${new Date().getFullYear()} GKD. All rights reserved`,
     },
   },
-  vite: {
-    plugins: [mirror()],
-    server: {
-      host: '127.0.0.1',
-      port: 8633,
-    },
-  },
+  cleanUrls: true,
   transformHtml,
 });
