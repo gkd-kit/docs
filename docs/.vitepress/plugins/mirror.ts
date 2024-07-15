@@ -1,4 +1,5 @@
-import * as walk from 'acorn-walk';
+import { simple } from 'acorn-walk';
+import type { ImportExpression } from 'acorn';
 import jsdom from 'jsdom';
 import MagicString from 'magic-string';
 import fs from 'node:fs/promises';
@@ -40,28 +41,30 @@ export const mirror = (): Plugin | undefined => {
           chunk.code.match(includesDynamicImport)
         ) {
           const ast = this.parse(chunk.code);
-          const nodes: any[] = [];
-          walk.simple(ast, {
+          const nodes: ImportExpression[] = [];
+          simple(ast, {
             ImportExpression(node) {
-              nodes.push(node.source);
+              nodes.push(node);
             },
           });
           if (nodes.length == 0) {
             return;
           }
           const ms = new MagicString(chunk.code);
-          nodes.forEach((node) => {
-            const start = node.start;
-            const end = node.end;
-            const code = chunk.code.slice(start, end);
-            ms.overwrite(
-              start,
-              end,
-              `((u)=>{if(u.startsWith('/')){return${JSON.stringify(
-                mirrorBaseUrl,
-              )}+u}return u})(${code})`,
-            );
-          });
+          nodes
+            .map((v) => v.source)
+            .forEach((node) => {
+              const start = node.start;
+              const end = node.end;
+              const code = chunk.code.slice(start, end);
+              ms.overwrite(
+                start,
+                end,
+                `((u)=>{if(u.startsWith('/')){return${JSON.stringify(
+                  mirrorBaseUrl,
+                )}+u}return u})(${code})`,
+              );
+            });
           chunk.code = ms.toString();
         }
       });
