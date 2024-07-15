@@ -335,6 +335,16 @@ TextView[id=`com.byted.pangle:id/tt_item_tv`][text=`不感兴趣`] <n LinearLayo
 
 ## 一些注意 {#note}
 
+### 匹配顺序 {#match-order}
+
+选择器的匹配顺序是 **从右往左匹配**
+
+例如 `FrameLayout > TextView`, 它是先从 根节点/事件节点 找到 `TextView`, 然后再判断 parent 是不是 `FrameLayout`
+
+并不是先找到 `FrameLayout` 然后再判断 child 是否有 `TextView`
+
+同时在 [选择器路径视图](https://i.gkd.li/i/15747758?gkd=RnJhbWVMYXlvdXQgPiBUZXh0Vmlldw) 也会标明匹配顺序和查找方向
+
 ### 正则表达式优化 {#regex-optimization}
 
 对 `matches`/`notMatches` 的优化: 如果正则表达式满足下面的条件, 选择器将使用内置的简单的函数匹配, 而不是真正地去运行一个正则表达式
