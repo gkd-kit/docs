@@ -356,7 +356,7 @@ export interface RawCommonProps {
    *
    * 比如开屏广告可能需要多个 rule 去匹配, 当一个 rule 触发时, 其它 rule 的触发是无意义的
    *
-   * 如果你对这个 key 的 rule 设置 actionCd=3000, 那么当这个 rule 和 本 rule 触发任意一个时, 在 3000毫秒 内两个 rule 都将进入 cd
+   * 如果你对这个 key 的 rule 设置 actionCd=3000, 那么当这个 rule 和 本 rule 触发任意一个时, 在 3000 毫秒 内两个 rule 都将进入 cd
    */
   actionCdKey?: Integer;
 
@@ -429,9 +429,9 @@ export interface RawRuleProps extends RawCommonProps {
   /**
    * 要求当前列表里某个 key 刚刚执行
    *
-   * 比如点击关闭按钮-选择关闭原因-确认关闭, key 分别是 1,2,3, preKeys 分别是 [],[1],[2]
+   * 比如: 点击关闭按钮-选择关闭原因-确认关闭, key 分别是 1,2,3, preKeys 分别是 [],[1],[2]
    *
-   * 那么 选择关闭原因 必须要求 比如点击关闭按钮 刚刚点击过才能执行, 确认关闭 也要求 选择关闭原因 刚刚点击过才执行
+   * 那么 选择关闭原因 必须要求 点击关闭按钮 刚刚执行过才能执行, 确认关闭 也要求 选择关闭原因 刚刚执行过才执行
    *
    * 否则后面的规则不会触发, 也就是要求规则按顺序执行, 这是为了防止规则匹配范围太过广泛而误触
    *
