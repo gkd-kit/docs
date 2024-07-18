@@ -11,20 +11,17 @@ hero:
   tagline: '基于无障碍+选择器+订阅规则'
   actions:
     - theme: brand
+      text: 什么是 GKD?
+      link: /guide/what-is-gkd
+    - theme: alt
       text: 开始使用
       link: /guide/
     - theme: alt
-      text: 选择器
-      link: /selector/
-    - theme: alt
-      text: 订阅规则
-      link: /subscription/
-    - theme: alt
-      text: 快照审查
-      link: https://i.gkd.li/
-    - theme: alt
-      text: 疑难解答
-      link: /faq/
+      text: 在 Github 上查看
+      link: https://github.com/gkd-kit/gkd
+  image:
+    src: /logo.png
+    alt: GKD
 
 features:
   - title: 🐔 开放源代码

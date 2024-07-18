@@ -1,6 +1,6 @@
 <script setup lang="ts">
-import { defineClientComponent } from 'vitepress';
-import { convertSrc, NImage } from '../utils/img';
+import { convertSrc } from '../utils/img';
+import { NImage, NImageGroup } from '../utils/naive';
 
 withDefaults(
   defineProps<{
@@ -12,11 +12,13 @@ withDefaults(
 <template>
   <table>
     <tbody>
-      <tr v-for="(imgs, i) in images" :key="i">
-        <td v-for="src in imgs" :key="src">
-          <NImage :src="convertSrc(src)" />
-        </td>
-      </tr>
+      <NImageGroup>
+        <tr v-for="(imgs, i) in images" :key="i">
+          <td v-for="src in imgs" :key="src">
+            <NImage :src="convertSrc(src)" />
+          </td>
+        </tr>
+      </NImageGroup>
     </tbody>
   </table>
 </template>

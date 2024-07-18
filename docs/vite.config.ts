@@ -8,7 +8,10 @@ const ASSETS_VERSION = await fetch(
 
 export default defineConfig({
   define: { ASSETS_VERSION: JSON.stringify(ASSETS_VERSION) },
-  plugins: [unocss(), mirror()],
+  plugins: [
+    unocss(),
+    mirror(),
+  ],
   server: {
     host: '127.0.0.1',
     port: 8633,

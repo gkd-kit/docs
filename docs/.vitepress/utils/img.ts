@@ -1,6 +1,5 @@
-import { defineClientComponent } from 'vitepress';
 import { defineComponent, h } from 'vue';
-import type { NImage as NImageT } from 'naive-ui/es/image';
+import { NImage } from './naive';
 
 const mirrorHost = () => {
   return `https://registry.npmmirror.com/@gkd-kit/assets/${ASSETS_VERSION}/files/assets/`;
@@ -33,10 +32,3 @@ export const GImg = defineComponent<{
     props: ['src', 'width'],
   },
 );
-
-
-export const NImage = defineClientComponent(() => {
-  return import('naive-ui/es/image').then((mod) => {
-    return mod.NImage;
-  });
-}) as unknown as typeof NImageT;

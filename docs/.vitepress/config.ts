@@ -32,16 +32,19 @@ export default defineConfig({
     darkModeSwitchLabel: '外观',
     sidebarMenuLabel: '归档',
     nav: [
-      { text: '首页', link: '/' },
-      { text: 'API', link: '/api/' },
+      { text: '指引', link: '/guide/', activeMatch: '/guide/' },
+      { text: 'API', link: '/api/', activeMatch: '/api/' },
+      { text: '审查工具', link: 'https://i.gkd.li' },
     ],
     sidebar: [
       {
         text: '指引',
         items: [
+          { text: '什么是 GKD?', link: '/guide/what-is-gkd' },
           { text: '开始使用', link: '/guide/' },
-          { text: '订阅规则', link: '/subscription/' },
-          { text: '疑难解答', link: '/faq/' },
+          { text: '快照审查', link: '/guide/snapshot' },
+          { text: '订阅规则', link: '/guide/subscription' },
+          { text: '疑难解答', link: '/guide/faq' },
         ],
       },
       {
@@ -79,7 +82,7 @@ export default defineConfig({
         },
       },
     },
-    socialLinks: [{ icon: 'github', link: 'https://github.com/gkd-kit' }],
+    socialLinks: [{ icon: 'github', link: 'https://github.com/gkd-kit/gkd' }],
     footer: {
       message: 'Released under the GPL-v3 License.',
       copyright: `Copyright © ${new Date().getFullYear()} GKD. All rights reserved`,

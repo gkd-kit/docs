@@ -2,7 +2,6 @@
 
 <script setup>
 import ApkDownloadButton from '/.vitepress/components/ApkDownloadButton.vue';
-import ImageTable from '/.vitepress/components/ImageTable.vue';
 </script>
 
 ## 下载安装 {#install}
@@ -27,6 +26,6 @@ import ImageTable from '/.vitepress/components/ImageTable.vue';
 
 这是 Android13 的限制, 对于不在应用商店等可信任来源安装的应用不能直接开启无障碍权限
 
-您需要解除这个限制, 解除限制的方法在 [疑难解答](/faq/)
+您需要解除这个限制, 解除限制的方法在 [疑难解答](/guide/faq)
 
 限制解除后, 重新按照上面的授权流程即可开启无障碍权限

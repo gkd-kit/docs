@@ -38,7 +38,7 @@ https://gist.github.com/lisonge/3f5693182ad4ef5e307be760dba22bcb/raw/gkd.json5
 
 位置: 首页-订阅-本地订阅-应用规则
 
-![image](https://github.com/gkd-kit/gkd/assets/38517192/76d0bc58-de43-416d-9454-f980e8075660){class="max-w-[min(375px,100%)]"}
+![image](https://e.gkd.li/76d0bc58-de43-416d-9454-f980e8075660){class="max-w-[min(375px,100%)]"}
 
 此处可添加 [应用规则](/api/interfaces/RawApp), 如下是一个简单的规则示例, 它由 [快照-13070251](https://i.gkd.li/i/13070251?gkd=VGV4dFZpZXdbaWQ9ImNvbS56aGlodS5hbmRyb2lkOmlkL2J0bl9za2lwIl0) 而来
 

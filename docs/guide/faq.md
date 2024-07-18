@@ -1,9 +1,5 @@
 # 疑难解答 {#title}
 
-<script setup>
-import ImageTable from '/.vitepress/components/ImageTable.vue';
-</script>
-
 一些可能影响使用体验的问题和对应解决方案, 某些方案可能并不适用您的机型系统
 
 如您有更好的方案或想对现有方案进行补充, 请点击底部 `为此页提供修改建议`
