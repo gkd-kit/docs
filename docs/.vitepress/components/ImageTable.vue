@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { convertSrc } from '../utils/img';
-import { NImage, NImageGroup } from '../utils/naive';
+import { NImage, NImageGroup } from './naive';
 
 withDefaults(
   defineProps<{

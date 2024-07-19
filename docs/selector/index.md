@@ -1,10 +1,5 @@
 # 选择器 {#title}
 
-<script setup>
-import IdentifierField from '/.vitepress/components/IdentifierField.vue';
-import { GImg } from '/.vitepress/utils/img.ts'
-</script>
-
 一个类似 CSS 选择器的选择器, 能联系节点上下文信息, 更容易也更精确找到目标节点
 
 ## 为什么需要选择器 {#why}
@@ -263,6 +258,8 @@ import { GImg } from '/.vitepress/utils/img.ts'
 
 关系操作符 表示查找节点的方向, 有 5 种关系操作符, `+`, `-`, `>`, `<`, `<<`
 
+<NImageGroup>
+
 | 操作符 |        名称        |                图例                 |                                  选择器                                   |
 | :----: | :----------------: | :---------------------------------: | :-----------------------------------------------------------------------: |
 |   +    |    前置兄弟节点    | <GImg src="0020.png" width="250" /> |   [\* + \[\_id=33\]](https://i.gkd.li/i/14045424?gkd=KiArIFtfaWQ9MzNd)    |
@@ -270,6 +267,8 @@ import { GImg } from '/.vitepress/utils/img.ts'
 |   >    |      祖先节点      | <GImg src="0022.png" width="250" /> |   [\* > \[\_id=90\]](https://i.gkd.li/i/14045424?gkd=KiA-IFtfaWQ9OTBd)    |
 |   <    |     直接子节点     | <GImg src="0023.png" width="250" /> |   [\* < \[\_id=89\]](https://i.gkd.li/i/14045424?gkd=KiA8IFtfaWQ9ODld)    |
 |   <<   | 子孙节点(深度先序) | <GImg src="0024.png" width="250" /> | [\* <<2 \[\_id=29\]](https://i.gkd.li/i/14045424?gkd=KiA8PDIgW19pZD0yOV0) |
+
+</NImageGroup>
 
 将 关系操作符 和 关系表达式 连接起来就得到了 关系选择器
 
@@ -326,12 +325,12 @@ TextView[id=`com.byted.pangle:id/tt_item_tv`][text=`不感兴趣`] <n LinearLayo
 
 如下是网页无障碍快照审查工具, 使用它的搜索框的选择器查询可以实时测试编写的选择器
 
-- <https://i.gkd.li/i/14045424>
-- <https://i.gkd.li/i/14034770>
-- <https://i.gkd.li/i/14031920>
-- <https://i.gkd.li/i/14018243>
-- <https://i.gkd.li/i/14011298>
-- <https://i.gkd.li/i/13999908>
+- [快照-14045424](https://i.gkd.li/i/14045424)
+- [快照-14034770](https://i.gkd.li/i/14034770)
+- [快照-14031920](https://i.gkd.li/i/14031920)
+- [快照-14018243](https://i.gkd.li/i/14018243)
+- [快照-14011298](https://i.gkd.li/i/14011298)
+- [快照-13999908](https://i.gkd.li/i/13999908)
 
 ## 一些注意 {#note}
 

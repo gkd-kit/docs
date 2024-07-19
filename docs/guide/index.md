@@ -1,9 +1,5 @@
 # 开始使用 {#title}
 
-<script setup>
-import ApkDownloadButton from '/.vitepress/components/ApkDownloadButton.vue';
-</script>
-
 ## 下载安装 {#install}
 
 - 镜像加速 <ApkDownloadButton />

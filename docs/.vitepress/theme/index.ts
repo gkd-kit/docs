@@ -1,12 +1,14 @@
 import 'uno.css';
 import type { Theme } from 'vitepress';
 import DefaultTheme from 'vitepress/theme';
+import components from '../components';
 import './custom.css';
-import ImageTable from '../components/ImageTable.vue';
 
 export default {
   extends: DefaultTheme,
   enhanceApp({ app }) {
-    app.component('ImageTable', ImageTable);
+    Object.entries(components).forEach(([name, component]) => {
+      app.component(name, component);
+    });
   },
 } satisfies Theme;

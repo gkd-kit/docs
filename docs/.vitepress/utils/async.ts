@@ -11,6 +11,7 @@ export const DefaultSlotCpt = defineComponent((_, ctx) => {
   };
 });
 
+// TODO: Hydration completed but contains mismatches
 export const defineVitePressAsyncComponent = <
   T extends Component = {
     new (): ComponentPublicInstance;
