@@ -2,7 +2,7 @@
 
 ## 下载安装 {#install}
 
-- 镜像加速 <ApkDownloadButton />
+- 镜像加速 <ClientOnly><ApkDownloadButton /></ClientOnly>
 
 - Github [releases](https://github.com/gkd-kit/gkd/releases/latest)
 
