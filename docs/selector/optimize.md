@@ -99,7 +99,7 @@
 > [!NOTE] 注意
 > 如果选择器不存在满足快速查找的格式, fastQuery 是否开启都不影响查询复杂度
 
-### 优化示例 {optimize-example}
+### 优化示例 {#optimize-example}
 
 以 [`[vid="image"] <<n [vid="recyclerView"] <<n [vid="content_layout"]`](https://i.gkd.li/i/16201605?gkd=W3ZpZD0iaW1hZ2UiXSA8PG4gW3ZpZD0icmVjeWNsZXJWaWV3Il0gPDxuIFt2aWQ9ImNvbnRlbnRfbGF5b3V0Il0) 为例
 
