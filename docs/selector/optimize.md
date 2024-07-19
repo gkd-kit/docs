@@ -25,7 +25,8 @@
 
 根据上面说明的优化, 虽然也只有一次判断, 但是由于 `<<n` 导致内部的子判断也是 n 次, 实际上没有优化判断次数
 
-实际上, 在初始匹配节点是 根节点 的情况下, `TextView` 和 `@TextView <<n [parent=null]` 完全等价
+> [!TIP] 提示
+> 实际上从根节点开始匹配的选择器如 `A > B` 都可等价为 `A > @B <<n [parent=null]`
 
 ### 祖先节点 {#ancestor}
 
@@ -39,8 +40,10 @@
 
 ## 快速查询 {#fast-query}
 
-> [!TIP] 提示
+> [!NOTE] 注意
 > 此优化需要设置 [fastQuery](/api/interfaces/RawCommonProps#fastquery) 来启用
+
+### 查询场景 {#query-scene}
 
 一般情况下, 选择器 `[vid="name"]` 需要从 根节点/事件节点 使用深度先序顺序遍历子孙节点并判断是否满足条件
 
@@ -52,6 +55,8 @@
 这使得可以通过 `id`/`vid`/`text` 直接获取子孙节点
 
 对此我们需要规定符合特定条件的选择器来调用这些 Api 从而跳过手动遍历子孙节点
+
+### 规定格式 {#rule-format}
 
 所有 `末尾属性选择器`的`第一个属性选择表达式`符合下面的结构之一
 
@@ -82,9 +87,6 @@
 
 示例 `A > B + C[id='x'][childCount=2] <<n D` 中的 `C[id='x'][childCount=2] <<n` 可以使用局部快速查找
 
-> [!TIP] 提示
-> 实际上从根节点开始匹配的选择器如 `A > B` 都可等价为 `A > @B <<n [parent=null]`
-
 下面给出满足局部查询优化的示例: ✅ 表示符合格式, ❎ 表示不符合格式
 
 - `A > B + C[id='x'][childCount=2] <<n D` ✅
@@ -94,7 +96,10 @@
 
 如 `A > C[id='x'] <<n D[id='y'] <<n E`, 其中的 `C[id='x'] <<n` 和 `D[id='y'] <<n` 都可以使用局部快速查找
 
----
+> [!NOTE] 注意
+> 如果选择器不存在满足快速查找的格式, fastQuery 是否开启都不影响查询复杂度
+
+### 优化示例 {optimize-example}
 
 以 [`[vid="image"] <<n [vid="recyclerView"] <<n [vid="content_layout"]`](https://i.gkd.li/i/16201605?gkd=W3ZpZD0iaW1hZ2UiXSA8PG4gW3ZpZD0icmVjeWNsZXJWaWV3Il0gPDxuIFt2aWQ9ImNvbnRlbnRfbGF5b3V0Il0) 为例
 
