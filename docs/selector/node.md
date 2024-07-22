@@ -20,7 +20,7 @@
 | toInt  |           | `int`     | 转为 0 或 1                      |
 | or     | `boolean` | `boolean` | a \|\| b                         |
 | and    | `boolean` | `boolean` | a && b                           |
-| not    | `boolean` | `boolean` | !a                               |
+| not    |           | `boolean` | !a                               |
 | ifElse | `T`, `T`  | `T`       | if(a) T else T <br> T 是任意类型 |
 
 ## int
