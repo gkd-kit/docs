@@ -1,5 +1,5 @@
 import type { Component } from 'vue';
-import { defineComponent, h, onMounted, shallowRef, nextTick } from 'vue';
+import { defineComponent, h, shallowRef } from 'vue';
 
 export const DefaultSlotCpt = defineComponent((_, ctx) => {
   return () => {
