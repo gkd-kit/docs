@@ -41,7 +41,8 @@
 ## 快速查询 {#fast-query}
 
 > [!NOTE] 注意
-> 此优化需要设置 [fastQuery](/api/interfaces/RawCommonProps#fastquery) 来启用
+> 此优化需要设置 [fastQuery](/api/interfaces/RawCommonProps#fastquery) 来启用\
+> 并且节点在快照面板被标识 `可快速查找`, 否则查找不到
 
 ### 查询场景 {#query-scene}
 
