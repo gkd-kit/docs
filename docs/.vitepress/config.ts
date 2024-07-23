@@ -58,7 +58,10 @@ export default defineConfig({
           ],
         },
       ],
-      '/api/': typedocSidebar.map((v) => ({ ...v, collapsed: undefined })),
+      '/api/': [
+        { link: '/api/', text: 'API Reference' },
+        ...typedocSidebar.map((v) => ({ ...v, collapsed: undefined })),
+      ],
     },
     editLink: {
       pattern: 'https://github.com/gkd-kit/docs/edit/main/docs/:path',
