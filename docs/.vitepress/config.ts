@@ -36,32 +36,30 @@ export default defineConfig({
       { text: 'API', link: '/api/', activeMatch: '/api/' },
       { text: '审查工具', link: 'https://i.gkd.li' },
     ],
-    sidebar: [
-      {
-        text: '指引',
-        items: [
-          { text: '什么是 GKD?', link: '/guide/what-is-gkd' },
-          { text: '开始使用', link: '/guide/' },
-          { text: '快照审查', link: '/guide/snapshot' },
-          { text: '订阅规则', link: '/guide/subscription' },
-          { text: '疑难解答', link: '/guide/faq' },
-        ],
-      },
-      {
-        text: '选择器',
-        items: [
-          { text: '语法介绍', link: '/selector/' },
-          { text: '属性方法', link: '/selector/node' },
-          { text: '选择示例', link: '/selector/example' },
-          { text: '查询优化', link: '/selector/optimize' },
-        ],
-      },
-      {
-        text: 'API',
-        link: '/api/',
-        items: typedocSidebar,
-      },
-    ],
+    sidebar: {
+      '/guide/': [
+        {
+          text: '指引',
+          items: [
+            { text: '什么是 GKD?', link: '/guide/what-is-gkd' },
+            { text: '开始使用', link: '/guide/' },
+            { text: '快照审查', link: '/guide/snapshot' },
+            { text: '订阅规则', link: '/guide/subscription' },
+            { text: '疑难解答', link: '/guide/faq' },
+          ],
+        },
+        {
+          text: '选择器',
+          items: [
+            { text: '语法介绍', link: '/guide/selector' },
+            { text: '属性方法', link: '/guide/node' },
+            { text: '选择示例', link: '/guide/example' },
+            { text: '查询优化', link: '/guide/optimize' },
+          ],
+        },
+      ],
+      '/api/': typedocSidebar.map((v) => ({ ...v, collapsed: undefined })),
+    },
     editLink: {
       pattern: 'https://github.com/gkd-kit/docs/edit/main/docs/:path',
       text: '为此页提供修改建议',
