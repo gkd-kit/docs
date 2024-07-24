@@ -183,7 +183,7 @@
 |   ^=   |  startsWith   |   以...开头   |
 |  !^=   | notStartsWith |  不以...开头  |
 |  \*=   |   contains    |    包含...    |
-|  !^=   |  notContains  |   不包含...   |
+|  !\*=   |  notContains  |   不包含...   |
 |   $=   |   endsWith    |   以...结尾   |
 |  !$=   |  notEndsWith  |  不以...结尾  |
 |   ~=   |    matches    |  正则匹配...  |
