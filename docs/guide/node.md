@@ -15,13 +15,13 @@
 
 ## boolean
 
-| 方法名 | 参数      | 返回类型  | 描述                             |
-| ------ | --------- | --------- | -------------------------------- |
-| toInt  |           | `int`     | 转为 0 或 1                      |
-| or     | `boolean` | `boolean` | a \|\| b                         |
-| and    | `boolean` | `boolean` | a && b                           |
-| not    |           | `boolean` | !a                               |
-| ifElse | `T`, `T`  | `T`       | if(a) T else T <br> T 是任意类型 |
+| 方法名 | 参数      | 返回类型  | 描述                                                  |
+| ------ | --------- | --------- | ----------------------------------------------------- |
+| toInt  |           | `int`     | 转为 0 或 1                                           |
+| or     | `boolean` | `boolean` | a \|\| b                                              |
+| and    | `boolean` | `boolean` | a && b                                                |
+| not    |           | `boolean` | !a                                                    |
+| ifElse | `T`, `T`  | `T`       | if(a) T else T <br> T 是任意类型, 两个参数均支持为 null |
 
 ## int
 
