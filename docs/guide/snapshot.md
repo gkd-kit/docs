@@ -17,7 +17,7 @@
 
 另外对于某些出现频率极低的界面, 快照也能直接保留这些界面的状态, 无需每次等待出现
 
-## 抓取快照 {#capture-snapshot}
+## 抓取/捕获快照 {#capture-snapshot}
 
 在 GKD 内可以通过多种方式抓取快照, 需要一些前置条件
 
@@ -62,6 +62,8 @@ GKD 内部暴露了一个服务, 外部应用(某些快捷手势应用)可以启
 ```text
 li.songe.gkd.SnapshotActionService
 ```
+
+通过这个服务, 你可以通过自定义手势来捕获快照, 可在 [gkd-kit/gkd#253](https://github.com/gkd-kit/gkd/issues/253) 了解更多
 
 ## 分享快照 {#share-snapshot}
 
