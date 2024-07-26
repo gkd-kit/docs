@@ -10,30 +10,30 @@
     "preview": "pnpm -F @gkd-kit/docs docs:preview"
   },
   "dependencies": {
-    "@gkd-kit/selector": "0.3.3",
+    "@gkd-kit/selector": "0.4.2",
     "@types/file-saver": "2.0.7",
     "@types/jsdom": "21.1.7",
-    "@types/node": "20.14.10",
+    "@types/node": "20.14.12",
     "acorn-walk": "8.3.3",
     "cross-env": "7.0.3",
     "file-saver": "2.0.5",
-    "jsdom": "24.1.0",
+    "jsdom": "24.1.1",
     "magic-string": "0.30.10",
     "markdown-it-mathjax3": "4.3.2",
-    "naive-ui": "2.38.2",
+    "naive-ui": "2.39.0",
     "prettier": "3.3.3",
     "tsx": "4.16.2",
-    "typedoc": "0.26.4",
-    "typedoc-plugin-markdown": "4.2.1",
+    "typedoc": "0.26.5",
+    "typedoc-plugin-markdown": "4.2.3",
     "typedoc-vitepress-theme": "1.0.1",
-    "typescript": "5.5.3",
-    "unocss": "0.61.3",
+    "typescript": "5.5.4",
+    "unocss": "0.61.5",
     "vitepress": "1.3.1"
   },
   "volta": {
     "node": "20.15.1"
   },
-  "packageManager": "pnpm@9.5.0",
+  "packageManager": "pnpm@9.6.0",
   "pnpm": {
     "peerDependencyRules": {
       "ignoreMissing": [
