@@ -20,7 +20,7 @@ hero:
       text: 在 Github 上查看
       link: https://github.com/gkd-kit/gkd
   image:
-    src: /logo.png
+    src: /logo.svg
     alt: GKD
 
 features:
