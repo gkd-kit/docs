@@ -12,7 +12,7 @@ if (!import.meta.env.SSR) {
     } else {
       location.pathname = location.pathname.replace('/selector/', '/guide/');
     }
-  } else if ((location.pathname = '/subscription/')) {
+  } else if (location.pathname === '/subscription/') {
     location.pathname = '/guide/subscription';
   }
 }
