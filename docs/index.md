@@ -17,6 +17,9 @@ hero:
       text: 开始使用
       link: /guide/
     - theme: alt
+      text: 常见问题
+      link: /guide/faq
+    - theme: alt
       text: 在 Github 上查看
       link: https://github.com/gkd-kit/gkd
   image:
