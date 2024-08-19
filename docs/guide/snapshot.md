@@ -79,10 +79,11 @@ li.songe.gkd.SnapshotActionService
 
 可通过如下步骤获取 Github Cookie
 
-1. 电脑上浏览器安装任意油猴脚本管理器, 或者手机端使用 via 浏览器
-2. 在浏览器打开 [Github](https://github.com) 登录账号
-3. 根据 [show-github-cookie](https://github.com/gkd-kit/show-github-cookie) 文档安装油猴脚本
-4. 打开任意 Github 页面即可显示并复制 Cookie 到 GKD 内
+1. 在浏览器打开 [Github](https://github.com) 登录账号
+2. 在 <https://github.com> 使用 f12 打开调试面板, 选中 网络-文档 后按 f5 刷新页面, 会出来一条 `github.com` 的记录
+3. 点击这条记录, 选中 标头-请求标头-Cookie 的右侧文字, 按下 Ctrl+C 复制即可
+  <GImg src="https://github.com/user-attachments/assets/85e94205-74f2-48af-a8f1-9aad787612ae" />
+4. 复制成功后, 到 GKD 内 高级设置-快照-Github Cookie 编辑填入保存即可
 
 ## 去除快照中的隐私信息 {#rm-privacy-info}
 
