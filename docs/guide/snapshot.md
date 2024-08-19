@@ -41,10 +41,6 @@
 
 添加这个快捷开关到状态栏界面, 添加完毕后在任意界面下拉状态栏点击这个图标即可抓取快照
 
-### 通过音量快照 {#by-volume}
-
-打开 `主页-设置-高级模式-音量快照`, 当音量变化时会抓取当前快照
-
 ### 通过截屏快照 {#by-screenshot}
 
 打开 `主页-设置-高级模式-截屏快照`, 某些手机截屏时会发出特殊的事件, GKD 可以抓取这些事件后触发抓取快照
@@ -65,28 +61,28 @@ li.songe.gkd.SnapshotActionService
 
 通过这个服务, 你可以通过自定义手势来捕获快照, 可在 [gkd-kit/gkd#253](https://github.com/gkd-kit/gkd/issues/253) 了解更多
 
-## 分享快照 {#share-snapshot}
+## 上传原理 {#how-to-upload}
 
-快照的一个好处在于可以分享并在线打开, 这可以更好地展示你的问题来获取别人的帮助
+当你使用审查工具生成分享链接时, 审查工具会自动帮你上传文件到 Github 后得到链接
 
-GKD 没有自己的文件存储服务器, 所有的快照都借助 Github 存储
-
-例如快照 <https://i.gkd.li/i/16235400> 中的 `16235400` 实际指向了 Github 上的一个文件, 它的链接如下
-
-```txt
-https://github.com/user-attachments/files/16235400/file.zip
-```
-
-当你使用审查工具生成快照时, 审查工具会自动帮你上传文件到 Github 后得到链接, 相当于自动化以下行为
+相当于自动化以下行为
 
 - 从审查工具下载快照为 file.zip 文件到电脑上
 - 登录 Github 并转到任意能上传文件或者评论的公开页面
 - 将刚刚的文件拖动进输入框, 文件链接会自动生成
 
-其中使用到的工具库为
+当在 GKD 内生成链接时也是一样的原理, 不同之处在于
 
-- [network-extension](https://github.com/gkd-kit/network-extension)
-- [user-attachments](https://github.com/lisonge/user-attachments)
+网页版的审查工具直接通过 [油猴脚本](https://github.com/gkd-kit/network-extension) 获取上传凭证
+
+而 GKD 内需要手动输入上传凭证, 也就是需要手动输入 Github Cookie
+
+可通过如下步骤获取 Github Cookie
+
+1. 电脑上浏览器安装任意油猴脚本管理器, 或者手机端使用 via 浏览器
+2. 在浏览器打开 [Github](https://github.com) 登录账号
+3. 根据 [show-github-cookie](https://github.com/gkd-kit/show-github-cookie) 文档安装油猴脚本
+4. 打开任意 Github 页面即可显示并复制 Cookie 到 GKD 内
 
 ## 去除快照中的隐私信息 {#rm-privacy-info}
 

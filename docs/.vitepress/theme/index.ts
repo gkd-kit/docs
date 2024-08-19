@@ -14,6 +14,11 @@ if (!import.meta.env.SSR) {
     }
   } else if (location.pathname === '/subscription/') {
     location.pathname = '/guide/subscription';
+  } else if (location.pathname === '/') {
+    const r = new URLSearchParams(location.search).get('r');
+    if (r === '1') {
+      location.href = '/guide/snapshot#how-to-upload';
+    }
   }
 }
 
