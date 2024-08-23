@@ -1,6 +1,12 @@
 <script setup lang="ts">
-import { computed, shallowRef, onMounted } from 'vue';
-import { saveAs } from 'file-saver';
+import { computed, onMounted, shallowRef } from 'vue';
+
+const props = withDefaults(
+  defineProps<{
+    beta?: boolean;
+  }>(),
+  {},
+);
 
 const apkUrl = shallowRef('');
 const apkName = computed(() =>
@@ -11,27 +17,37 @@ const loading = shallowRef(false);
 const downloadApk = async () => {
   if (!apkUrl.value || loading.value) return;
   loading.value = true;
-  const file = await fetch(apkUrl.value)
-    .then((r) => r.arrayBuffer())
-    .then(
-      (b) =>
-        new File([b], apkName.value, {
-          type: 'application/vnd.android.package-archive',
-        }),
-    )
-    .finally(() => {
-      loading.value = false;
-    });
-  saveAs(file, apkName.value);
+  try {
+    const file = await fetch(apkUrl.value)
+      .then((r) => r.arrayBuffer())
+      .then(
+        (b) =>
+          new File([b], apkName.value, {
+            type: 'application/vnd.android.package-archive',
+          }),
+      );
+    const { saveAs } = await import('file-saver');
+    saveAs(file, apkName.value);
+  } finally {
+    loading.value = false;
+  }
 };
 
+// preload file-saver in browser
+if (globalThis.document) {
+  import('file-saver');
+}
+
+const pkg = computed(() => (props.beta ? 'app-beta' : 'app'));
+const key = computed(() => `apkUrl-${pkg.value}`);
+
 onMounted(async () => {
-  apkUrl.value = localStorage.getItem('apkUrl') || '';
-  const versionUrl = 'https://registry.npmmirror.com/@gkd-kit/app/latest/files';
+  apkUrl.value = localStorage.getItem(key.value) || '';
+  const versionUrl = `https://registry.npmmirror.com/@gkd-kit/${pkg.value}/latest/files`;
   const r = await fetch(versionUrl);
   const data = await r.json();
   apkUrl.value = new URL(data.downloadUrl, r.url).href;
-  localStorage.setItem('apkUrl', apkUrl.value);
+  localStorage.setItem(key.value, apkUrl.value);
 });
 </script>
 <template>

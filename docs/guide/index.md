@@ -1,14 +1,17 @@
 # 开始使用 {#title}
 
-## 下载安装 {#install}
+## 安装 {#install}
 
-- 镜像加速 <ClientOnly><ApkDownloadButton /></ClientOnly>
+| 版本   | 下载链接                   | 备注           |
+| ------ | -------------------------- | -------------- |
+| 正式版 | <ApkDownloadButton />      | 稳定版         |
+| 测试版 | <ApkDownloadButton beta /> | 更新快不稳定 |
 
-- Github [releases](https://github.com/gkd-kit/gkd/releases/latest)
+或前往 [Github Releases](https://github.com/gkd-kit/gkd/releases/latest) 下载
 
 下载完毕后, 在您的 Android 手机上安装并打开
 
-## 授权使用 {#usage}
+## 使用 {#usage}
 
 打开后进入 GKD 的首页, 要想 GKD 正常工作需要授权无障碍权限
 
