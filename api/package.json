@@ -12,7 +12,8 @@
     "registry": "https://registry.npmjs.org/"
   },
   "scripts": {
-    "predocs:build": "typedoc"
+    "predocs:build": "typedoc",
+    "postpublish": "curl -X PUT https://registry-direct.npmmirror.com/@gkd-kit/api/sync"
   },
   "volta": {
     "extends": "../package.json"
