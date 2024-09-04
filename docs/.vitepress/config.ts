@@ -22,13 +22,13 @@ export default defineConfig({
   themeConfig: {
     logo: logoUrl,
     lastUpdatedText: '最后更新于',
-    outline: 'deep',
+    outlineTitle: '导航栏',
+    outline: [1, 3],
     docFooter: {
       prev: '上一篇',
       next: '下一篇',
     },
     returnToTopLabel: '返回顶部',
-    outlineTitle: '导航栏',
     darkModeSwitchLabel: '外观',
     sidebarMenuLabel: '归档',
     nav: [
