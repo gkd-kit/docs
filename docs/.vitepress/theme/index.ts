@@ -18,6 +18,8 @@ if (!import.meta.env.SSR) {
     const r = new URLSearchParams(location.search).get('r');
     if (r === '1') {
       location.href = '/guide/snapshot#how-to-upload';
+    } else if (r === '2') {
+      location.href = '/guide/faq#restriction';
     }
   }
 }
