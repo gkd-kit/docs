@@ -6,6 +6,8 @@ GKD 文档(尚未开发完毕), 基于 [vitepress](https://vitepress.dev/zh/) �
 
 ## 提交贡献
 
+欢迎提交 [规则示例](./docs/guide/subscription.md) 和 [选择示例](./docs/guide/example.md)
+
 确保你对 [vitepress](https://vitepress.dev/zh/) 有基本了解
 
 然后 [Fork](https://github.com/gkd-kit/docs/fork) 仓库
