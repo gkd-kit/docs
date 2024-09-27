@@ -49,7 +49,7 @@
 
 ## 在指定节点的子节点内查找指定选择器 {#e-6}
 
-一般在末尾节点支持 [快速查询](https://gkd.li/guide/optimize#fast-query) 的情况下使用
+一般在末尾节点支持 [快速查询](/guide/optimize#fast-query) 的情况下使用
 
 在节点 `ViewGroup[vid="live_text_container"]` 的子节点内查找 `[text="直播"]`
 
