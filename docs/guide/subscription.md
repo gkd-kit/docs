@@ -57,4 +57,74 @@ https://gist.github.com/lisonge/3f5693182ad4ef5e307be760dba22bcb/raw/gkd.json5
 }
 ```
 
+### 应用规则组 {#app-group-rule}
+
+位置: 首页-订阅-本地订阅-应用规则-应用
+
+![image](https://e.gkd.li/6497fe09-b019-46b9-8157-d4b21809b4fc){class="max-w-[min(375px,100%)]"}
+
+此处可添加 [应用规则组](/api/interfaces/RawAppGroup), 如下是一个简单的规则示例, 它由 [快照-14310618](https://i.gkd.li/i/14310618?gkd=W3ZpZD0iaW1nX2Nsb3NlIl0) 而来
+
+```json5
+{
+  key: 1,
+  name: '全屏广告-会员活动弹窗',
+  rules: [
+    {
+      key: 0,
+      fastQuery: true,
+      activityIds: 'com.blued.android.core.ui.TransparentActivity',
+      matches: '[vid="img_close"]',
+      snapshotUrls: 'https://i.gkd.li/i/14310618',
+    },
+  ],
+}
+```
+
+### 应用规则组编辑禁用 {#app-group-rule-disable}
+
+位置: 首页-订阅-本地订阅-应用规则-应用-规则组右侧三个点-编辑禁用
+
+![image](https://e.gkd.li/8af0bc31-8a23-4342-b2f3-7a9378f9e094){class="max-w-[min(375px,100%)]"}
+
+此处可添加需要禁用的 [activityid](/api/interfaces/RawAppRule#activityids), 如下是一个简单的 activityid 示例
+
+```json5
+'com.tencent.mm.plugin.sns.ui.SnsTimeLineUI'
+'com.tencent.mm.plugin.sns.ui.improve.ImproveSnsTimelineUI'
+```
+
+### 全局规则 {#global-rule}
+
+位置: 首页-订阅-本地订阅-全局规则
+
+![image](https://e.gkd.li/f51545c0-d3aa-4ec7-87eb-adf927023640){class="max-w-[min(375px,100%)]"}
+
+此处可添加 [全局规则](/api/interfaces/RawGlobalRule), 如下是一个简单的规则示例
+
+```json5
+{
+  key: 0,
+  name: '开屏广告',
+  fastQuery: true,
+  matchTime: 10000,
+  actionMaximum: 1,
+  resetMatch: 'app',
+  rules: [
+    {
+      key: 0,
+      matches: '[text*="跳过"][text.length<10][visibleToUser=true]',
+    },
+  ],
+}
+```
+
+### 规则类别 {#category-rule}
+
+位置: 首页-订阅-本地订阅-规则类别
+
+![image](https://e.gkd.li/6784867c-4fa9-4a06-abf7-b332ba2945de){class="max-w-[min(375px,100%)]"}
+
+此处可添加 [规则类别](/api/interfaces/RawCategory), 在输入框中输入类别名称点击确认即可
+
 TODO
