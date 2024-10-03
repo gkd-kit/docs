@@ -700,7 +700,7 @@ export type Position = {
    *
    * 字符串类型支持来自快照属性面板上的 left/top/right/bottom/width/height/random 的数学计算表达式
    * 
-   * 其中 random 是 0-1 的随机数, 需要注意 random 这表达式中是单个固定值, 即 'random-random'=0
+   * 其中 random 是 0-1 的随机数, 需要注意 random 在单个表达式中是单个固定值, 即表达式 'random-random'=0
    *
    * @example
    * 2.5 // ✅
