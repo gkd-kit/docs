@@ -90,8 +90,8 @@ https://gist.github.com/lisonge/3f5693182ad4ef5e307be760dba22bcb/raw/gkd.json5
 此处可添加需要禁用的 [activityid](/api/interfaces/RawAppRule#activityids), 如下是一个简单的 activityid 示例
 
 ```json5
-'com.tencent.mm.plugin.sns.ui.SnsTimeLineUI'
-'com.tencent.mm.plugin.sns.ui.improve.ImproveSnsTimelineUI'
+com.tencent.mm.plugin.sns.ui.SnsTimeLineUI
+com.tencent.mm.plugin.sns.ui.improve.ImproveSnsTimelineUI
 ```
 
 ### 全局规则 {#global-rule}
