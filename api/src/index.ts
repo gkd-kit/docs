@@ -698,7 +698,9 @@ export type Position = {
    *
    * 支持两种值类型, 字符串和数字, 数字等价于相同内容的字符串, 如 2.5 等价于 '2.5'
    *
-   * 字符串类型支持来自快照属性面板上的 left/top/right/bottom/width/height 的数学计算表达式
+   * 字符串类型支持来自快照属性面板上的 left/top/right/bottom/width/height/random 的数学计算表达式
+   * 
+   * 其中 random 是 0-1 的随机数, 需要注意 random 这表达式中是单个固定值, 即 'random-random'=0
    *
    * @example
    * 2.5 // ✅
