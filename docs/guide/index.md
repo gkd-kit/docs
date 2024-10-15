@@ -2,10 +2,7 @@
 
 ## 安装 {#install}
 
-| 版本   | 下载链接                   | 更新日期   | 备注         |
-| ------ | -------------------------- | ---------- | ------------ |
-| 正式版 | <ApkDownloadButton />      | 2024-08-27 | 稳定版       |
-| 测试版 | <ApkDownloadButton beta /> | 2024-10-03 | 更新快不稳定 |
+<ApkTable />
 
 或前往 [Github Releases](https://github.com/gkd-kit/gkd/releases/latest) 下载
 

@@ -1,13 +1,13 @@
-import naiveComponents from './naive';
+import ApkTable from './ApkTable.vue';
 import GImg from './GImg';
-import ImageTable from './ImageTable.vue';
 import IdentifierField from './IdentifierField.vue';
-import ApkDownloadButton from './ApkDownloadButton.vue';
+import ImageTable from './ImageTable.vue';
+import naiveComponents from './naive';
 
 export default {
   ...naiveComponents,
   GImg,
   ImageTable,
   IdentifierField,
-  ApkDownloadButton
+  ApkTable,
 };
