@@ -237,7 +237,7 @@ export interface RawCommonProps {
 
   /**
    * 注意: 将在未来版本弃用此属性, 请使用 {@link fastQuery} 代替
-   * 
+   *
    * 如果开启, 此规则下的所有 `末尾属性选择器`的`第一个属性选择表达式`符合下面的结构之一的选择器 将使用快速查找
    *
    * - [id='abc']
@@ -267,40 +267,39 @@ export interface RawCommonProps {
 
   /**
    * 如果开启, 此规则下的所有满足 **特定格式的选择器** 将使用快速查找优化查询速度
-   * 
+   *
    * 详细文档请查看 [查询优化](https://gkd.li/selector/optimize)
-   * 
+   *
    * @default false
    */
   fastQuery?: boolean;
 
-
   /**
    * 此规则下的所有选择器是否直接从根节点开始匹配
-   * 
+   *
    * GKD 的原理是监听系统屏幕节点变化 这时候会接收到一个事件节点, 默认从这个节点开始匹配到其子孙节点
-   * 
+   *
    * 常见情况是: 如果匹配的速度跟不上节点事件数量的产生速度, 下一次匹配的开始节点将变成根节点
-   * 
+   *
    * 但是如果节点事件产生速度较慢, 比如屏幕上只有一个节点(文本)在变化, 那么开始匹配的节点一直将是这个节点
-   * 
+   *
    * 此时如果你的选择器的末端属性选择器选择的不是这个节点, 那么匹配将会失败, 即使你能在网页审查工具查询到这个节点
-   * 
+   *
    * 为了解决这个问题, 你可以设置 matchRoot=true, 这样每次匹配都会从根节点开始匹配
-   * 
+   *
    * 以 [快照-16105497](https://i.gkd.li/i/16105497) 为例, 事件节点总是 _id=8 的节点, 此时如果你的选择器是 `[text*="15秒"] - [text*="跳过"]`
-   * 
+   *
    * 在 matchRoot=false 的情况下, 你的匹配范围如下蓝框
-   * 
+   *
    * ![image](https://github.com/gkd-kit/gkd/assets/38517192/ec60677f-f0d7-4b0d-8ac2-56306852e4a0)
-   * 
+   *
    * 而在 matchRoot=true 的情况下, 你的匹配范围如下蓝框
-   * 
+   *
    * ![image](https://github.com/gkd-kit/gkd/assets/38517192/33eb9029-c3c3-4a2e-ab60-a1f099371fef)
-   * 
+   *
    * @default false
    */
-  matchRoot?:boolean
+  matchRoot?: boolean;
 
   /**
    * 单位: 毫秒
@@ -394,6 +393,28 @@ export interface RawCommonProps {
    *
    */
   forcedTime?: Integer;
+
+  /**
+   * 设置一个优先级时间, 在优先级时间内, 此规则为 优先级规则
+   * 
+   * 如果规则参与匹配, 匹配顺序为 优先级规则(内部 order 排序) -> 普通规则(内部 order 排序)
+   * 
+   * 当新无障碍事件到来时, 如果当前匹配规则是普通规则, 则中断匹配操作重新匹配
+   * 
+   * 优先时间过后, 规则将变为普通规则
+   * 
+   * 使用场景: 某些应用开启很多规则, 导致开屏一类规则被其他规则阻塞, 可以设置优先级时间让开屏规则优先匹配
+   * 
+   * 注意: 如果全部规则都是优先级规则或只有一个规则, 则不会发生中断行为
+   */
+  priorityTime?: Integer;
+
+  /**
+   * 优先级执行次数, 触发多少次后, 规则将变为普通规则
+   *
+   * @default 1
+   */
+  priorityActionMaximum?: Integer;
 
   /**
    * 当前 规则/规则组 的匹配界面快照链接, 增强订阅可维护性
@@ -580,9 +601,9 @@ export interface RawAppRuleProps {
    * 如果 界面Id startWith activityIds 的任意一项, 则匹配
    *
    * 如果要匹配所有界面: `undefined` (不填写) 或者 `[]` (避免使用上级属性)
-   * 
+   *
    * 如果 activityId 以 `.` 开头, 则等价于 appId + activityId
-   * 
+   *
    * 示例: `com.tencent.mm` (微信) 的某界面 `.MainActivity` 等价于 `com.tencent.mm.MainActivity`
    */
   activityIds?: IArray<string>;
@@ -591,7 +612,7 @@ export interface RawAppRuleProps {
    * 如果 设备界面Id startWith excludeActivityIds 的任意一项, 则排除匹配
    *
    * 优先级高于 activityIds
-   * 
+   *
    * 当 activityId 以 `.` 开头时, 与 activityIds 识别规则一致
    */
   excludeActivityIds?: IArray<string>;
@@ -699,7 +720,7 @@ export type Position = {
    * 支持两种值类型, 字符串和数字, 数字等价于相同内容的字符串, 如 2.5 等价于 '2.5'
    *
    * 字符串类型支持来自快照属性面板上的 left/top/right/bottom/width/height/random 的数学计算表达式
-   * 
+   *
    * 其中 random 是 0-1 的随机数, 需要注意 random 在单个表达式中是单个固定值, 即表达式 'random-random'=0
    *
    * @example
