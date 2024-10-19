@@ -1,6 +1,7 @@
 name: deploy
 
 on:
+  workflow_dispatch:
   push:
     branches: ['main']
 
@@ -26,7 +27,7 @@ jobs:
 
       - run: pnpm -F @gkd-kit/api run predocs:build
       - run: pnpm -F @gkd-kit/docs run docs:build-mirror
-      
+
       - name: Publish package
         run: |
           pnpm config set //registry.npmjs.org/:_authToken ${{ secrets.NPM_TOKEN }}
