@@ -91,3 +91,32 @@
 以 Xiaomi HyperOS 为例子, 下面是完整的关闭弹窗流程截图
 
 <ImageTable :images="[['0009.png', '0010.png', '0011.png', '0012.png']]" />
+
+## 手动写入安全设置权限失败 {#fail_setting_secure_settings}
+
+在使用adb手动写入安全设置时可能会提示权限不够，具体报错如下:
+
+```
+adb shell pm grant li.songe.gkd android.permission.WRITE_SECURE_SETTINGS
+
+Exception occurred while executing 'grant':
+java.lang.SecurityException: grantRuntimePermission: Neither user 2000 nor current process has android.permission.GRANT_RUNTIME_PERMISSIONS.
+	at android.app.ContextImpl.enforce(ContextImpl.java:2384)
+	at android.app.ContextImpl.enforceCallingOrSelfPermission(ContextImpl.java:2412)
+	at com.android.server.pm.permission.PermissionManagerServiceImpl.grantRuntimePermissionInternal(PermissionManagerServiceImpl.java:1383)
+	at com.android.server.pm.permission.PermissionManagerServiceImpl.grantRuntimePermission(PermissionManagerServiceImpl.java:1365)
+	at com.android.server.pm.permission.PermissionManagerService.grantRuntimePermission(PermissionManagerService.java:573)
+	at android.permission.PermissionManager.grantRuntimePermission(PermissionManager.java:610)
+	at com.android.server.pm.PackageManagerShellCommand.runGrantRevokePermission(PackageManagerShellCommand.java:2717)
+	at com.android.server.pm.PackageManagerShellCommand.onCommand(PackageManagerShellCommand.java:301)
+	at com.android.modules.utils.BasicShellCommandHandler.exec(BasicShellCommandHandler.java:97)
+	at android.os.ShellCommand.exec(ShellCommand.java:38)
+	at com.android.server.pm.PackageManagerService$IPackageManagerImpl.onShellCommand(PackageManagerService.java:6840)
+	at android.os.Binder.shellCommand(Binder.java:1092)
+	at android.os.Binder.onTransact(Binder.java:912)
+	at android.content.pm.IPackageManager$Stub.onTransact(IPackageManager.java:4352)
+	at com.android.server.pm.PackageManagerService$IPackageManagerImpl.onTransact(PackageManagerService.java:6824)
+	at android.os.Binder.execTransactInternal(Binder.java:1392)
+	at android.os.Binder.execTransact(Binder.java:1299)
+```
+在开发者选项中找到“禁止权限监控”，打开后重新运行adb指令即可。
