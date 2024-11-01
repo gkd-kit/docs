@@ -45,6 +45,7 @@ export default defineConfig({
             { text: '开始使用', link: '/guide/' },
             { text: '快照审查', link: '/guide/snapshot' },
             { text: '订阅规则', link: '/guide/subscription' },
+            { text: '外部交互', link: '/guide/external' },
             { text: '常见问题', link: '/guide/faq' },
           ],
         },
