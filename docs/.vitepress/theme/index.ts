@@ -23,6 +23,8 @@ if (!import.meta.env.SSR) {
       location.href = '/guide/faq#restriction';
     } else if (r === '3') {
       location.href = '/guide/faq#adb_failed';
+    } else if (r === '4') {
+      location.href = 'https://shizuku.rikka.app';
     }
   } else if (u === '/guide/faq#fail_setting_secure_settings') {
     location.hash = 'adb_failed';
