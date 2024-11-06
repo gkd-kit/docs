@@ -92,9 +92,9 @@
 
 <ImageTable :images="[['0009.png', '0010.png', '0011.png', '0012.png']]" />
 
-## 手动写入安全设置权限失败 {#fail_setting_secure_settings}
+## adb 授权失败 {#adb_failed}
 
-在使用 adb 手动写入安全设置时可能会提示权限不够，具体报错如下:
+在使用 adb 手动授予 `写入安全设置权限` 时可能会提示权限不够，具体报错如下:
 
 ```text
 adb shell pm grant li.songe.gkd android.permission.WRITE_SECURE_SETTINGS
@@ -120,4 +120,15 @@ java.lang.SecurityException: grantRuntimePermission: Neither user 2000 nor curre
   at android.os.Binder.execTransact(Binder.java:1299)
 ```
 
-在开发者选项中找到 `禁止权限监控`，打开后重新运行adb指令即可。
+如下是一些设备的解决方案
+
+- HyperOS/MIUI（小米、POCO）\
+  在 `开发者选项` 中开启 `USB 调试（安全设置）`。注意不是 `USB 调试`
+
+- ColorOS（OPPO & OnePlus）\
+  在 `开发者选项` 中关闭 `权限监控`
+
+- Flyme（魅族）\
+  在 `开发者选项` 中关闭 `Flyme 支付保护`
+
+关闭限制后重新运行命令即可, 授权成功后可重新打开这些限制

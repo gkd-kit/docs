@@ -4,8 +4,9 @@ import DefaultTheme from 'vitepress/theme';
 import components from '../components';
 import './custom.css';
 
-// Redirect /selector/* to /guide/*
+// 兼容旧链接
 if (!import.meta.env.SSR) {
+  const u = location.href.substring(location.origin.length);
   if (location.pathname.startsWith('/selector/')) {
     if (location.pathname.at(-1) === '/') {
       location.pathname = '/guide/selector';
@@ -21,6 +22,9 @@ if (!import.meta.env.SSR) {
     } else if (r === '2') {
       location.href = '/guide/faq#restriction';
     }
+  }
+  if (u === '/guide/faq#fail_setting_secure_settings') {
+    location.hash = 'adb_failed';
   }
 }
 
