@@ -120,13 +120,13 @@ java.lang.SecurityException: grantRuntimePermission: Neither user 2000 nor curre
   at android.os.Binder.execTransact(Binder.java:1299)
 ```
 
-如下是一些设备的解决方案
+下面参考 [shizuku 文档](https://shizuku.rikka.app/guide/setup/#faq) 的解决方案
 
 - HyperOS/MIUI（小米、POCO）\
   在 `开发者选项` 中开启 `USB 调试（安全设置）`。注意不是 `USB 调试`
 
 - ColorOS（OPPO & OnePlus）\
-  在 `开发者选项` 中关闭 `权限监控`
+  在 `开发者选项` 中关闭 `权限监控` 或打开 `禁止权限监控`
 
 - Flyme（魅族）\
   在 `开发者选项` 中关闭 `Flyme 支付保护`
