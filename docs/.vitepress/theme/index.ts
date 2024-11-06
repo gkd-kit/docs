@@ -4,7 +4,7 @@ import DefaultTheme from 'vitepress/theme';
 import components from '../components';
 import './custom.css';
 
-// 兼容旧链接
+// 兼容旧链接/短链重定向
 if (!import.meta.env.SSR) {
   const u = location.href.substring(location.origin.length);
   if (location.pathname.startsWith('/selector/')) {
@@ -21,9 +21,10 @@ if (!import.meta.env.SSR) {
       location.href = '/guide/snapshot#how-to-upload';
     } else if (r === '2') {
       location.href = '/guide/faq#restriction';
+    } else if (r === '3') {
+      location.href = '/guide/faq#adb_failed';
     }
-  }
-  if (u === '/guide/faq#fail_setting_secure_settings') {
+  } else if (u === '/guide/faq#fail_setting_secure_settings') {
     location.hash = 'adb_failed';
   }
 }
