@@ -2,9 +2,6 @@ import { defineConfig } from 'vitepress';
 import typedocSidebar from '../api/typedoc-sidebar.json';
 import { transformHtml } from './plugins';
 
-const logoUrl =
-  'https://registry.npmmirror.com/@gkd-kit/docs/0.0.1706371840771/files/.vitepress/dist/logo.svg';
-
 export default defineConfig({
   title: 'GKD',
   description: '自定义屏幕点击应用',
@@ -14,13 +11,13 @@ export default defineConfig({
       {
         rel: 'icon',
         type: 'image/svg+xml',
-        href: logoUrl,
+        href: '/icon.svg',
       },
     ],
   ],
   lastUpdated: true,
   themeConfig: {
-    logo: logoUrl,
+    logo: 'https://registry.npmmirror.com/@gkd-kit/docs/0.0.1706371840771/files/.vitepress/dist/logo.svg',
     lastUpdatedText: '最后更新于',
     outlineTitle: '导航栏',
     outline: [1, 3],
