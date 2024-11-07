@@ -87,5 +87,11 @@ export const transformHtml = (code: string) => {
       e.setAttribute(attr, mirrorBaseUrl + e.getAttribute(attr));
     });
   });
+  doc.querySelectorAll('link[href^="/"]').forEach((e) => {
+    const href = e.getAttribute('href');
+    if (href && href.lastIndexOf('/') === 0) {
+      e.setAttribute('href', mirrorBaseUrl + href);
+    }
+  });
   return doc.documentElement.outerHTML;
 };
