@@ -87,9 +87,15 @@ export const transformHtml = (code: string) => {
       e.setAttribute(attr, mirrorBaseUrl + e.getAttribute(attr));
     });
   });
-  doc.querySelectorAll('link[href^="/"]').forEach((e) => {
+
+  doc.querySelectorAll('[href^="/"]').forEach((e) => {
+    const tag = e.tagName.toLowerCase();
     const href = e.getAttribute('href');
-    if (href && href.lastIndexOf('/') === 0) {
+    if (
+      (tag === 'img' || tag === 'link') &&
+      href &&
+      href.lastIndexOf('/') === 0
+    ) {
       e.setAttribute('href', mirrorBaseUrl + href);
     }
   });
