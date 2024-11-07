@@ -1,6 +1,5 @@
 import { simple } from 'acorn-walk';
 import type { ImportExpression } from 'acorn';
-import jsdom from 'jsdom';
 import MagicString from 'magic-string';
 import fs from 'node:fs/promises';
 import process from 'node:process';
@@ -72,32 +71,33 @@ export const mirror = (): Plugin | undefined => {
   };
 };
 
-const Parser = globalThis.DOMParser || new jsdom.JSDOM().window.DOMParser;
+const Parser =
+  globalThis.DOMParser || new (await import('jsdom')).JSDOM().window.DOMParser;
 export const transformHtml = (code: string) => {
   if (!useMirror) return;
   if (!code.includes('/assets/')) return;
   // 注意: 如果使用 htmlparser2+dom-serializer, 当 md 文件包含 `<<n` 将出现 Hydration mismatches 错误
   const doc = new Parser().parseFromString(code, 'text/html');
-  const elements = {
+  Object.entries({
     link: 'href',
     script: 'src',
-  };
-  Object.entries(elements).forEach(([tag, attr]) => {
+  }).forEach(([tag, attr]) => {
     doc.querySelectorAll(`${tag}[${attr}^="/assets/"]`).forEach((e) => {
       e.setAttribute(attr, mirrorBaseUrl + e.getAttribute(attr));
     });
   });
 
-  doc.querySelectorAll('[href^="/"]').forEach((e) => {
-    const tag = e.tagName.toLowerCase();
-    const href = e.getAttribute('href');
-    if (
-      (tag === 'img' || tag === 'link') &&
-      href &&
-      href.lastIndexOf('/') === 0
-    ) {
-      e.setAttribute('href', mirrorBaseUrl + href);
-    }
+  Object.entries({
+    link: 'href',
+    img: 'src',
+  }).forEach(([tag, attr]) => {
+    doc.querySelectorAll(`${tag}[${attr}^="/"]`).forEach((e) => {
+      const value = e.getAttribute(attr);
+      if (value && !value.includes('/', 1)) {
+        e.setAttribute(attr, mirrorBaseUrl + value);
+      }
+    });
   });
+
   return doc.documentElement.outerHTML;
 };
