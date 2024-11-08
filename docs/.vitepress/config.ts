@@ -81,7 +81,7 @@ export default defineConfig({
         },
       },
     },
-    socialLinks: [{ icon: 'github', link: 'https://github.com/gkd-kit/gkd' }],
+    socialLinks: [{ icon: 'github', link: 'https://github.com/gkd-kit' }],
     footer: {
       message: 'Released under the GPL-v3 License.',
       copyright: `Copyright © ${new Date().getFullYear()} GKD. All rights reserved`,
