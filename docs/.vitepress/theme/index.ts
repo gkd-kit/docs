@@ -2,7 +2,16 @@ import 'uno.css';
 import type { Theme } from 'vitepress';
 import DefaultTheme from 'vitepress/theme';
 import components from '../components';
+import BodyScrollbar from '../components/BodyScrollbar.vue';
 import './custom.css';
+import {
+  Fragment,
+  h,
+  Teleport,
+  defineComponent,
+  shallowRef,
+  onMounted,
+} from 'vue';
 
 // 兼容旧链接/短链重定向
 if (!import.meta.env.SSR) {
@@ -31,8 +40,24 @@ if (!import.meta.env.SSR) {
   }
 }
 
+const ScrollbarWrapper = defineComponent(() => {
+  const show = shallowRef(false);
+  onMounted(() => {
+    const isMobile = 'ontouchstart' in document.documentElement;
+    show.value = !isMobile;
+  });
+  return () => {
+    return show.value
+      ? h(Teleport, { to: document.body }, h(BodyScrollbar))
+      : undefined;
+  };
+});
+
 export default {
   extends: DefaultTheme,
+  Layout() {
+    return h(Fragment, null, [h(DefaultTheme.Layout), h(ScrollbarWrapper)]);
+  },
   enhanceApp({ app }) {
     Object.entries(components).forEach(([name, component]) => {
       app.component(name, component);
