@@ -4,20 +4,8 @@ import {
   useEventListener,
   useWindowScroll,
   useWindowSize,
-  useStyleTag,
 } from '@vueuse/core';
 import { computed, onMounted, shallowRef, type CSSProperties } from 'vue';
-
-useStyleTag(
-  `
-body::-webkit-scrollbar {
-  display: none;
-}
-html {
-  scrollbar-width: none;
-}
-`.trim(),
-);
 
 const { y, x } = useWindowScroll();
 const { height: winH, width: winW } = useWindowSize();
@@ -180,3 +168,11 @@ useEventListener('selectstart', (e) => {
     </div>
   </div>
 </template>
+<style>
+body:not(.mobile):-webkit-scrollbar {
+  display: none;
+}
+html:not(.mobile) {
+  scrollbar-width: none;
+}
+</style>

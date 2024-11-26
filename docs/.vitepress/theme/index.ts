@@ -45,6 +45,10 @@ const ScrollbarWrapper = defineComponent(() => {
   onMounted(() => {
     const isMobile = 'ontouchstart' in document.documentElement;
     show.value = !isMobile;
+    if (isMobile) {
+      document.body.classList.add('mobile');
+      document.documentElement.classList.add('mobile');
+    }
   });
   return () => {
     return show.value
