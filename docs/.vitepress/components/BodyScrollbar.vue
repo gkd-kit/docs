@@ -131,7 +131,7 @@ useEventListener('selectstart', (e) => {
 });
 </script>
 <template>
-  <div fixed class="BodyScrollbar">
+  <div fixed z-100 class="BodyScrollbar">
     <div
       v-show="yShow"
       scrollbar-y
@@ -139,7 +139,6 @@ useEventListener('selectstart', (e) => {
       right-2px
       top-0
       bottom-0
-      z-100
       w-8px
       @pointerdown="pointerdownY"
       @click="clickBoxY"
@@ -163,7 +162,6 @@ useEventListener('selectstart', (e) => {
       bottom-2px
       left-0
       right-0
-      z-100
       h-8px
       @pointerdown="pointerdownX"
       @click="clickBoxX"
