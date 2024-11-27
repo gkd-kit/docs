@@ -69,6 +69,22 @@
 
 如果您按照以上步骤设置后回到 无障碍列表 仍然提示不可用, 您可以试试 **重启手机**, 此解决方案来自 [Herobrine2005928](https://github.com/orgs/gkd-kit/discussions/433#discussioncomment-8899920)
 
+## 无法开启无障碍 {#unable_open_a11y}
+
+有的手机如 ColorOS 会魔改系统收紧权限, 如果你是浏览器下载后安装或着 GKD 内部自更新安装后会无法开启无障碍, 并且表现以下行为之一
+
+- 显示 受限制的设置 但是根据 [解决方法](#restriction) 没有找到 `允许受限制的设置` 的选项
+- 直接点击开启无障碍按钮后但无法开启无障碍没有响应
+
+可以通过以下方式解决, 方法参考自 `酷安@橘子Jun`
+
+- 使用系统信任的方式进行安装, 例如在系统文件管理中查看 APK 文件后点击安装
+
+- 如果使用系统安装器, 但是在冻结了应用安装器 `com.oplus.appdetail` 状态下安装的 APK, 需解冻后重新安装
+
+- 使用 [App Ops](https://appops.rikka.app/) 在权限管理中手动授予 ACCESS_RESTRICTED_SETTINGS 权限\
+  <GImg src="0037.png" />
+
 ## 关闭无障碍警告弹窗 {#close_warn_dialog}
 
 > [!TIP] 建议
