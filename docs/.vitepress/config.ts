@@ -32,6 +32,7 @@ export default defineConfig({
       { text: '指引', link: '/guide/', activeMatch: '/guide/' },
       { text: 'API', link: '/api/', activeMatch: '/api/' },
       { text: '审查工具', link: 'https://i.gkd.li' },
+      { text: '讨论交流', link: 'https://github.com/orgs/gkd-kit/discussions' },
     ],
     sidebar: {
       '/guide/': [
