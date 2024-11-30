@@ -73,13 +73,13 @@
 - 显示 受限制的设置 但是根据 [解决方法](#restriction) 没有找到 `允许受限制的设置` 的选项
 - 直接点击开启无障碍按钮后但无法开启无障碍没有响应
 
-可以通过以下方式解决
+可以通过以下方式解决, 可在 [开始使用](/guide/) 获取 APK 文件
 
 - 使用系统信任的方式进行安装, 例如在系统文件管理中查看 APK 文件后点击安装
 
 - 如果使用系统安装器, 但是在冻结了应用安装器 `com.oplus.appdetail` 状态下安装的 APK, 需解冻后重新安装
 
-- 使用 [App Ops](https://appops.rikka.app/) 在权限管理中手动授予 ACCESS_RESTRICTED_SETTINGS 权限\
+- 使用 [App Ops](https://appops.rikka.app/) 在权限管理中手动授予 ACCESS_RESTRICTED_SETTINGS 权限
   <GImg src="0037.png" />
 
 ## 关闭无障碍警告弹窗 {#close_warn_dialog}
