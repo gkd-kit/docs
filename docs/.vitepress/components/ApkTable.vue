@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import DownloadText from './DownloadText.vue';
-import { data } from '../data/apk.data';
+import { betaRelease, stableRelease } from '../data/apk.load';
 </script>
 <template>
   <table>
@@ -16,17 +16,20 @@ import { data } from '../data/apk.data';
       <tr>
         <td>正式版</td>
         <td>
-          <DownloadText :href="data.stable.href" :name="data.stable.filename" />
+          <DownloadText
+            :href="stableRelease.href"
+            :name="stableRelease.filename"
+          />
         </td>
-        <td>{{ data.stable.date }}</td>
+        <td>{{ stableRelease.date }}</td>
         <td>稳定版</td>
       </tr>
       <tr>
         <td>测试版</td>
         <td>
-          <DownloadText :href="data.beta.href" :name="data.beta.filename" />
+          <DownloadText :href="betaRelease.href" :name="betaRelease.filename" />
         </td>
-        <td>{{ data.beta.date }}</td>
+        <td>{{ betaRelease.date }}</td>
         <td>更新快不稳定</td>
       </tr>
     </tbody>

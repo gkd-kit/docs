@@ -1,4 +1,4 @@
-import { data as mirrorHost } from '../data/mirror.data';
+import mirrorHost from '../data/mirror.load';
 const imgHost = 'https://a.gkd.li/';
 
 export const convertSrc = (name: string): string => {

@@ -1,3 +1,5 @@
+import { cutsomFetch } from './fetch';
+
 export interface VersionInfo {
   name: string;
   date: string;
@@ -10,7 +12,7 @@ export interface ApkData {
 }
 
 const getVersionInfo = async (url: string): Promise<VersionInfo> => {
-  const r = await fetch(url).then((r) => r.json());
+  const r = await cutsomFetch(url).then((r) => r.json());
   return {
     name: r.versionName,
     href: new URL(r.downloadUrl, url).href,
@@ -19,21 +21,10 @@ const getVersionInfo = async (url: string): Promise<VersionInfo> => {
   };
 };
 
-const stableRelease = await getVersionInfo(
+export const stableRelease = await getVersionInfo(
   'https://registry.npmmirror.com/@gkd-kit/app/latest/files/index.json',
 );
-const betaRelease = await getVersionInfo(
+
+export const betaRelease = await getVersionInfo(
   'https://registry.npmmirror.com/@gkd-kit/app-beta/latest/files/index.json',
 );
-
-const load = async (): Promise<ApkData> => {
-  return {
-    stable: stableRelease,
-    beta: betaRelease,
-  };
-};
-
-export default {
-  load,
-};
-export declare const data: ApkData;
