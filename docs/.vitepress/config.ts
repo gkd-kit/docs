@@ -19,15 +19,15 @@ export default defineConfig({
   themeConfig: {
     logo: 'https://registry.npmmirror.com/@gkd-kit/docs/0.0.1706371840771/files/.vitepress/dist/logo.svg',
     lastUpdatedText: '最后更新于',
-    outlineTitle: '导航栏',
-    outline: [1, 3],
+    outlineTitle: '页面导航',
+    returnToTopLabel: '回到顶部',
+    darkModeSwitchLabel: '深色主题',
+    sidebarMenuLabel: '菜单',
     docFooter: {
-      prev: '上一篇',
-      next: '下一篇',
+      prev: '上一页',
+      next: '下一页',
     },
-    returnToTopLabel: '返回顶部',
-    darkModeSwitchLabel: '外观',
-    sidebarMenuLabel: '目录',
+    outline: [2, 3],
     nav: [
       { text: '指引', link: '/guide/', activeMatch: '/guide/' },
       { text: 'API', link: '/api/', activeMatch: '/api/' },
