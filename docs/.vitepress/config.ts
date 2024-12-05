@@ -27,7 +27,7 @@ export default defineConfig({
     },
     returnToTopLabel: '返回顶部',
     darkModeSwitchLabel: '外观',
-    sidebarMenuLabel: '归档',
+    sidebarMenuLabel: '目录',
     nav: [
       { text: '指引', link: '/guide/', activeMatch: '/guide/' },
       { text: 'API', link: '/api/', activeMatch: '/api/' },
