@@ -17,9 +17,6 @@ hero:
       text: 开始使用
       link: /guide/
     - theme: alt
-      text: 选择器
-      link: /guide/selector
-    - theme: alt
       text: 常见问题
       link: /guide/faq
     - theme: alt
