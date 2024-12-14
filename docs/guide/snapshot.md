@@ -79,7 +79,7 @@ li.songe.gkd.debug.SnapshotActionService
 
 可通过如下步骤获取 Github Cookie
 
-### 在电脑上获取
+### 在电脑上获取 {#get-cookie-on-pc}
 
 - 在浏览器打开 [Github](https://github.com) 登录账号
 - 在 <https://github.com> 使用 f12 打开调试面板, 选中 网络-文档 后按 f5 刷新页面, 会出来一条 `github.com` 的记录
@@ -87,7 +87,7 @@ li.songe.gkd.debug.SnapshotActionService
   <GImg src="0034.png" />
 - 复制成功后, 到 GKD 内 高级设置-快照-Github Cookie 编辑填入保存即可
 
-### 在手机上获取
+### 在手机上获取 {#get-cookie-on-phone}
 
 - 下载安装 [Via](https://viayoo.com) 浏览器
 - 在浏览器打开 [Github](https://github.com) 登录账号
@@ -95,7 +95,7 @@ li.songe.gkd.debug.SnapshotActionService
   <NImageGroup><GImg src="0035.png" class="w-[45%]" /> <GImg src="0036.png" class="w-[45%]" /></NImageGroup>
 - 复制成功后, 到 GKD 内 高级设置-快照-Github Cookie 编辑填入保存即可
 
-## 去除快照中的隐私信息 {#rm-privacy-info}
+## 去除隐私信息 {#rm-privacy-info}
 
 当抓取快照时, 图片中可能含有人的名字等敏感信息, 可能需要去除这些信息
 
@@ -104,3 +104,23 @@ li.songe.gkd.debug.SnapshotActionService
 如果敏感信息是文字保留在快照里的节点信息上, 你需要将快照 zip 文件解压缩, 内部有一个 json 文件
 
 节点信息就在 nodes 数组字段上, 可以直接使用文本替换为等价数量的 `*`, 修改文件后重新压缩为 zip 重新导入快照即可
+
+## 分享须知 {#share-note}
+
+快照文件是 zip 格式, 你可以直接分享发送文件给其他人
+
+通过链接分享时, 某些用户喜欢直接复制地址栏链接
+
+```text
+https://i.gkd.li/snapshot/1734099604908
+```
+
+这是错误的分享方式, 地址栏复制的链接只能在当前用户浏览器上打开
+
+其它设备打开这种本地链接只会显示 `快照缺失`
+
+正确的分享方式是快照页面右上角分享生成的链接
+
+```text
+https://i.gkd.li/i/18135562
+```
