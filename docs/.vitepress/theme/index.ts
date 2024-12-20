@@ -53,6 +53,10 @@ const Redirect = defineComponent(() => {
         router.go('/guide/faq#adb_failed');
       } else if (r === '4') {
         location.href = 'https://shizuku.rikka.app';
+      } else if (r === '5') {
+        router.go('/guide/subscription');
+      } else if (r === '6') {
+        router.go('/guide/faq#power');
       }
     } else if (u === '/guide/faq#fail_setting_secure_settings') {
       location.hash = 'adb_failed';
