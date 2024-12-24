@@ -143,7 +143,9 @@ java.lang.SecurityException: grantRuntimePermission: Neither user 2000 nor curre
 下面参考 [shizuku 文档](https://shizuku.rikka.app/guide/setup/#faq) 的解决方案
 
 - HyperOS/MIUI（小米、POCO）\
-  在 `开发者选项` 中开启 `USB 调试（安全设置）`。注意不是 `USB 调试`
+  在 `开发者选项` 中开启 `USB 调试（安全设置）`，注意不是 `USB 调试`\
+  如果开启 `USB 调试（安全设置）`后继续报错，可以尝试在 adb 命令前添加 sudo \
+  提升权限后再执行 adb 命令
 
 - ColorOS（OPPO & OnePlus）\
   在 `开发者选项` 中关闭 `权限监控` 或打开 `禁止权限监控`
