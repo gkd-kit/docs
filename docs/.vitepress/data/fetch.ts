@@ -7,6 +7,7 @@ export const cutsomFetch = async (
   let i = retryCount;
   while (true) {
     try {
+      // sometimes nodejs time out error
       return await fetch(input, init);
     } catch (e) {
       i--;
