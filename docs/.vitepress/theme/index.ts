@@ -57,6 +57,12 @@ const Redirect = defineComponent(() => {
         router.go('/guide/subscription');
       } else if (r === '6') {
         router.go('/guide/faq#power');
+      } else if (r === '7') {
+        router.go('/guide/faq#exact-activity');
+      } else if (r === '8') {
+        router.go('/guide/faq#forced-tap');
+      }else if (r === '9') {
+        router.go('/guide/faq#work-profile');
       }
     } else if (u === '/guide/faq#fail_setting_secure_settings') {
       location.hash = 'adb_failed';
