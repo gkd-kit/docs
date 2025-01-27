@@ -35,3 +35,15 @@ img.VPImage.image-src {
     --vp-home-hero-image-filter: blur(68px);
   }
 }
+
+@keyframes hash-hint {
+  from {
+    background-color: #95b4a820;
+  }
+  to {
+    background-color: #95b4a8;
+  }
+}
+.animate-hash-hint {
+  animation: 500ms ease-in-out 4 alternate hash-hint;
+}
