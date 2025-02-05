@@ -6,6 +6,10 @@
 
 或前往 [Github Releases](https://github.com/gkd-kit/gkd/releases/latest) 下载
 
+::: details 浏览器无法下载?
+某些手机浏览器有自定义拦截导致下载失败, 建议使用 [Via](https://viayoo.com) 浏览器下载
+:::
+
 下载完毕后, 在您的 Android 手机上安装并打开
 
 ## 使用 {#usage}

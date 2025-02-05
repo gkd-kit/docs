@@ -24,7 +24,7 @@ import { betaRelease, stableRelease } from '../data/apk.load';
         <td>{{ stableRelease.date }}</td>
         <td>稳定版</td>
       </tr>
-      <tr>
+      <tr v-if="betaRelease.filename !== stableRelease.filename">
         <td>测试版</td>
         <td>
           <DownloadText :href="betaRelease.href" :name="betaRelease.filename" />
