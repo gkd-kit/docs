@@ -85,7 +85,7 @@ const handleCompatRedirect = async (router: Router) => {
     if (hashEl) {
       const hintCls = 'animate-hash-hint';
       hashEl.classList.add(hintCls);
-      await new Promise((r) => setTimeout(r, 2000));
+      await new Promise((r) => setTimeout(r, 3000));
       hashEl.classList.remove(hintCls);
     }
   }
