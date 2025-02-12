@@ -45,5 +45,5 @@ img.VPImage.image-src {
   }
 }
 .animate-hash-hint {
-  animation: 500ms ease-in-out 4 alternate hash-hint;
+  animation: 500ms ease-in-out 6 alternate hash-hint;
 }
