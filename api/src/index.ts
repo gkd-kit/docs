@@ -104,6 +104,15 @@ export interface RawGlobalGroup extends RawGroupProps, RawGlobalRuleProps {
    * 全局规则组的规则列表
    */
   rules: RawGlobalRule[];
+
+  /**
+   * 如果 {@link RawSubscription.apps} 下的应用下存在一个名称以此开头并且 {@link RawAppGroup.ignoreGlobalGroupMatch} 不为 `true` 的规则组存在, 则此全局规则组不会匹配此应用, 只判断是否存在, 不判断是否启用
+   *
+   * 当值为 `''` 即长度为 0 的字符串 时, 等价于设置为当前全局规则组的 name
+   *
+   * 这等价于在 {@link RawGlobalRuleProps.apps} 中自动配置 `{id:'xxx', enable:false}`
+   */
+  disableIfAppGroupMatch?: string;
 }
 
 /**
@@ -190,6 +199,11 @@ export interface RawAppGroup extends RawGroupProps, RawAppRuleProps {
    * ```
    */
   rules: IArray<RawAppRule | string>;
+
+  /**
+   * 避免影响到某个全局规则组, 见 {@link RawGlobalGroup.disableIfAppGroupMatch}
+   */
+  ignoreGlobalGroupMatch?: boolean;
 }
 
 /**
@@ -396,15 +410,15 @@ export interface RawCommonProps {
 
   /**
    * 设置一个优先级时间, 在优先级时间内, 此规则为 优先级规则
-   * 
+   *
    * 如果规则参与匹配, 匹配顺序为 优先级规则(内部 order 排序) -> 普通规则(内部 order 排序)
-   * 
+   *
    * 当新无障碍事件到来时, 如果当前匹配规则是普通规则, 则中断匹配操作重新匹配
-   * 
+   *
    * 优先时间过后, 规则将变为普通规则
-   * 
+   *
    * 使用场景: 某些应用开启很多规则, 导致开屏一类规则被其他规则阻塞, 可以设置优先级时间让开屏规则优先匹配
-   * 
+   *
    * 注意: 如果全部规则都是优先级规则或只有一个规则, 则不会发生中断行为
    */
   priorityTime?: Integer;
@@ -546,6 +560,11 @@ export interface RawRuleProps extends RawCommonProps {
    * 一个或者多个合法的 GKD 选择器, 如果存在一个选择器匹配上节点, 则停止匹配此规则
    */
   excludeMatches?: IArray<string>;
+
+  /**
+   * 一个或者多个合法的 GKD 选择器, 如果所有选择器匹配上节点, 则停止匹配此规则
+   */
+  excludeAllMatches?: IArray<string>;
 }
 
 /**
