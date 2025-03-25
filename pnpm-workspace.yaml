@@ -1,3 +1,5 @@
 packages:
-  - 'docs'
-  - 'api'
+  - docs
+  - api
+onlyBuiltDependencies:
+  - esbuild
