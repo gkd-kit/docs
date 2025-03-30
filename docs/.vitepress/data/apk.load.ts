@@ -1,23 +1,38 @@
-import { cutsomFetch } from './fetch';
+import { customFetch } from './fetch';
 
 export interface VersionInfo {
   name: string;
   date: string;
   href: string;
   filename: string;
+  fileSizeDesc: string;
 }
 export interface ApkData {
   stable: VersionInfo;
   beta: VersionInfo;
 }
 
+const getFileSizeDesc = (size: number): string => {
+  if (size < 1024) {
+    return size + 'B';
+  }
+  if (size < 1024 * 1024) {
+    return (size / 1024).toFixed(2) + 'KB';
+  }
+  if (size < 1024 * 1024 * 1024) {
+    return (size / (1024 * 1024)).toFixed(2) + 'MB';
+  }
+  return (size / (1024 * 1024 * 1024)).toFixed(2) + 'GB';
+};
+
 const getVersionInfo = async (url: string): Promise<VersionInfo> => {
-  const r = await cutsomFetch(url).then((r) => r.json());
+  const r = await customFetch(url).then((r) => r.json());
   return {
     name: r.versionName,
     href: new URL(r.downloadUrl, url).href,
-    date: String(r.date || '').substring(0, 10),
-    filename: 'gkd-v' + r.versionName + '.apk',
+    date: r.date,
+    filename: 'v' + r.versionName + '.apk',
+    fileSizeDesc: getFileSizeDesc(r.fileSize),
   };
 };
 

@@ -1,6 +1,6 @@
 const retryCount = 10;
 
-export const cutsomFetch = async (
+export const customFetch = async (
   input: string | URL | globalThis.Request,
   init?: RequestInit,
 ) => {

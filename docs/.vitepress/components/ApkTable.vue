@@ -7,8 +7,9 @@ import { betaRelease, stableRelease } from '../data/apk.load';
     <thead>
       <tr>
         <th>版本</th>
-        <th>下载链接</th>
-        <th>更新日期</th>
+        <th>下载</th>
+        <th>大小</th>
+        <th>日期</th>
         <th>备注</th>
       </tr>
     </thead>
@@ -21,6 +22,7 @@ import { betaRelease, stableRelease } from '../data/apk.load';
             :name="stableRelease.filename"
           />
         </td>
+        <td>{{ stableRelease.fileSizeDesc }}</td>
         <td>{{ stableRelease.date }}</td>
         <td>稳定版</td>
       </tr>
@@ -29,6 +31,7 @@ import { betaRelease, stableRelease } from '../data/apk.load';
         <td>
           <DownloadText :href="betaRelease.href" :name="betaRelease.filename" />
         </td>
+        <td>{{ betaRelease.fileSizeDesc }}</td>
         <td>{{ betaRelease.date }}</td>
         <td>更新快不稳定</td>
       </tr>

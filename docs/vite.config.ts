@@ -8,7 +8,7 @@ export default defineConfig({
     data({
       include: (v) => v.endsWith('.load.ts'),
     }),
-    unocss(),
+    unocss({ inspector: false }),
     mirror(),
   ],
   server: {

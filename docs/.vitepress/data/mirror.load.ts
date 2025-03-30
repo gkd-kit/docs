@@ -1,8 +1,8 @@
-import { cutsomFetch } from './fetch';
+import { customFetch } from './fetch';
 
 const getPkgLatestVersion = async (name: string): Promise<string> => {
   const url = `https://registry.npmjs.org/${name}/latest`;
-  return cutsomFetch(url).then((r) =>
+  return customFetch(url).then((r) =>
     r.json().then((j) => j.version as string),
   );
 };
