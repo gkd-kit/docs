@@ -1,7 +1,7 @@
 import { customFetch } from './fetch';
 
 const getPkgLatestVersion = async (name: string): Promise<string> => {
-  const url = `https://registry.npmjs.org/${name}/latest`;
+  const url = `https://registry.npmmirror.com/${name}/latest`;
   return customFetch(url).then((r) =>
     r.json().then((j) => j.version as string),
   );
