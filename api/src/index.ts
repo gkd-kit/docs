@@ -698,6 +698,8 @@ export interface RawGlobalRuleProps {
 
 /**
  * 位置类型, 用以描述自定义点击位置
+ * 
+ * 需要注意是相对目标节点位置, 不是相对屏幕位置
  *
  * 使用 left/top/right/bottom 四条边实现定位, 此对象只能有两个属性, 也就是两条相邻边
  *
