@@ -92,9 +92,28 @@
 
 这是因为某些系统对于 不在应用商店等可信任来源安装的 不能直接开启无障碍权限
 
-解除步骤: GKD 应用信息-右上角-允许受限制的设置
+解除步骤: GKD 应用信息 - 允许受限制的设置, 注意某些设备位置不太一样
 
-<ImageTable :images="[['0015.png','0016.png','0017.png',]]" />
+<table>
+  <thead>
+    <tr>
+      <th class="text-center!">原生系统 <br> 应用信息 - 右上角 - 允许受限制的设置</th>
+      <th class="text-center!">小米系统 <br> 应用信息 - 高级设置 - 允许受限制的设置</th>
+    </tr>
+  </thead>
+  <tbody>
+    <NImageGroup>
+      <tr>
+        <td>
+          <GImg src="0016.png" />
+        </td>
+        <td>
+          <GImg src="0040.jpg" />
+        </td>
+      </tr>
+    </NImageGroup>
+  </tbody>
+</table>
 
 如果按步骤开启后 无障碍列表 仍然提示不可用, 可尝试 **重启设备**
 
