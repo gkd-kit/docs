@@ -31,6 +31,22 @@ const ScrollbarWrapper = defineComponent(() => {
   };
 });
 
+const isInViewport = (element: HTMLElement): boolean => {
+  const rect = element.getBoundingClientRect();
+  const offset = window.innerHeight * 0.15;
+  return rect.top - offset >= 0 && rect.bottom + offset <= window.innerHeight;
+};
+
+const checkAllImagesLoaded = () => {
+  const images = document.images;
+  for (let i = 0; i < images.length; i++) {
+    if (!images[i].complete) {
+      return false;
+    }
+  }
+  return true;
+};
+
 const handleCompatRedirect = async (router: Router) => {
   // 兼容旧链接/短链重定向
   const u = location.href.substring(location.origin.length);
@@ -83,9 +99,19 @@ const handleCompatRedirect = async (router: Router) => {
       }
     })();
     if (hashEl) {
+      if (!isInViewport(hashEl)) {
+        // 图片加载完成会导致排版变化，此处手动判断后滚动到视口中
+        // 也许后续可实现在构建时提前获取 size 后设置 aspect-ratio
+        let i = 0;
+        while (i < 25 && !checkAllImagesLoaded()) {
+          await new Promise((r) => setTimeout(r, 100));
+          i++;
+        }
+        hashEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+      }
       const hintCls = 'animate-hash-hint';
       hashEl.classList.add(hintCls);
-      await new Promise((r) => setTimeout(r, 3000));
+      await new Promise((r) => setTimeout(r, 500 * 2 * 5));
       hashEl.classList.remove(hintCls);
     }
   }
