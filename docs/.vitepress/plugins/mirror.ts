@@ -15,6 +15,8 @@ const useMirror = process.env.MIRROR == `ON`;
 
 const mirrorBaseUrl = `https://registry.npmmirror.com/@gkd-kit/docs/${selfPkg.version}/files/.vitepress/dist`;
 
+const includesDynamicImport = /\bimport\s*\(/;
+
 export const mirror = (): Plugin | undefined => {
   if (!useMirror) return;
   return {
@@ -36,7 +38,8 @@ export const mirror = (): Plugin | undefined => {
         if (
           chunk.type == 'chunk' &&
           chunk.fileName.endsWith(`.js`) &&
-          (chunk.code.includes('/assets/') || chunk.code.match(/\bimport\s\(/))
+          (chunk.code.includes('/assets/') ||
+            chunk.code.match(includesDynamicImport))
         ) {
           const ast = this.parse(chunk.code);
           const importNodes: ImportExpression[] = [];
@@ -54,19 +57,24 @@ export const mirror = (): Plugin | undefined => {
               }
             },
           });
+          if (importNodes.length == 0) {
+            return;
+          }
           const ms = new MagicString(chunk.code);
-          importNodes.forEach((node) => {
-            const start = node.source.start;
-            const end = node.source.end;
-            const code = chunk.code.slice(start, end);
-            ms.overwrite(
-              start,
-              end,
-              `((u)=>{if(u.startsWith('/')){return${JSON.stringify(
-                mirrorBaseUrl,
-              )}+u}return u})(${code})`,
-            );
-          });
+          importNodes
+            .map((v) => v.source)
+            .forEach((node) => {
+              const start = node.start;
+              const end = node.end;
+              const code = chunk.code.slice(start, end);
+              ms.overwrite(
+                start,
+                end,
+                `((u)=>{if(u.startsWith('/')){return${JSON.stringify(
+                  mirrorBaseUrl,
+                )}+u}return u})(${code})`,
+              );
+            });
           // literalNodes.forEach((n) => {
           //   ms.overwrite(
           //     n.start,
