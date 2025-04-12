@@ -1,6 +1,6 @@
 import { defineConfig } from 'vitepress';
 import typedocSidebar from '../api/typedoc-sidebar.json';
-import { transformHtml } from './plugins';
+import { transformHtml, buildEnd } from './plugins';
 
 export default defineConfig({
   title: 'GKD',
@@ -91,4 +91,5 @@ export default defineConfig({
   },
   cleanUrls: true,
   transformHtml,
+  buildEnd,
 });

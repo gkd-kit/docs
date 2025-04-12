@@ -5,6 +5,7 @@ import fs from 'node:fs/promises';
 import process from 'node:process';
 import type { Plugin } from 'vite';
 import type selfPkgT from '../../package.json';
+import path from 'node:path';
 
 const selfPkg: typeof selfPkgT = JSON.parse(
   await fs.readFile(process.cwd() + '/package.json', 'utf-8'),
@@ -69,6 +70,46 @@ export const mirror = (): Plugin | undefined => {
       });
     },
   };
+};
+
+const posixPath = (str: string): string => {
+  if (str.includes('\\')) {
+    return str.replaceAll('\\', '/');
+  }
+  return str;
+};
+async function* traverseDirectory(
+  dir: string,
+  filter?: (subDirectory: string) => boolean,
+) {
+  const pathnames = (await fs.readdir(dir))
+    .map((s) => posixPath(path.join(dir, s)))
+    .reverse();
+  while (pathnames.length > 0) {
+    const pathname = pathnames.pop()!;
+    const state = await fs.lstat(pathname);
+    if (state.isFile()) {
+      yield pathname;
+    } else if (state.isDirectory() && (!filter || filter(pathname))) {
+      pathnames.push(
+        ...(await fs.readdir(pathname))
+          .map((s) => posixPath(path.join(pathname, s)))
+          .reverse(),
+      );
+    }
+  }
+}
+
+export const buildEnd = async () => {
+  if (!useMirror) return;
+  for await (const filePathName of traverseDirectory(
+    process.cwd() + '/.vitepress/dist',
+  )) {
+    if (filePathName.endsWith('.html')) {
+      const textFileName = filePathName + '.txt';
+      await fs.copyFile(filePathName, textFileName);
+    }
+  }
 };
 
 const Parser =
