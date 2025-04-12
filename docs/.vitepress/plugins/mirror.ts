@@ -109,7 +109,7 @@ export const buildEnd = async () => {
   const htmlUrlMap: Record<string, string> = {};
   for await (const filePathName of traverseDirectory(baseDir)) {
     if (filePathName.endsWith('.html')) {
-      const textFileName = filePathName + '.md';
+      const textFileName = filePathName.replace(/\.html$/, '_.md');
       await fs.copyFile(filePathName, textFileName);
       htmlUrlMap[relativePath(filePathName)] = relativePath(textFileName);
     }
