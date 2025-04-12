@@ -195,6 +195,6 @@ const rewriteAppendChild = (base: string) => {
     ) {
       node.href = base + node.href;
     }
-    return rawAppendChild(node);
+    return rawAppendChild.call(this, node) as T
   };
 };
