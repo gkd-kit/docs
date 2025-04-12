@@ -124,6 +124,7 @@ export const buildEnd = async () => {
   const configFileRelativePath = '/_config.json';
   const configText = JSON.stringify(
     {
+      mirrorBaseUrl,
       htmlUrlMap,
     },
     undefined,
