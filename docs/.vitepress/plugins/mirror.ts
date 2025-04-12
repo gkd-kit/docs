@@ -188,13 +188,12 @@ export const transformHtml = (code: string) => {
 const rewriteAppendChild = (base: string) => {
   const rawAppendChild = Node.prototype.appendChild;
   Node.prototype.appendChild = function <T extends Node>(node: T): T {
-    if (
-      node instanceof HTMLLinkElement &&
-      node.rel === 'prefetch' &&
-      node.href.startsWith('/assets/')
-    ) {
-      node.href = base + node.href;
+    if (node instanceof HTMLLinkElement && node.rel === 'prefetch') {
+      const href = node.getAttribute('href');
+      if (href && href.startsWith('/assets/')) {
+        node.href = base + href;
+      }
     }
-    return rawAppendChild.call(this, node) as T
+    return rawAppendChild.call(this, node) as T;
   };
 };
