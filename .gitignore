@@ -22,5 +22,6 @@ docs/.vitepress/dist
 docs/.vitepress/cache
 
 /docs/api
+/docs/_config.json
 
 vite.config.ts.timestamp-*
