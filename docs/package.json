@@ -8,7 +8,8 @@
     "registry": "https://registry.npmjs.org/"
   },
   "files": [
-    "./.vitepress/dist"
+    "./.vitepress/dist",
+    "_config.json"
   ],
   "scripts": {
     "docs:dev": "vitepress dev",
