@@ -68,7 +68,7 @@ export const mirror = (): Plugin | undefined => {
             );
           });
           literalNodes.forEach((n) => {
-            ms.update(
+            ms.overwrite(
               n.start,
               n.end,
               JSON.stringify(mirrorBaseUrl + String(n.value)),
