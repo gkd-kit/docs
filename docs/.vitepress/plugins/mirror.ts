@@ -158,10 +158,9 @@ export const transformHtml = (code: string) => {
   if (!code.includes('/assets/')) return;
   // 注意: 如果使用 htmlparser2+dom-serializer, 当 md 文件包含 `<<n` 将出现 Hydration mismatches 错误
   const doc = new Parser().parseFromString(code, 'text/html');
-  const meta = doc.createElement('meta');
-  meta.name = 'version';
-  meta.content = selfPkg.version;
-  doc.head.insertBefore(meta, doc.head.firstChild);
+  const script = doc.createElement('script');
+  script.textContent = `;(${rewriteAppendChild})(${JSON.stringify(mirrorBaseUrl)});`;
+  doc.head.insertBefore(script, doc.head.firstChild);
   Object.entries({
     link: 'href',
     script: 'src',
@@ -184,4 +183,18 @@ export const transformHtml = (code: string) => {
   });
 
   return doc.documentElement.outerHTML;
+};
+
+const rewriteAppendChild = (base: string) => {
+  const rawAppendChild = Node.prototype.appendChild;
+  Node.prototype.appendChild = function <T extends Node>(node: T): T {
+    if (
+      node instanceof HTMLLinkElement &&
+      node.rel === 'prefetch' &&
+      node.href.startsWith('/assets/')
+    ) {
+      node.href = base + node.href;
+    }
+    return rawAppendChild(node);
+  };
 };
