@@ -67,13 +67,13 @@ export const mirror = (): Plugin | undefined => {
               )}+u}return u})(${code})`,
             );
           });
-          literalNodes.forEach((n) => {
-            ms.overwrite(
-              n.start,
-              n.end,
-              JSON.stringify(mirrorBaseUrl + String(n.value)),
-            );
-          });
+          // literalNodes.forEach((n) => {
+          //   ms.overwrite(
+          //     n.start,
+          //     n.end,
+          //     JSON.stringify(mirrorBaseUrl + String(n.value)),
+          //   );
+          // });
           chunk.code = ms.toString();
         }
       });
