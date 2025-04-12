@@ -1,5 +1,5 @@
 import { simple } from 'acorn-walk';
-import type { ImportExpression } from 'acorn';
+import type { ImportExpression, Literal } from 'acorn';
 import MagicString from 'magic-string';
 import fs from 'node:fs/promises';
 import process from 'node:process';
@@ -14,8 +14,6 @@ const selfPkg: typeof selfPkgT = JSON.parse(
 const useMirror = process.env.MIRROR == `ON`;
 
 const mirrorBaseUrl = `https://registry.npmmirror.com/@gkd-kit/docs/${selfPkg.version}/files/.vitepress/dist`;
-
-const includesDynamicImport = /import\s*\(/;
 
 export const mirror = (): Plugin | undefined => {
   if (!useMirror) return;
@@ -38,34 +36,31 @@ export const mirror = (): Plugin | undefined => {
         if (
           chunk.type == 'chunk' &&
           chunk.fileName.endsWith(`.js`) &&
-          chunk.code.match(includesDynamicImport)
+          chunk.code.includes('/assets/')
         ) {
           const ast = this.parse(chunk.code);
-          const nodes: ImportExpression[] = [];
+          const literalNodes: Literal[] = [];
           simple(ast, {
-            ImportExpression(node) {
-              nodes.push(node);
+            Literal(node) {
+              if (
+                typeof node.value === 'string' &&
+                node.value.startsWith('/assets/')
+              ) {
+                literalNodes.push(node);
+              }
             },
           });
-          if (nodes.length == 0) {
-            return;
-          }
-          const ms = new MagicString(chunk.code);
-          nodes
-            .map((v) => v.source)
-            .forEach((node) => {
-              const start = node.start;
-              const end = node.end;
-              const code = chunk.code.slice(start, end);
-              ms.overwrite(
-                start,
-                end,
-                `((u)=>{if(u.startsWith('/')){return${JSON.stringify(
-                  mirrorBaseUrl,
-                )}+u}return u})(${code})`,
+          if (literalNodes.length) {
+            const ms = new MagicString(chunk.code);
+            literalNodes.forEach((n) => {
+              ms.update(
+                n.start,
+                n.end,
+                JSON.stringify(mirrorBaseUrl + String(n.value)),
               );
             });
-          chunk.code = ms.toString();
+            chunk.code = ms.toString();
+          }
         }
       });
     },
