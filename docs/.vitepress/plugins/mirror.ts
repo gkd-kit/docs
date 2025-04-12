@@ -36,11 +36,15 @@ export const mirror = (): Plugin | undefined => {
         if (
           chunk.type == 'chunk' &&
           chunk.fileName.endsWith(`.js`) &&
-          chunk.code.includes('/assets/')
+          (chunk.code.includes('/assets/') || chunk.code.match(/\bimport\s\(/))
         ) {
           const ast = this.parse(chunk.code);
+          const importNodes: ImportExpression[] = [];
           const literalNodes: Literal[] = [];
           simple(ast, {
+            ImportExpression(node) {
+              importNodes.push(node);
+            },
             Literal(node) {
               if (
                 typeof node.value === 'string' &&
@@ -50,17 +54,27 @@ export const mirror = (): Plugin | undefined => {
               }
             },
           });
-          if (literalNodes.length) {
-            const ms = new MagicString(chunk.code);
-            literalNodes.forEach((n) => {
-              ms.update(
-                n.start,
-                n.end,
-                JSON.stringify(mirrorBaseUrl + String(n.value)),
-              );
-            });
-            chunk.code = ms.toString();
-          }
+          const ms = new MagicString(chunk.code);
+          importNodes.forEach((node) => {
+            const start = node.source.start;
+            const end = node.source.end;
+            const code = chunk.code.slice(start, end);
+            ms.overwrite(
+              start,
+              end,
+              `((u)=>{if(u.startsWith('/')){return${JSON.stringify(
+                mirrorBaseUrl,
+              )}+u}return u})(${code})`,
+            );
+          });
+          literalNodes.forEach((n) => {
+            ms.update(
+              n.start,
+              n.end,
+              JSON.stringify(mirrorBaseUrl + String(n.value)),
+            );
+          });
+          chunk.code = ms.toString();
         }
       });
     },
