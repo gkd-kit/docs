@@ -102,14 +102,35 @@ async function* traverseDirectory(
 
 export const buildEnd = async () => {
   if (!useMirror) return;
-  for await (const filePathName of traverseDirectory(
-    process.cwd() + '/.vitepress/dist',
-  )) {
+  const baseDir = posixPath(process.cwd() + '/.vitepress/dist');
+  const relativePath = (v: string) => {
+    return v.substring(baseDir.length);
+  };
+  const htmlUrlMap: Record<string, string> = {};
+  for await (const filePathName of traverseDirectory(baseDir)) {
     if (filePathName.endsWith('.html')) {
-      const textFileName = filePathName + '.txt';
+      const textFileName = filePathName + '.md';
       await fs.copyFile(filePathName, textFileName);
+      htmlUrlMap[relativePath(filePathName)] = relativePath(textFileName);
     }
   }
+  Object.keys(htmlUrlMap).forEach((k) => {
+    if (k.endsWith('/index.html')) {
+      htmlUrlMap[k.replace(/index\.html$/, '')] = htmlUrlMap[k];
+    } else if (k.endsWith('.html')) {
+      htmlUrlMap[k.replace(/\.html$/, '')] = htmlUrlMap[k];
+    }
+  });
+  await fs.writeFile(
+    baseDir + '/_config.json',
+    JSON.stringify(
+      {
+        htmlUrlMap,
+      },
+      undefined,
+      2,
+    ),
+  );
 };
 
 const Parser =
