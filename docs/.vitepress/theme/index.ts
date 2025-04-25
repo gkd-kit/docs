@@ -50,14 +50,21 @@ const checkAllImagesLoaded = () => {
 const handleCompatRedirect = async (router: Router) => {
   // 兼容旧链接/短链重定向
   const u = location.href.substring(location.origin.length);
+  const replace = async (url: string) => {
+    history.replaceState(null, '', url);
+    await router.go(url);
+  };
   if (location.pathname.startsWith('/selector/')) {
     if (location.pathname.at(-1) === '/') {
-      router.go('/guide/selector');
+      replace('/guide/selector');
     } else {
-      router.go(location.pathname.replace('/selector/', '/guide/'));
+      replace(location.pathname.replace('/selector/', '/guide/'));
     }
-  } else if (location.pathname === '/subscription/') {
-    router.go('/guide/subscription');
+  } else if (
+    location.pathname === '/subscription/' ||
+    location.pathname === '/subscription'
+  ) {
+    await replace('/guide/subscription');
   } else if (location.pathname === '/') {
     const r = new URLSearchParams(location.search).get('r');
     if (r === '1') {
