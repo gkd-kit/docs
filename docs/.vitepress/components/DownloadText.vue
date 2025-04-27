@@ -4,7 +4,7 @@ import { computed, shallowRef } from 'vue';
 const props = withDefaults(
   defineProps<{
     href: string;
-    name?: string;
+    name: string;
     type?: string;
   }>(),
   {
@@ -12,26 +12,22 @@ const props = withDefaults(
   },
 );
 
-const filename = computed(() => {
-  if (props.name) return props.name;
-  return props.href.split('/').at(-1)!;
-});
-
 const loading = shallowRef(false);
 const download = async () => {
   if (loading.value) return;
   loading.value = true;
   import('file-saver');
+  const filename = `gkd-${props.name}`;
   try {
     const file = await fetch(props.href)
       .then((r) => r.arrayBuffer())
       .then((b) => {
-        return new File([b], filename.value, {
+        return new File([b], filename, {
           type: props.type,
         });
       });
     const { saveAs } = await import('file-saver');
-    saveAs(file, filename.value);
+    saveAs(file, filename);
   } finally {
     loading.value = false;
   }
@@ -52,7 +48,7 @@ const download = async () => {
         'opacity-50': loading,
       }"
     >
-      {{ filename }}
+      {{ name }}
     </span>
     <div
       v-if="loading"

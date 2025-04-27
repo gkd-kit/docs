@@ -4,11 +4,14 @@
 
 <ApkTable />
 
-或前往 [Github Releases](https://github.com/gkd-kit/gkd/releases/latest) 下载
-
-::: details 浏览器无法下载?
-某些手机浏览器有自定义拦截导致下载失败, 建议使用 [Via](https://viayoo.com) 浏览器下载
+::: details 手机浏览器下载失败?
+某些手机浏览器存在自定义拦截会导致下载失败, 建议使用 [Via](https://viayoo.com) 浏览器下载
 :::
+
+其它下载方式
+
+- [Google Play](https://play.google.com/store/apps/details?id=li.songe.gkd) &nbsp; [区别](./faq.md#play-diff)
+- [Github Releases](https://github.com/gkd-kit/gkd/releases/latest)
 
 下载完毕后, 在您的 Android 手机上安装并打开
 

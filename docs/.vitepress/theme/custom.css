@@ -47,3 +47,7 @@ img.VPImage.image-src {
 .animate-hash-hint {
   animation: 500ms ease-in-out infinite alternate hash-hint;
 }
+
+.svg-icon {
+  height: 1em;
+}
