@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed, shallowRef } from 'vue';
+import { shallowRef } from 'vue';
 
 const props = withDefaults(
   defineProps<{

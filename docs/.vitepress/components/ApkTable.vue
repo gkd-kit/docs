@@ -1,6 +1,13 @@
 <script setup lang="ts">
+import { onMounted } from 'vue';
 import DownloadText from './DownloadText.vue';
-import { betaRelease, stableRelease } from '../data/apk.load';
+import {
+  betaReleaseRef,
+  stableReleaseRef,
+  refreshRelease,
+} from '../data/apk.ref';
+
+onMounted(refreshRelease);
 </script>
 <template>
   <table>
@@ -18,21 +25,24 @@ import { betaRelease, stableRelease } from '../data/apk.load';
         <td>正式版</td>
         <td>
           <DownloadText
-            :href="stableRelease.href"
-            :name="stableRelease.filename"
+            :href="stableReleaseRef.href"
+            :name="stableReleaseRef.filename"
           />
         </td>
-        <td>{{ stableRelease.fileSizeDesc }}</td>
-        <td>{{ stableRelease.date }}</td>
+        <td>{{ stableReleaseRef.fileSizeDesc }}</td>
+        <td>{{ stableReleaseRef.date }}</td>
         <td>稳定版</td>
       </tr>
-      <tr v-if="betaRelease.filename !== stableRelease.filename">
+      <tr v-if="betaReleaseRef.filename !== stableReleaseRef.filename">
         <td>测试版</td>
         <td>
-          <DownloadText :href="betaRelease.href" :name="betaRelease.filename" />
+          <DownloadText
+            :href="betaReleaseRef.href"
+            :name="betaReleaseRef.filename"
+          />
         </td>
-        <td>{{ betaRelease.fileSizeDesc }}</td>
-        <td>{{ betaRelease.date }}</td>
+        <td>{{ betaReleaseRef.fileSizeDesc }}</td>
+        <td>{{ betaReleaseRef.date }}</td>
         <td>更新快不稳定</td>
       </tr>
     </tbody>
