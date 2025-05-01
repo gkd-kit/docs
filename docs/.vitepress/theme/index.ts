@@ -1,5 +1,5 @@
 import 'uno.css';
-import { type Router, useRouter, type Theme } from 'vitepress';
+import { type Router, type Theme, useRouter } from 'vitepress';
 import DefaultTheme from 'vitepress/theme';
 import {
   defineComponent,
@@ -45,6 +45,34 @@ const checkAllImagesLoaded = () => {
     }
   }
   return true;
+};
+
+const delay = (n = 0) => new Promise((r) => setTimeout(r, n));
+
+let lastHashEl: HTMLElement | undefined = undefined;
+let newPage = true;
+const animateHashEl = async (hashEl?: HTMLElement) => {
+  if (location.hash) {
+    hashEl ??= document.querySelector<HTMLElement>(location.hash) || undefined;
+  }
+  if (!hashEl) return;
+  const hintCls = 'animate-hash-hint';
+  if (lastHashEl) {
+    lastHashEl.classList.remove(hintCls);
+  }
+  if (hashEl.classList.contains(hintCls)) {
+    hashEl.classList.remove(hintCls);
+    await delay(25);
+  }
+  hashEl.classList.add(hintCls);
+  lastHashEl = hashEl;
+  const ms = 500 * 2 * (newPage ? 5 : 2);
+  newPage = false;
+  await delay(ms);
+  hashEl.classList.remove(hintCls);
+  if (lastHashEl === hashEl) {
+    lastHashEl = undefined;
+  }
 };
 
 const handleCompatRedirect = async (router: Router) => {
@@ -95,39 +123,54 @@ const handleCompatRedirect = async (router: Router) => {
     const hashEl = await (async () => {
       const href = location.href;
       let i = 0;
-      while (i < 20) {
+      while (i < 25) {
         if (href !== location.href) return;
         const el = document.querySelector<HTMLElement>(location.hash);
         if (el) {
           return el;
         }
         i++;
-        await new Promise((r) => setTimeout(r, 250));
+        await delay(100);
       }
     })();
     if (hashEl) {
       if (!isInViewport(hashEl)) {
-        // 图片加载完成会导致排版变化，此处手动判断后滚动到视口中
-        // 也许后续可实现在构建时提前获取 size 后设置 aspect-ratio
+        // 图片加载完成会导致排版变化, 即使提前使用相同比例的占位图也无法避免排版变化
         let i = 0;
         while (i < 25 && !checkAllImagesLoaded()) {
           await new Promise((r) => setTimeout(r, 100));
           i++;
         }
-        hashEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        const anchor = document.querySelector(
+          `a.header-anchor[href="${location.hash}"]`,
+        ) as HTMLAnchorElement;
+        if (anchor) {
+          anchor.click();
+        } else {
+          hashEl.scrollIntoView({ behavior: 'smooth', block: 'center' });
+        }
       }
-      const hintCls = 'animate-hash-hint';
-      hashEl.classList.add(hintCls);
-      await new Promise((r) => setTimeout(r, 500 * 2 * 5));
-      hashEl.classList.remove(hintCls);
+      animateHashEl(hashEl);
     }
   }
 };
+
+if (!import.meta.env.SSR) {
+  window.addEventListener('hashchange', async () => {
+    animateHashEl();
+  });
+}
 
 const Redirect = defineComponent(() => {
   const router = useRouter();
   onMounted(() => {
     handleCompatRedirect(router);
+    router.onAfterPageLoad = () => {
+      nextTick().then(async () => {
+        await delay(100);
+        animateHashEl();
+      });
+    };
   });
   return () => {};
 });

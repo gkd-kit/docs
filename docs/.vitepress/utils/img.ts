@@ -1,12 +1,8 @@
-import mirrorHost from '../data/mirror.load';
-const imgHost = 'https://a.gkd.li/';
+import { assetsBaseUrl } from '../data/mirror.load';
 
 export const convertSrc = (name: string): string => {
-  if (name && name.startsWith('https:')) {
-    if (name.startsWith(imgHost)) {
-      return mirrorHost + name.slice(imgHost.length);
-    }
+  if (name.startsWith('https:')) {
     return name;
   }
-  return mirrorHost + name;
+  return assetsBaseUrl + name;
 };

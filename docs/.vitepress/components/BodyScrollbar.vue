@@ -15,7 +15,8 @@ onMounted(() => {
 });
 const body = useElementBounding(bodyRef);
 
-const errorDistance = 5;
+// see https://github.com/user-attachments/assets/89796d25-b360-4486-9cf7-79a5e598022c
+const errorDistance = 2;
 
 const yShow = computed(() => body.height.value > winH.value + errorDistance);
 const yHeight = computed(() => {

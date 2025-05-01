@@ -8,6 +8,14 @@ const getPkgLatestVersion = async (name: string): Promise<string> => {
 };
 
 const version = await getPkgLatestVersion('@gkd-kit/assets');
-const data = `https://registry.npmmirror.com/@gkd-kit/assets/${version}/files/assets/`;
+export const assetsBaseUrl = `https://registry.npmmirror.com/@gkd-kit/assets/${version}/files/assets/`;
 
-export default data;
+interface ImageSize {
+  width: number;
+  height: number;
+  name: string;
+}
+
+export const imageSizeList: ImageSize[] = await fetch(
+  assetsBaseUrl + 'image-size.json',
+).then((r) => r.json());
