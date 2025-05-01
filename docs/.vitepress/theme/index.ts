@@ -50,7 +50,12 @@ const checkAllImagesLoaded = () => {
 const delay = (n = 0) => new Promise((r) => setTimeout(r, n));
 
 let lastHashEl: HTMLElement | undefined = undefined;
-let newPage = true;
+let newPageFlag = true;
+if (!import.meta.env.SSR) {
+  setTimeout(() => {
+    newPageFlag = false;
+  }, 1000);
+}
 const animateHashEl = async (hashEl?: HTMLElement) => {
   if (location.hash) {
     hashEl ??= document.querySelector<HTMLElement>(location.hash) || undefined;
@@ -66,8 +71,8 @@ const animateHashEl = async (hashEl?: HTMLElement) => {
   }
   hashEl.classList.add(hintCls);
   lastHashEl = hashEl;
-  const ms = 500 * 2 * (newPage ? 5 : 2);
-  newPage = false;
+  const ms = 500 * 2 * (newPageFlag ? 5 : 2);
+  newPageFlag = false;
   await delay(ms);
   hashEl.classList.remove(hintCls);
   if (lastHashEl === hashEl) {
