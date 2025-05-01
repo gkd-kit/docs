@@ -15,7 +15,9 @@ onMounted(() => {
 });
 const body = useElementBounding(bodyRef);
 
-const yShow = computed(() => body.height.value > winH.value);
+const errorDistance = 5;
+
+const yShow = computed(() => body.height.value > winH.value + errorDistance);
 const yHeight = computed(() => {
   const clientHeight = body.height.value;
   const bodyHeight = clientHeight;
@@ -63,7 +65,7 @@ useEventListener('pointerup', () => {
   yDragging.value = false;
 });
 
-const xShow = computed(() => body.width.value > winW.value);
+const xShow = computed(() => body.width.value > winW.value + errorDistance);
 const xWidth = computed(() => {
   const clientWidth = body.width.value;
   const bodyWidth = clientWidth;
