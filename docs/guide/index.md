@@ -2,6 +2,8 @@
 
 ## 安装 {#install}
 
+<ClientOnly> <AppInnerDownloadTip/> </ClientOnly>
+
 <ApkTable />
 
 ::: details 手机浏览器下载失败?
