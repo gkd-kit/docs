@@ -158,9 +158,9 @@ export const transformHtml = (code: string) => {
   if (!code.includes('/assets/')) return;
   // 注意: 如果使用 htmlparser2+dom-serializer, 当 md 文件包含 `<<n` 将出现 Hydration mismatches 错误
   const doc = new Parser().parseFromString(code, 'text/html');
-  const script = doc.createElement('script');
-  script.textContent = `;(${rewriteAppendChild})(${JSON.stringify(mirrorBaseUrl)});`;
-  doc.head.insertBefore(script, doc.head.firstChild);
+  // const script = doc.createElement('script');
+  // script.textContent = `;(${rewriteAppendChild})(${JSON.stringify(mirrorBaseUrl)});`;
+  // doc.head.insertBefore(script, doc.head.firstChild);
   Object.entries({
     link: 'href',
     script: 'src',
