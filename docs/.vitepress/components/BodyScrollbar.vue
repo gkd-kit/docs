@@ -5,22 +5,26 @@ import {
   useWindowScroll,
   useWindowSize,
 } from '@vueuse/core';
-import { computed, shallowRef, type CSSProperties, watchEffect } from 'vue';
+import { computed, shallowRef, type CSSProperties } from 'vue';
 
-const { y, x } = useWindowScroll();
+// const { y, x } = useWindowScroll();
+// useWindowScroll 在执行镜像替换后失效, x,y 不改变了, 原因位置
+
+const x = shallowRef(0);
+const y = shallowRef(0);
+const updateX = (v: number) => {
+  window.scroll({ left: v });
+};
+const updateY = (v: number) => {
+  window.scroll({ top: v });
+};
+useEventListener('scroll', () => {
+  x.value = window.scrollX;
+  y.value = window.scrollY;
+});
+
 const { height: winH, width: winW } = useWindowSize();
 const body = useElementBounding(document.body);
-
-watchEffect(() => {
-  console.log([
-    x.value,
-    y.value,
-    winH.value,
-    winW.value,
-    body.width.value,
-    body.height.value,
-  ]);
-});
 
 // see https://github.com/user-attachments/assets/89796d25-b360-4486-9cf7-79a5e598022c
 const errorDistance = 2;
@@ -51,7 +55,9 @@ const clickBoxY = async (e: MouseEvent) => {
   const clientHeight = body.height.value;
   const bodyHeight = clientHeight;
   const height = (winH.value / bodyHeight) * winH.value;
-  y.value += (deltaY / (winH.value - height)) * (clientHeight - winH.value);
+  updateY(
+    y.value + (deltaY / (winH.value - height)) * (clientHeight - winH.value),
+  );
 };
 const yDragging = shallowRef(false);
 let lastYEvent: MouseEvent | undefined = undefined;
@@ -66,7 +72,9 @@ useEventListener('pointermove', (e) => {
   const clientHeight = body.height.value;
   const bodyHeight = clientHeight;
   const height = (winH.value / bodyHeight) * winH.value;
-  y.value += (deltaY / (winH.value - height)) * (clientHeight - winH.value);
+  updateY(
+    y.value + (deltaY / (winH.value - height)) * (clientHeight - winH.value),
+  );
 });
 useEventListener('pointerup', () => {
   lastYEvent = undefined;
@@ -100,7 +108,7 @@ const clickBoxX = (e: MouseEvent) => {
   const width = (winW.value / bodyWidth) * winW.value;
   const newX =
     x.value + (deltaX / (winW.value - width)) * (clientWidth - winW.value);
-  x.value = newX;
+  updateX(newX);
 };
 const xDragging = shallowRef(false);
 let lastXEvent: MouseEvent | undefined = undefined;
@@ -115,7 +123,9 @@ useEventListener('pointermove', (e) => {
   const clientWidth = body.width.value;
   const bodyWidth = clientWidth;
   const width = (winW.value / bodyWidth) * winW.value;
-  x.value += (deltaX / (winW.value - width)) * (clientWidth - winW.value);
+  const newX =
+    x.value + (deltaX / (winW.value - width)) * (clientWidth - winW.value);
+  updateX(newX);
 });
 useEventListener('pointerup', () => {
   lastXEvent = undefined;
