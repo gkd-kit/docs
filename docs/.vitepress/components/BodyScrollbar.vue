@@ -177,5 +177,7 @@ body:not(.mobile):-webkit-scrollbar {
 }
 html:not(.mobile) {
   scrollbar-width: none;
+  width: 100vw;
+  height: 100vh;
 }
 </style>
