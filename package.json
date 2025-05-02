@@ -30,7 +30,7 @@
     "typescript": "5.8.3",
     "unocss": "66.0.0",
     "unplugin-data": "0.1.1",
-    "vitepress": "1.6.3"
+    "vitepress": "2.0.0-alpha.5"
   },
   "volta": {
     "node": "22.15.0",
