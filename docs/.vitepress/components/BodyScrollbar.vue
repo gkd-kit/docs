@@ -5,11 +5,22 @@ import {
   useWindowScroll,
   useWindowSize,
 } from '@vueuse/core';
-import { computed, shallowRef, type CSSProperties } from 'vue';
+import { computed, shallowRef, type CSSProperties, watchEffect } from 'vue';
 
 const { y, x } = useWindowScroll();
 const { height: winH, width: winW } = useWindowSize();
 const body = useElementBounding(document.body);
+
+watchEffect(() => {
+  console.log([
+    x.value,
+    y.value,
+    winH.value,
+    winW.value,
+    body.width.value,
+    body.height.value,
+  ]);
+});
 
 // see https://github.com/user-attachments/assets/89796d25-b360-4486-9cf7-79a5e598022c
 const errorDistance = 2;
