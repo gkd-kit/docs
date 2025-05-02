@@ -5,15 +5,11 @@ import {
   useWindowScroll,
   useWindowSize,
 } from '@vueuse/core';
-import { computed, onMounted, shallowRef, type CSSProperties } from 'vue';
+import { computed, shallowRef, type CSSProperties } from 'vue';
 
 const { y, x } = useWindowScroll();
 const { height: winH, width: winW } = useWindowSize();
-const bodyRef = shallowRef<HTMLElement>(); // support ssr
-onMounted(() => {
-  bodyRef.value = document.body;
-});
-const body = useElementBounding(bodyRef);
+const body = useElementBounding(document.body);
 
 // see https://github.com/user-attachments/assets/89796d25-b360-4486-9cf7-79a5e598022c
 const errorDistance = 2;
