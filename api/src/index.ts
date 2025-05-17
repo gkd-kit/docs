@@ -250,36 +250,6 @@ export interface RawCommonProps {
   actionDelay?: Integer;
 
   /**
-   * 注意: 将在未来版本弃用此属性, 请使用 {@link fastQuery} 代替
-   *
-   * 如果开启, 此规则下的所有 `末尾属性选择器`的`第一个属性选择表达式`符合下面的结构之一的选择器 将使用快速查找
-   *
-   * - [id='abc']
-   * - [vid='abc']
-   * - [text='abc']
-   * - [text^='abc']
-   * - [text*='abc']
-   * - [text$='abc']
-   *
-   * 比如 `A > B + C[id='x'][childCount=2]` 符合, 但 `A > B + C[childCount=2][id='x']` 不符合
-   *
-   * 它的底层原理是 跳过手动遍历所有节点 直接调用 [findAccessibilityNodeInfosByViewId](https://developer.android.google.cn/reference/android/view/accessibility/AccessibilityNodeInfo#findAccessibilityNodeInfosByViewId(java.lang.String)) / [findAccessibilityNodeInfosByText](https://developer.android.google.cn/reference/android/view/accessibility/AccessibilityNodeInfo#findAccessibilityNodeInfosByText(java.lang.String)) 得到可匹配节点
-   *
-   * 大多数情况下都能查询到, 在少数某些复杂结构下, 即使目标节点存在, 快速查询也不一定查询到
-   *
-   * 比如 [Image &lt; \@View + View &gt;2 [text*='广告']](https://github.com/gkd-kit/subscription/blob/1ae87452d287b558f58f9c4e4448a3190e212ca1/src/apps/com.zidongdianji.ts#L26) 虽然符合快速查询的条件但是使用 `findAccessibilityNodeInfosByText("广告")` 并不能查询到节点
-   *
-   * 它是优点是快速, 因为遍历所有节点是一个耗时行为, 虽然多数情况下这种耗时较低
-   *
-   * 但是在某些软件比如 哔哩哔哩 的开屏广告在这种耗时下延迟可达 1-2s, 这也是导致 [gkd-kit/gkd#60](https://github.com/gkd-kit/gkd/issues/60) 的原因
-   *
-   * 如果你想对某个局部选择器关闭快速查找,只需要调整你的选择器的属性选择表达式的顺序使得它不符合快速查找的条件即可
-   *
-   * @default false
-   */
-  quickFind?: boolean;
-
-  /**
    * 如果开启, 此规则下的所有满足 **特定格式的选择器** 将使用快速查找优化查询速度
    *
    * 详细文档请查看 [查询优化](https://gkd.li/selector/optimize)
