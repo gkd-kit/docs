@@ -13,7 +13,7 @@
 其它下载方式
 
 - [Google Play](https://play.google.com/store/apps/details?id=li.songe.gkd) &nbsp; [区别](./faq.md#play-diff)
-- [Github Releases](https://github.com/gkd-kit/gkd/releases/latest)
+- [Github Releases](https://github.com/gkd-kit/gkd/releases)
 
 下载完毕后, 在您的 Android 手机上安装并打开
 
