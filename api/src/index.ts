@@ -318,21 +318,25 @@ export interface RawCommonProps {
   actionMaximum?: Integer;
 
   /**
-   * 当规则因为 matchTime/actionMaximum 而休眠时, 如何唤醒此规则
+   * 决定如何重置 matchTime/actionMaximum，如果规则因 matchTime/actionMaximum 而休眠, 重置可以唤醒规则
    *
    * @default 'activity'
    *
    * @example
    * 'activity'
-   * // 当 activity 刷新时, 唤醒规则
+   * // 当 activity 刷新时, 重置规则
    * // 刷新 activity 并不代表 activityId 变化
    * // 如 哔哩哔哩视频播放页 底部点击推荐视频 进入另一个 视频播放页, 进入了新 activity 但是 activityId 并没有变化
    *
    * @example
+   * 'match'
+   * // 在应用内由不匹配界面切换为匹配界面时, 重置规则
+   * 
+   * @example
    * 'app'
-   * // 重新进入 app 时, 唤醒规则
+   * // 重新进入 app 时, 重置规则
    */
-  resetMatch?: 'activity' | 'app';
+  resetMatch?: 'activity' | 'match' | 'app';
 
   /**
    * 与这个 key 的 rule 共享 cd
@@ -668,7 +672,7 @@ export interface RawGlobalRuleProps {
 
 /**
  * 位置类型, 用以描述自定义点击位置
- * 
+ *
  * 需要注意是相对目标节点位置, 不是相对屏幕位置
  *
  * 使用 left/top/right/bottom 四条边实现定位, 此对象只能有两个属性, 也就是两条相邻边
