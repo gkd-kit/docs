@@ -2,7 +2,12 @@
 
 ## 安装 {#install}
 
-<ClientOnly> <AppInnerDownloadTip/> </ClientOnly>
+<GkdOnly>
+
+> [!TIP] 下载提示
+> 检测到您在应用内无法下载 APK，请点击右上角-外部打开后下载
+
+</GkdOnly>
 
 <ApkTable />
 
