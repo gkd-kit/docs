@@ -46,6 +46,7 @@ export default defineConfig({
             { text: '外部交互', link: '/guide/external' },
             { text: '常见问题', link: '/guide/faq' },
             { text: '隐私政策', link: '/guide/privacy' },
+            { text: '捐赠支持', link: '/guide/sponsor' },
           ],
         },
         {

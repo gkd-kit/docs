@@ -3,7 +3,7 @@ import { NImage } from './naive';
 import { imageSizeList } from '../data/mirror.load';
 import { convertSrc } from '../utils/img';
 
-const imgLoadMap = shallowReactive<Record<string, string | boolean>>({});
+const imgLoadMap = shallowReactive<Record<string, boolean>>({});
 
 const preLoadImg = async (url: string) => {
   const img = new Image();
@@ -41,12 +41,8 @@ const GImg = defineComponent<{
   (props, ctx) => {
     const rawSrc = computed(() => convertSrc(props.src));
     const src = computed(() => {
-      const u = imgLoadMap[rawSrc.value];
-      if (u === true) {
+      if (imgLoadMap[rawSrc.value]) {
         return rawSrc.value;
-      }
-      if (typeof u === 'string') {
-        return u;
       }
       return getImgPlaceholderUrl(rawSrc.value);
     });

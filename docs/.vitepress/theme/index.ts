@@ -119,6 +119,8 @@ const handleCompatRedirect = async (router: Router) => {
       router.go('/guide/faq#forced-tap');
     } else if (r === '9') {
       router.go('/guide/faq#work-profile');
+    }else if (r === '10') {
+      router.go('/guide/sponsor');
     }
   } else if (u === '/guide/faq#fail_setting_secure_settings') {
     location.hash = 'adb_failed';
