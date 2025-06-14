@@ -2,7 +2,7 @@
 
 感谢您对 GKD 的支持！如果您觉得这个项目对您有帮助，欢迎通过以下方式捐赠支持我。
 
-或前往 [Google Play](https://play.google.com/store/apps/details?id=li.songe.gkd) 给个好评。
+或直接前往 [Google Play](https://play.google.com/store/apps/details?id=li.songe.gkd) 给个好评。
 
 ---
 
