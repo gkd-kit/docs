@@ -29,7 +29,7 @@
 <MobileOnly>
 <p text-center>
 
-[--> 截图后打开微信 <--](gkd://invoke/openWeChat){target="_self"}
+[--> 截图后打开微信 <--](gkd://invoke/1){target="_self"}
 
 </p>
 </MobileOnly>
