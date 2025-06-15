@@ -15,11 +15,11 @@
 <GImg src="0046.png" />
 
 <MobileOnly>
-<p text-center>
+<div text-center>
 
 [--> 打开支付宝 <--](alipays://platformapi/startapp?saId=10000007&qrcode=https%3A%2F%2Fqr.alipay.com%2Ffkx18039ijnme6m5ef2na0a){target="_self"}
 
-</p>
+</div>
 </MobileOnly>
 
 ---
@@ -27,9 +27,9 @@
 <GImg src="0047.png" />
 
 <MobileOnly>
-<p text-center>
+<div text-center>
 
 [--> 截图后打开微信 <--](gkd://invoke/1){target="_self"}
 
-</p>
+</div>
 </MobileOnly>
