@@ -3,3 +3,6 @@ packages:
   - api
 onlyBuiltDependencies:
   - esbuild
+  - core-js
+public-hoist-pattern:
+  - '@vitejs/*'

@@ -14,6 +14,7 @@
     "@types/file-saver": "2.0.7",
     "@types/jsdom": "21.1.7",
     "@types/node": "22.15.3",
+    "@vitejs/plugin-legacy": "6.1.1",
     "@vueuse/core": "13.1.0",
     "acorn-walk": "8.3.4",
     "cross-env": "7.0.3",
@@ -23,6 +24,7 @@
     "markdown-it-mathjax3": "4.3.2",
     "naive-ui": "2.41.0",
     "prettier": "3.5.3",
+    "terser": "5.42.0",
     "tsx": "4.19.4",
     "typedoc": "0.28.3",
     "typedoc-plugin-markdown": "4.6.3",
@@ -34,16 +36,7 @@
   },
   "volta": {
     "node": "22.15.0",
-    "pnpm": "10.10.0"
+    "pnpm": "10.12.1"
   },
-  "packageManager": "pnpm@10.10.0",
-  "pnpm": {
-    "peerDependencyRules": {
-      "ignoreMissing": [
-        "@algolia/client-search",
-        "search-insights",
-        "vite"
-      ]
-    }
-  }
+  "packageManager": "pnpm@10.12.1"
 }
