@@ -252,7 +252,7 @@ export interface RawCommonProps {
   /**
    * 如果开启, 此规则下的所有满足 **特定格式的选择器** 将使用快速查找优化查询速度
    *
-   * 详细文档请查看 [查询优化](https://gkd.li/selector/optimize)
+   * 详细文档请查看 [查询优化](https://gkd.li/guide/optimize)
    *
    * @default false
    */
