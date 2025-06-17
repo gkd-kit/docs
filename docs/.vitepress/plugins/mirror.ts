@@ -6,6 +6,7 @@ import process from 'node:process';
 import type { Plugin } from 'vite';
 import type selfPkgT from '../../package.json';
 import path from 'node:path';
+import { transformWithEsbuild } from 'vite';
 
 const selfPkg: typeof selfPkgT = JSON.parse(
   await fs.readFile(process.cwd() + '/package.json', 'utf-8'),
@@ -178,7 +179,11 @@ export const transformHtml = async (code: string): Promise<string> => {
   }
   if (useMirror) {
     const script = doc.createElement('script');
-    script.textContent = `;(${rewriteAppendChild})(${JSON.stringify(mirrorBaseUrl)});`;
+    script.textContent = await transformWithEsbuild(
+      `;(${rewriteAppendChild})(${JSON.stringify(mirrorBaseUrl)});`,
+      'any.js',
+      { minify: true },
+    ).then((r) => r.code);
     doc.head.insertBefore(script, doc.head.firstChild);
     Object.entries({
       link: 'href',
