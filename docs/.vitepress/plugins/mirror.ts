@@ -116,19 +116,18 @@ async function* traverseDirectory(
     }
   }
 }
-
+const distDir = posixPath(process.cwd() + '/.vitepress/dist');
+const relativePath = (v: string) => {
+  return v.substring(distDir.length);
+};
 export const buildEnd = async () => {
   if (!useMirror) return;
-  const distDir = posixPath(process.cwd() + '/.vitepress/dist');
-  const relativePath = (v: string) => {
-    return v.substring(distDir.length);
-  };
   const htmlUrlMap: Record<string, string> = {};
-  for await (const filePathName of traverseDirectory(distDir)) {
-    if (filePathName.endsWith('.html')) {
-      const textFileName = filePathName.replace(/\.html$/, '_.md');
-      await fs.copyFile(filePathName, textFileName);
-      htmlUrlMap[relativePath(filePathName)] = relativePath(textFileName);
+  for await (const fp of traverseDirectory(distDir)) {
+    if (fp.endsWith('.html')) {
+      const textFileName = fp.replace(/\.html$/, '_.md');
+      await fs.copyFile(fp, textFileName);
+      htmlUrlMap[relativePath(fp)] = relativePath(textFileName);
     }
   }
   Object.keys(htmlUrlMap).forEach((k) => {
@@ -153,35 +152,54 @@ export const buildEnd = async () => {
 
 const Parser =
   globalThis.DOMParser || new (await import('jsdom')).JSDOM().window.DOMParser;
-export const transformHtml = (code: string) => {
-  if (!useMirror) return;
-  if (!code.includes('/assets/')) return;
-  // 注意: 如果使用 htmlparser2+dom-serializer, 当 md 文件包含 `<<n` 将出现 Hydration mismatches 错误
+
+let tempModernPolyfillsFilePath = '';
+const getModernPolyfillsFilePath = async (): Promise<string> => {
+  if (tempModernPolyfillsFilePath) return tempModernPolyfillsFilePath;
+  for await (const fp of traverseDirectory(distDir)) {
+    const baseName = path.basename(fp);
+    if (baseName.startsWith('polyfills.') && baseName.endsWith('.js')) {
+      return (tempModernPolyfillsFilePath = relativePath(fp));
+    }
+  }
+  throw new Error('Modern polyfills file not found');
+};
+
+export const transformHtml = async (code: string): Promise<string> => {
   const doc = new Parser().parseFromString(code, 'text/html');
-  const script = doc.createElement('script');
-  script.textContent = `;(${rewriteAppendChild})(${JSON.stringify(mirrorBaseUrl)});`;
-  doc.head.insertBefore(script, doc.head.firstChild);
-  Object.entries({
-    link: 'href',
-    script: 'src',
-  }).forEach(([tag, attr]) => {
-    doc.querySelectorAll(`${tag}[${attr}^="/assets/"]`).forEach((e) => {
-      e.setAttribute(attr, mirrorBaseUrl + e.getAttribute(attr));
+  {
+    const polyfillsFile = await getModernPolyfillsFilePath();
+    const script = doc.createElement('script');
+    script.setAttribute(
+      'src',
+      (useMirror ? mirrorBaseUrl : '') + polyfillsFile,
+    );
+    doc.head.insertBefore(script, doc.head.firstChild);
+  }
+  if (useMirror) {
+    const script = doc.createElement('script');
+    script.textContent = `;(${rewriteAppendChild})(${JSON.stringify(mirrorBaseUrl)});`;
+    doc.head.insertBefore(script, doc.head.firstChild);
+    Object.entries({
+      link: 'href',
+      script: 'src',
+    }).forEach(([tag, attr]) => {
+      doc.querySelectorAll(`${tag}[${attr}^="/assets/"]`).forEach((e) => {
+        e.setAttribute(attr, mirrorBaseUrl + e.getAttribute(attr));
+      });
     });
-  });
-
-  Object.entries({
-    link: 'href',
-    img: 'src',
-  }).forEach(([tag, attr]) => {
-    doc.querySelectorAll(`${tag}[${attr}^="/"]`).forEach((e) => {
-      const value = e.getAttribute(attr);
-      if (value && !value.includes('/', 1)) {
-        e.setAttribute(attr, mirrorBaseUrl + value);
-      }
+    Object.entries({
+      link: 'href',
+      img: 'src',
+    }).forEach(([tag, attr]) => {
+      doc.querySelectorAll(`${tag}[${attr}^="/"]`).forEach((e) => {
+        const value = e.getAttribute(attr);
+        if (value && !value.includes('/', 1)) {
+          e.setAttribute(attr, mirrorBaseUrl + value);
+        }
+      });
     });
-  });
-
+  }
   return doc.documentElement.outerHTML;
 };
 
