@@ -94,7 +94,7 @@ const removeHiddenLayoutStyle = () => {
   }
 };
 
-if (import.meta.env.SSR) {
+if (!import.meta.env.SSR) {
   if (location.pathname === '/' && /\d+/.test(getRedirectArg())) {
     const style = document.createElement('style');
     style.textContent = `.Layout { visibility: hidden; }`;
