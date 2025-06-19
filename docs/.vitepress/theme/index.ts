@@ -100,29 +100,38 @@ const handleCompatRedirect = async (router: Router) => {
     await replace('/guide/subscription');
   } else if (location.pathname === '/') {
     const r = new URLSearchParams(location.search).get('r');
+    const go = async (to: string) => {
+      // 避免首次进入页面快速切换时出现闪烁
+      const layoutEl = document.querySelector(
+        '#app > .Layout',
+      ) as HTMLDivElement;
+      layoutEl.style.visibility = 'hidden';
+      await router.go(to).catch(() => {});
+      layoutEl.style.removeProperty('visibility');
+    };
     if (r === '1') {
-      router.go('/guide/snapshot#how-to-upload');
+      go('/guide/snapshot#how-to-upload');
     } else if (r === '2') {
-      router.go('/guide/faq#restriction');
+      go('/guide/faq#restriction');
     } else if (r === '3') {
-      router.go('/guide/faq#adb_failed');
+      go('/guide/faq#adb_failed');
     } else if (r === '4') {
       location.href = 'https://shizuku.rikka.app';
       return;
     } else if (r === '5') {
-      router.go('/guide/subscription');
+      go('/guide/subscription');
     } else if (r === '6') {
-      router.go('/guide/faq#power');
+      go('/guide/faq#power');
     } else if (r === '7') {
-      router.go('/guide/faq#exact-activity');
+      go('/guide/faq#exact-activity');
     } else if (r === '8') {
-      router.go('/guide/faq#forced-tap');
+      go('/guide/faq#forced-tap');
     } else if (r === '9') {
-      router.go('/guide/faq#work-profile');
+      go('/guide/faq#work-profile');
     } else if (r === '10') {
-      router.go('/guide/sponsor');
+      go('/guide/sponsor');
     } else if (r === '11') {
-      router.go('/guide/privacy');
+      go('/guide/privacy');
     }
   } else if (u === '/guide/faq#fail_setting_secure_settings') {
     location.hash = 'adb_failed';
