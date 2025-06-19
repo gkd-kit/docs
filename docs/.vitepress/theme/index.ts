@@ -115,7 +115,6 @@ const handleCompatRedirect = async (router: Router) => {
   } else if (location.pathname === '/') {
     const r = getRedirectArg();
     const go = async (to: string) => {
-      history.replaceState(null, '', to);
       await router.go(to);
       removeHiddenLayoutStyle();
     };
