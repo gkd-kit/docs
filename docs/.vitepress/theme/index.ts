@@ -80,6 +80,29 @@ const animateHashEl = async (hashEl?: HTMLElement) => {
   }
 };
 
+const getRedirectArg = (): string => {
+  return new URLSearchParams(location.search).get('r') || '';
+};
+
+// 避免首次进入页面快速切换时出现闪烁
+const removeHiddenLayoutStyle = () => {
+  const style = document.getElementById(
+    'hidden-layout-style',
+  ) as HTMLStyleElement | null;
+  if (style) {
+    style.parentElement?.removeChild(style);
+  }
+};
+
+if (import.meta.env.SSR) {
+  if (location.pathname === '/' && /\d+/.test(getRedirectArg())) {
+    const style = document.createElement('style');
+    style.textContent = `.Layout { visibility: hidden; }`;
+    style.id = 'hidden-layout-style';
+    document.head.appendChild(style);
+  }
+}
+
 const handleCompatRedirect = async (router: Router) => {
   // 兼容旧链接/短链重定向
   const u = location.href.substring(location.origin.length);
@@ -99,15 +122,10 @@ const handleCompatRedirect = async (router: Router) => {
   ) {
     await replace('/guide/subscription');
   } else if (location.pathname === '/') {
-    const r = new URLSearchParams(location.search).get('r');
+    const r = getRedirectArg();
     const go = async (to: string) => {
-      // 避免首次进入页面快速切换时出现闪烁
-      const layoutEl = document.querySelector(
-        '#app > .Layout',
-      ) as HTMLDivElement;
-      layoutEl.style.visibility = 'hidden';
       await router.go(to).catch(() => {});
-      layoutEl.style.removeProperty('visibility');
+      removeHiddenLayoutStyle();
     };
     if (r === '1') {
       go('/guide/snapshot#how-to-upload');
@@ -117,6 +135,7 @@ const handleCompatRedirect = async (router: Router) => {
       go('/guide/faq#adb_failed');
     } else if (r === '4') {
       location.href = 'https://shizuku.rikka.app';
+      removeHiddenLayoutStyle();
       return;
     } else if (r === '5') {
       go('/guide/subscription');
@@ -132,6 +151,8 @@ const handleCompatRedirect = async (router: Router) => {
       go('/guide/sponsor');
     } else if (r === '11') {
       go('/guide/privacy');
+    } else {
+      removeHiddenLayoutStyle();
     }
   } else if (u === '/guide/faq#fail_setting_secure_settings') {
     location.hash = 'adb_failed';
