@@ -94,15 +94,6 @@ const removeHiddenLayoutStyle = () => {
   }
 };
 
-if (!import.meta.env.SSR) {
-  if (location.pathname === '/' && /\d+/.test(getRedirectArg())) {
-    const style = document.createElement('style');
-    style.textContent = `.Layout { visibility: hidden; }`;
-    style.id = 'hidden-layout-style';
-    document.head.appendChild(style);
-  }
-}
-
 const handleCompatRedirect = async (router: Router) => {
   // 兼容旧链接/短链重定向
   const u = location.href.substring(location.origin.length);

@@ -166,6 +166,13 @@ const getModernPolyfillsFilePath = async (): Promise<string> => {
   throw new Error('Modern polyfills file not found');
 };
 
+const minifyCode = async (code: string): Promise<string> => {
+  const result = await transformWithEsbuild(code, 'any.js', {
+    minify: true,
+  });
+  return result.code;
+};
+
 export const transformHtml = async (code: string): Promise<string> => {
   const doc = new Parser().parseFromString(code, 'text/html');
   {
@@ -179,11 +186,9 @@ export const transformHtml = async (code: string): Promise<string> => {
   }
   if (useMirror) {
     const script = doc.createElement('script');
-    script.textContent = await transformWithEsbuild(
+    script.textContent = await minifyCode(
       `;(${rewriteAppendChild})(${JSON.stringify(mirrorBaseUrl)});`,
-      'any.js',
-      { minify: true },
-    ).then((r) => r.code);
+    );
     doc.head.insertBefore(script, doc.head.firstChild);
     Object.entries({
       link: 'href',
@@ -205,6 +210,11 @@ export const transformHtml = async (code: string): Promise<string> => {
       });
     });
   }
+  {
+    const script = doc.createElement('script');
+    script.textContent = await minifyCode(`;(${preHiddenLayout})();`);
+    doc.head.insertBefore(script, doc.head.firstChild);
+  }
   return doc.documentElement.outerHTML;
 };
 
@@ -219,4 +229,17 @@ const rewriteAppendChild = (base: string) => {
     }
     return rawAppendChild.call(this, node) as T;
   };
+};
+
+const preHiddenLayout = () => {
+  if (
+    location.pathname === '/' &&
+    /\d+/.test(new URLSearchParams(location.search).get('r') || '')
+  ) {
+    document.write(
+      '<styl' +
+        'e id="hidden-layout-style"> #app .Layout { visibility: hidden; } </styl' +
+        'e>',
+    );
+  }
 };
