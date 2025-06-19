@@ -237,9 +237,10 @@ const preHiddenLayout = () => {
     /\d+/.test(new URLSearchParams(location.search).get('r') || '')
   ) {
     document.write(
-      '<styl' +
-        'e id="hidden-layout-style"> #app .Layout { visibility: hidden; } </styl' +
-        'e>',
+      '<styl',
+      'e id="hidden-layout-style"> #app .Layout { visibility: hidden; } ',
+      '</styl',
+      'e>',
     );
   }
 };
