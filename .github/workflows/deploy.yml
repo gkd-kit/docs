@@ -33,11 +33,6 @@ jobs:
           pnpm config set //registry.npmjs.org/:_authToken ${{ secrets.NPM_TOKEN }}
           pnpm -F @gkd-kit/docs publish --no-git-checks
 
-      - run: |
-          curl -X PUT 'https://registry-direct.npmmirror.com/@gkd-kit/docs/sync'
-          sleep 5
-          curl https://registry.npmmirror.com/@gkd-kit/docs/latest/files/package.json
-
       - uses: cloudflare/pages-action@v1
         with:
           apiToken: ${{ secrets.CLOUDFLARE_API_TOKEN }}
@@ -48,6 +43,9 @@ jobs:
       - uses: nwtgck/actions-netlify@v3
         with:
           publish-dir: ./docs/.vitepress/dist
+          production-branch: main
+          github-token: ${{ secrets.GITHUB_TOKEN }}
+          deploy-message: "Deploy from GitHub Actions"
           enable-pull-request-comment: false
           enable-commit-comment: false
         env:

@@ -15,7 +15,8 @@
     "docs:dev": "vitepress dev",
     "docs:build": "vitepress build",
     "docs:preview": "vitepress preview",
-    "docs:build-mirror": "cross-env MIRROR=ON vitepress build"
+    "docs:build-mirror": "cross-env MIRROR=ON vitepress build",
+    "postpublish": "curl -X PUT https://registry-direct.npmmirror.com/@gkd-kit/docs/sync"
   },
   "volta": {
     "extends": "../package.json"
