@@ -45,7 +45,6 @@ export default defineConfig({
             { text: '订阅规则', link: '/guide/subscription' },
             { text: '外部交互', link: '/guide/external' },
             { text: '常见问题', link: '/guide/faq' },
-            { text: '隐私政策', link: '/guide/privacy' },
             { text: '捐赠支持', link: '/guide/sponsor' },
           ],
         },
@@ -56,6 +55,13 @@ export default defineConfig({
             { text: '属性方法', link: '/guide/node' },
             { text: '选择示例', link: '/guide/example' },
             { text: '查询优化', link: '/guide/optimize' },
+          ],
+        },
+        {
+          text: '协议政策',
+          items: [
+            { text: '使用协议', link: '/guide/terms' },
+            { text: '隐私政策', link: '/guide/privacy' },
           ],
         },
       ],
