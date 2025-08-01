@@ -144,6 +144,8 @@ const handleCompatRedirect = async (router: Router) => {
       go('/guide/privacy');
     } else if (r === '12') {
       go('/guide/terms');
+    } else if (r === '13') {
+      go('/guide/#install');
     } else {
       removeHiddenLayoutStyle();
     }
