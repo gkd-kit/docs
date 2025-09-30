@@ -331,7 +331,7 @@ export interface RawCommonProps {
    * @example
    * 'match'
    * // 在应用内由不匹配界面切换为匹配界面时, 重置规则
-   * 
+   *
    * @example
    * 'app'
    * // 重新进入 app 时, 重置规则
@@ -491,6 +491,10 @@ export interface RawRuleProps extends RawCommonProps {
    * @example
    * `longClickCenter`
    * // 与 clickCenter 类似, 长按时间为 400 毫秒
+   * 
+   * @example
+   * `none`
+   * // 什么都不做, 仅作为匹配标记使用
    */
   action?:
     | 'click'
@@ -499,7 +503,8 @@ export interface RawRuleProps extends RawCommonProps {
     | 'back'
     | 'longClick'
     | 'longClickNode'
-    | 'longClickCenter';
+    | 'longClickCenter'
+    | 'none';
 
   /**
    * 在使用 clickCenter/longClickCenter 时的自定义点击位置
@@ -613,26 +618,40 @@ export interface RawAppRuleProps {
   /**
    * 如果应用版本名称包含在此列表中, 则匹配
    *
+   * @deprecated {@link versionName}
    */
   versionNames?: IArray<string>;
 
   /**
    * 如果应用版本名称包含在此列表中, 则排除匹配, 优先级高于 versionNames
    *
+   * @deprecated {@link versionName}
    */
   excludeVersionNames?: IArray<string>;
 
   /**
    * 如果应用版本代码包含在此列表中, 则匹配
    *
+   * @deprecated {@link versionCode}
    */
   versionCodes?: IArray<Integer>;
 
   /**
    * 如果应用版本代码包含在此列表中, 则排除匹配, 优先级高于 versionCodes
    *
+   * @deprecated {@link versionCode}
    */
   excludeVersionCodes?: IArray<Integer>;
+
+  /**
+   * 应用版本代码(整数)匹配规则
+   */
+  versionCode?: IntegerMatcher;
+
+  /**
+   * 应用版本名称(字符串)匹配规则
+   */
+  versionName?: StringMatcher;
 }
 
 /**
@@ -669,6 +688,55 @@ export interface RawGlobalRuleProps {
    */
   apps?: RawGlobalApp[];
 }
+
+/**
+ * 整数匹配规则
+ *
+ * 优先级: exclude > include > (minimum/maximum)
+ */
+export type IntegerMatcher = {
+  /**
+   * 如果在此列表中, 则排除匹配
+   */
+  exclude?: IArray<Integer>;
+
+  /**
+   * 如果不在此列表中, 则排除匹配
+   */
+  include?: IArray<Integer>;
+
+  /**
+   * 如果小于此值, 则排除匹配
+   */
+  minimum?: Integer;
+
+  /**
+   * 如果大于此值, 则排除匹配
+   */
+  maximum?: Integer;
+};
+
+/**
+ * 字符串匹配规则
+ *
+ * 优先级: exclude > include > pattern
+ */
+export type StringMatcher = {
+  /**
+   * 如果在此列表中, 则排除匹配
+   */
+  exclude?: IArray<string>;
+
+  /**
+   * 如果不在此列表中, 则排除匹配
+   */
+  include?: IArray<string>;
+
+  /**
+   * 如果匹配此正则表达式, 则匹配
+   */
+  pattern?: string;
+};
 
 /**
  * 位置类型, 用以描述自定义点击位置
