@@ -148,6 +148,8 @@ const handleCompatRedirect = async (router: Router) => {
       go('/guide/#install');
     } else if (r === '14') {
       go('/guide/faq#shizuku');
+    } else if (r === '15') {
+      go('/guide/snapshot#by-screenshot');
     } else {
       removeHiddenLayoutStyle();
     }
