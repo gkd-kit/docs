@@ -65,10 +65,10 @@
 
 ### 通过调用服务 {#by-invoke-service}
 
-GKD 内部暴露了一个服务, 外部应用(某些快捷手势应用)可以启动这个服务, 启动后将抓取当前界面的快照, 它的路径是
+GKD 内部暴露了一个服务, 外部应用(某些快捷手势应用)可以启动这个服务，如下是一个启动快照示例
 
-```text
-li.songe.gkd.service.SnapshotActionService
+```sh
+sh /storage/emulated/0/Android/data/li.songe.gkd/files/sh/expose.sh
 ```
 
 通过这个服务, 你可以通过自定义手势来捕获快照, 可在 [gkd-kit/gkd#253](https://github.com/gkd-kit/gkd/issues/253) 了解更多
