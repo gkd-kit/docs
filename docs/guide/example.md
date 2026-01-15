@@ -62,3 +62,19 @@
 ## 组合使用 {#e-7}
 
 [`ImageView < FrameLayout <n ViewGroup[desc^="直播"] - ViewGroup >4 FrameLayout[index=0] +2 FrameLayout > @TextView[index=parent.childCount.minus(1)] <<n FrameLayout[vid="content"]`](https://i.gkd.li/i/16076188?gkd=SW1hZ2VWaWV3IDwgRnJhbWVMYXlvdXQgPG4gVmlld0dyb3VwW2Rlc2NePSLnm7Tmkq0iXSAtIFZpZXdHcm91cCA-NCBGcmFtZUxheW91dFtpbmRleD0wXSArMiBGcmFtZUxheW91dCA-IEBUZXh0Vmlld1tpbmRleD1wYXJlbnQuY2hpbGRDb3VudC5taW51cygxKV0gPDxuIEZyYW1lTGF5b3V0W3ZpZD0iY29udGVudCJd)
+
+## 一些方法用例 {#e-8}
+
+### `getChild()`
+选择一个 `ViewGroup[desc^="直播"]` 节点, 并要求其**第1位子节点**的`vid`等于 `cover_layout`
+
+- [`ViewGroup[desc^="直播"][getChild(0).vid="cover_layout"]`](https://i.gkd.li/i/16076188?gkd=Vmlld0dyb3VwW2Rlc2NePSLnm7Tmkq0iXVtnZXRDaGlsZCgwKS52aWQ9ImNvdmVyX2xheW91dCJd)
+
+选择一个 `ViewGroup[desc^="直播"]` 节点, 并要求其**第3位子节点内的第1位子节点**类型为 `TextView`
+
+- [`ViewGroup[desc^="直播"][getChild(2).getChild(0).name$="TextView"]`](https://i.gkd.li/i/16076188?gkd=Vmlld0dyb3VwW2Rlc2NePSLnm7Tmkq0iXVtnZXRDaGlsZCgyKS5nZXRDaGlsZCgwKS5uYW1lJD0iVGV4dFZpZXciXQ)
+
+选择一个 `ViewGroup[desc^="直播"]` 节点, 并要求其**末尾子节点**的`vid`等于 `more`
+
+- [`ViewGroup[desc^="直播"][getChild(childCount.minus(1)).vid="more"]`](https://i.gkd.li/i/16076188?gkd=Vmlld0dyb3VwW2Rlc2NePSLnm7Tmkq0iXVtnZXRDaGlsZChjaGlsZENvdW50Lm1pbnVzKDEpKS52aWQ9Im1vcmUiXQ)
+
