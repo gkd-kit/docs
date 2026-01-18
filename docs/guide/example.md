@@ -65,7 +65,7 @@
 
 ## 一些方法用例 {#e-8}
 
-### `getChild()`
+### [node](/guide/node#node)类型的`getChild()`
 选择一个 `ViewGroup[desc^="直播"]` 节点, 并要求其**第1位子节点**的`vid`等于 `cover_layout`
 
 - [`ViewGroup[desc^="直播"][getChild(0).vid="cover_layout"]`](https://i.gkd.li/i/16076188?gkd=Vmlld0dyb3VwW2Rlc2NePSLnm7Tmkq0iXVtnZXRDaGlsZCgwKS52aWQ9ImNvdmVyX2xheW91dCJd)
@@ -77,4 +77,18 @@
 选择一个 `ViewGroup[desc^="直播"]` 节点, 并要求其**末尾子节点**的`vid`等于 `more`
 
 - [`ViewGroup[desc^="直播"][getChild(childCount.minus(1)).vid="more"]`](https://i.gkd.li/i/16076188?gkd=Vmlld0dyb3VwW2Rlc2NePSLnm7Tmkq0iXVtnZXRDaGlsZChjaGlsZENvdW50Lm1pbnVzKDEpKS52aWQ9Im1vcmUiXQ)
+
+### [context](/guide/node#context)类型的`getPrev()`
+
+已知符合选择器 [@[clickable=true] >(1,2) [vid="cover"]](https://i.gkd.li/i/16076188?gkd=QFtjbGlja2FibGU9dHJ1ZV0gPigxLDIpIFt2aWQ9ImNvdmVyIl0) 的节点有6个，现要求根据屏幕分辨率对节点位置作出限制。
+
+> 思路：从右侧根节点处获取屏幕宽高，通过`getPrev()`传到左侧目标节点，随后根据要求做限制
+> 
+> 另外由于使用了`<<n [parent=null]`，所以结果仅显示第一个，具体缘由请看[主动查询](/guide/optimize#enforce)
+
+限制在左半屏：
+- [@[clickable=true][right<getPrev(1).width.div(2)] >(1,2) [vid="cover"] <<n [parent=null]](https://i.gkd.li/i/16076188?gkd=QFtjbGlja2FibGU9dHJ1ZV1bcmlnaHQ8Z2V0UHJldigxKS53aWR0aC5kaXYoMildID4oMSwyKSBbdmlkPSJjb3ZlciJdIDw8biBbcGFyZW50PW51bGxd)
+
+限制在右下(1/4)屏：
+- [@[clickable=true][left>getPrev(1).width.div(2)][top>getPrev(1).height.div(2)] >(1,2) [vid="cover"] <<n [parent=null]](https://i.gkd.li/i/16076188?gkd=QFtjbGlja2FibGU9dHJ1ZV1bbGVmdD5nZXRQcmV2KDEpLndpZHRoLmRpdigyKV1bdG9wPmdldFByZXYoMSkuaGVpZ2h0LmRpdigyKV0gPigxLDIpIFt2aWQ9ImNvdmVyIl0gPDxuIFtwYXJlbnQ9bnVsbF0)
 
