@@ -39,6 +39,14 @@
 
 ## shizuku
 
+shizuku 是一个能让普通应用通过 ADB 或 Root 权限直接调用 Android 系统 API 的框架
+
+简而言之， 授权 shizuku 后 GKD 可以调用更多系统 API 获取更多状态，启用更多优化
+
+官方原版 [RikkaApps/Shizuku](https://github.com/RikkaApps/Shizuku) 已很久未有维护记录，issue/pr 也被垃圾机器人淹没
+
+建议使用另一位开发者的分支项目 [thedjchi/Shizuku](https://github.com/thedjchi/Shizuku)，或[点击前往下载](https://github.com/thedjchi/Shizuku/releases)
+
 ### 界面识别 {#exact-activity}
 
 单纯靠无障碍提供的 API 无法准确判断当前处于应用的哪个子界面 (activityId)

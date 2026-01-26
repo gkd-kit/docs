@@ -125,9 +125,7 @@ const handleCompatRedirect = async (router: Router) => {
     } else if (r === '3') {
       go('/guide/faq#adb_failed');
     } else if (r === '4') {
-      location.href = 'https://shizuku.rikka.app';
-      removeHiddenLayoutStyle();
-      return;
+      go('/guide/faq#shizuku');
     } else if (r === '5') {
       go('/guide/subscription');
     } else if (r === '6') {
