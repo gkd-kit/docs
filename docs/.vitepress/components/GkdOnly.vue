@@ -1,14 +1,10 @@
 <script setup lang="ts">
-defineProps<{
-  not?: boolean;
-}>();
-
 const getShow = () => {
   return import.meta.env.DEV || Reflect.get(globalThis, 'gkd');
 };
 </script>
 <template>
   <ClientOnly>
-    <slot v-if="not ? !getShow() : getShow()"></slot>
+    <slot v-if="getShow()"></slot>
   </ClientOnly>
 </template>

@@ -9,9 +9,9 @@
 目前有两个渠道在使用，它们可互相安装覆盖，但存在区别
 
 | 渠道 |                                 下载方式                                  |     自更新逻辑      | [受限制的设置](#restriction) | 无障碍工具声明 |
-| :--: | :-----------------------------------------------------------------------: | :-----------------: | :----------------------------: | :------------: |
-| gkd  |                          [官网/GitHub](/guide/)                           | 弹窗更新(镜像加速)  |            可能受限            |       有       |
-| play | [Google Play](https://play.google.com/store/apps/details?id=li.songe.gkd) | 无(必须Google Play) |              不会              |       无       |
+| :--: | :-----------------------------------------------------------------------: | :-----------------: | :--------------------------: | :------------: |
+| gkd  |                          [官网/GitHub](/guide/)                           | 弹窗更新(镜像加速)  |           可能受限           |       有       |
+| play | [Google Play](https://play.google.com/store/apps/details?id=li.songe.gkd) | 无(必须Google Play) |             不会             |       无       |
 
 根据 [Google Play 政策](https://support.google.com/googleplay/android-developer/answer/10964491?hl=zh-Hans)，必须以 **支持残障人士为主要用途** 才能使用 **无障碍工具声明**
 

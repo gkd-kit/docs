@@ -1,8 +1,4 @@
 <script setup lang="ts">
-defineProps<{
-  not?: boolean;
-}>();
-
 const getShow = () => {
   return (
     globalThis.document && 'ontouchstart' in globalThis.document.documentElement
@@ -11,6 +7,6 @@ const getShow = () => {
 </script>
 <template>
   <ClientOnly>
-    <slot v-if="not ? !getShow() : getShow()"></slot>
+    <slot v-if="getShow()"></slot>
   </ClientOnly>
 </template>
