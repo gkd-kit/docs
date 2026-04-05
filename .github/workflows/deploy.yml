@@ -6,6 +6,7 @@ on:
     branches: ['main']
 
 permissions:
+  id-token: write
   contents: write
 
 jobs:
@@ -28,10 +29,7 @@ jobs:
       - run: pnpm -F @gkd-kit/api run predocs:build
       - run: pnpm -F @gkd-kit/docs run docs:build-mirror
 
-      - name: Publish package
-        run: |
-          pnpm config set //registry.npmjs.org/:_authToken ${{ secrets.NPM_TOKEN }}
-          pnpm -F @gkd-kit/docs publish --no-git-checks
+      - run: pnpm -F @gkd-kit/docs publish --no-git-checks
 
       - uses: cloudflare/pages-action@v1
         with:
