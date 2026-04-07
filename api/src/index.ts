@@ -458,6 +458,8 @@ export interface RawRuleProps extends RawCommonProps {
    *
    * 在 {@link position} 存在的情况下, action 的默认值为 `clickCenter`
    *
+   * 在 {@link swipeArg} 存在的情况下, action 的默认值为 `swipe`
+   *
    * @example
    * `click`
    * // 为默认值, 如果目标节点是 clickable 的, 则使用 `clickNode`, 反之使用 `clickCenter`
@@ -491,7 +493,11 @@ export interface RawRuleProps extends RawCommonProps {
    * @example
    * `longClickCenter`
    * // 与 clickCenter 类似, 长按时间为 400 毫秒
-   * 
+   *
+   * @example
+   * `swipe`
+   * // 向系统发起一个滑动事件, 使用 swipeArg 定义滑动参数
+   *
    * @example
    * `none`
    * // 什么都不做, 仅作为匹配标记使用
@@ -517,6 +523,14 @@ export interface RawRuleProps extends RawCommonProps {
    *
    */
   position?: Position;
+
+  /**
+   * 在使用 swipe 时的滑动参数
+   *
+   * 在 swipeArg 存在的情况下, {@link action} 的默认值为 `swipe`
+   *
+   */
+  swipeArg?: SwipeArg;
 
   /**
    * 一个或者多个合法的 GKD 选择器, 如果所有选择器都能匹配上节点, 那么点击最后一个选择器的目标节点
@@ -738,6 +752,25 @@ export type StringMatcher = {
   pattern?: string;
 };
 
+export type SwipeArg = {
+  /**
+   * 起始坐标, 计算方式同 {@link Position}
+   */
+  start: Position;
+
+  /**
+   * 结束坐标, 计算方式同 {@link Position}, 默认值为 start 位置
+   * 
+   * 如果开始坐标和结束坐标完全相同, 可以作为自定义时长的点击使用
+   */
+  end?: Position;
+
+  /**
+   * 滑动持续时间, 单位毫秒, 滑动曲线为线性移动
+   */
+  duration: Integer;
+};
+
 /**
  * 位置类型, 用以描述自定义点击位置
  *
@@ -745,7 +778,7 @@ export type StringMatcher = {
  *
  * 使用 left/top/right/bottom 四条边实现定位, 此对象只能有两个属性, 也就是两条相邻边
  *
- * 合法的定位组合为: left-top, left-bottom, right-top, right-bottom
+ * 合法的定位组合为: left-top, left-bottom, right-top, right-bottom, x-y
  *
  * 示例1-点击目标节点的中心
  * ```json5
@@ -773,6 +806,14 @@ export type StringMatcher = {
  *  top: 'width*0.0852',
  * }
  * ```
+ *
+ * 示例3-点击屏幕中心
+ * ```json5
+ * {
+ *  x: 'screenWidth/2',
+ *  y: 'screenHeight/2',
+ * }
+ * ```
  */
 export type Position = {
   /**
@@ -782,9 +823,13 @@ export type Position = {
    *
    * 支持两种值类型, 字符串和数字, 数字等价于相同内容的字符串, 如 2.5 等价于 '2.5'
    *
-   * 字符串类型支持来自快照属性面板上的 left/top/right/bottom/width/height/random 的数学计算表达式
+   * 字符串类型支持来自快照属性面板上的 left/top/right/bottom/width/height 的数学计算表达式
+   *
+   * 此外有额外的参数 random/screenWidth/screenHeight 可使用
    *
    * 其中 random 是 0-1 的随机数, 需要注意 random 在单个表达式中是单个固定值, 即表达式 'random-random'=0
+   *
+   * 其中 screenWidth/screenHeight 是实时屏幕宽高, 屏幕发生旋转时，screenWidth/screenHeight 的值会交换
    *
    * @example
    * 2.5 // ✅
@@ -808,6 +853,16 @@ export type Position = {
    * 距离目标节点下边的距离
    */
   bottom?: string | number;
+
+  /**
+   * 距离屏幕左侧的距离
+   */
+  x?: string | number;
+
+  /**
+   * 距离屏幕顶部的距离
+   */
+  y?: string | number;
 };
 
 /**
