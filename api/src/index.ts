@@ -829,7 +829,7 @@ export type Position = {
    *
    * 其中 random 是 0-1 的随机数, 需要注意 random 在单个表达式中是单个固定值, 即表达式 'random-random'=0
    *
-   * 其中 screenWidth/screenHeight 是实时屏幕宽高, 屏幕发生旋转时，screenWidth/screenHeight 的值会交换
+   * 其中 screenWidth/screenHeight 是实时屏幕宽高, 屏幕发生旋转时，screenWidth/screenHeight 也会变化
    *
    * @example
    * 2.5 // ✅
@@ -856,6 +856,8 @@ export type Position = {
 
   /**
    * 距离屏幕左侧的距离
+   * 
+   * 需要注意的是，如果是小窗或分屏模式下，使用 x/y 定位时，坐标是相对于整个屏幕的，因此可能会导致点击位置在应用窗口外部
    */
   x?: string | number;
 
