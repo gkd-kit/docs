@@ -510,6 +510,7 @@ export interface RawRuleProps extends RawCommonProps {
     | 'longClick'
     | 'longClickNode'
     | 'longClickCenter'
+    | 'swipe'
     | 'none';
 
   /**
