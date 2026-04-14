@@ -777,9 +777,9 @@ export type SwipeArg = {
  *
  * 需要注意是相对目标节点位置, 不是相对屏幕位置
  *
- * 使用 left/top/right/bottom 四条边实现定位, 此对象只能有两个属性, 也就是两条相邻边
+ * 使用 left/top/right/bottom 节点四条边和 x/y 实现定位
  *
- * 合法的定位组合为: left-top, left-bottom, right-top, right-bottom, x-y
+ * 选择两个属性分别为水平方向和垂直方向, 合法的定位组合为: left/right/x + top/bottom/y
  *
  * 示例1-点击目标节点的中心
  * ```json5
