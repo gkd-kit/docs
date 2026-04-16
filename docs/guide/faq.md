@@ -45,7 +45,9 @@ shizuku 是一个能让普通应用通过 ADB 或 Root 权限直接调用 Androi
 
 官方原版 [RikkaApps/Shizuku](https://github.com/RikkaApps/Shizuku) 已很久未有维护记录，issue/pr 也被垃圾机器人淹没
 
-建议使用另一位开发者的分支项目 [thedjchi/Shizuku](https://github.com/thedjchi/Shizuku)，或[点击前往下载](https://github.com/thedjchi/Shizuku/releases/latest)
+此外在某些设备上原版 shizuku 只能部分工作，此时 GKD 会提示 `服务连接部分失败`
+
+目前建议使用另一位开发者的分支项目 [thedjchi/Shizuku](https://github.com/thedjchi/Shizuku)，或[点击前往下载](https://github.com/thedjchi/Shizuku/releases/latest)
 
 ### 界面识别 {#exact-activity}
 
