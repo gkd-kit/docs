@@ -41,53 +41,13 @@
 
 shizuku 是一个能让普通应用通过 ADB 或 Root 权限直接调用 Android 系统 API 的框架
 
-简而言之， 授权 shizuku 后 GKD 可以调用更多系统 API 获取更多状态，启用更多优化
+简而言之， **授权 shizuku 后 GKD 可以调用更多系统 API 获取更多状态，启用更多优化**
 
 官方原版 [RikkaApps/Shizuku](https://github.com/RikkaApps/Shizuku) 已很久未有维护记录，issue/pr 也被垃圾机器人淹没
 
 此外在某些设备上原版 shizuku 只能部分工作，此时 GKD 会提示 `服务连接部分失败`
 
 目前建议使用另一位开发者的分支项目 [thedjchi/Shizuku](https://github.com/thedjchi/Shizuku)，或[点击前往下载](https://github.com/thedjchi/Shizuku/releases/latest)
-
-### 界面识别 {#exact-activity}
-
-单纯靠无障碍提供的 API 无法准确判断当前处于应用的哪个子界面 (activityId)
-
-在此种情况下, GKD 将运行当前应用的所有规则, 容易造成无效匹配和误触
-
-授权 shizuku 后可以让 GKD 准确识别当前应用子界面
-
-### 强制点击 {#forced-tap}
-
-使用无障碍 API 发出的点击事件 `clickCenter` 会被某些应用识别到, 导致点击表现无效
-
-授权 shizuku 后可以让 GKD 发出的点击事件无法被应用识别到, 从而正常触发点击
-
-### 工作空间 {#work-profile}
-
-某些用户可能选择将应用安装到其他用户空间隔离
-
-这导致 GKD 无法从当前应用列表识别到应用已安装
-
-授权 shizuku 后可以让 GKD 识别到其他用户空间的应用
-
-- 只识别主空间未安装应用
-- 只在主空间有应用变更行为时才全量更新用户空间应用列表
-
-如果不开启此项, 对于未安装的应用, 有以下影响
-
-- 全局规则 的内部配置禁用失效
-- 应用规则 不会启用
-
-对于 `全局规则` 可使用手动编辑禁用, 添加 appId 到禁用列表后将生效
-
-若要开启 `应用规则`, 在对应订阅-应用规则-显示未安装应用-打开右侧开关即可
-
-::: details 不生效原因
-这是因为某些订阅有将近 2k 个应用, 而一般用户最多使用到 200 个
-
-如果将 未安装的应用 的应用规则也全部开启, 这将额外占用 1800 个应用的无效规则配置内存
-:::
 
 ## 后台运行 {#persistent}
 
