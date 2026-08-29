@@ -40,6 +40,7 @@ jobs:
       - uses: nwtgck/actions-netlify@v4
         with:
           publish-dir: ./docs/.vitepress/dist
+          production-deploy: true
           enable-pull-request-comment: false
           enable-commit-comment: false
         env:
