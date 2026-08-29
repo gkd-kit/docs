@@ -134,7 +134,7 @@
 示例合法变量名: `a` `ikun` `manbaout`, 下面可输入字符测试否是合法
 
 ::: raw
-<IdentifierField />
+<GkIdentifierField />
 :::
 
 ---
@@ -163,8 +163,8 @@
 - boolean 使用 `true`/`false`
 - int 匹配 `^-?[0-9]$`, 即十进制整数, 示例 `-1`,`0`,`1`, 不支持 `+1` 这种写法
 - string 使用 ' &#96; " 之一成对包裹, 内部字符转义使用 `\`\
-   所有的转义字符示例 `\\`, `\'`, `\"`, `` \` ``, `\n`, `\r`, `\t`, `\b`, `\xfF`, `\uffFF`\
-   不支持多行字符, 处于 `[0, 0x1F]` 的控制字符必须使用转义字符表示
+  所有的转义字符示例 `\\`, `\'`, `\"`, `` \` ``, `\n`, `\r`, `\t`, `\b`, `\xfF`, `\uffFF`\
+  不支持多行字符, 处于 `[0, 0x1F]` 的控制字符必须使用转义字符表示
 
 此外使用 string 时需要了解 [嵌套转义字符](#nest-escape) 以避免出现错误
 
@@ -189,7 +189,7 @@
 |   ~=   |    matches    |  正则匹配...  |
 |  !~=   |  notMatches   | 正则不匹配... |
 
-附加说明: `matches`/`notMatches` 要求 值 必须是合法的 [Java/Kotlin 正则表达式](https://docs.oracle.com/javase/8/docs/api/java/util/regex/Pattern.html), 否则提示语法错误
+附加说明: `matches`/`notMatches` 要求值必须是当前运行平台支持的 [Kotlin 正则表达式](https://kotlinlang.org/api/core/kotlin-stdlib/kotlin.text/-regex/), 否则提示语法错误。跨平台差异见下文的[正则表达式一致性](#regex-multiplatform)
 
 并且 `matches`/`notMatches` 右侧的值只能是 字面量/字符串
 
@@ -260,17 +260,17 @@
 
 - 前 5 种为 `+`, `-`, `>`, `<`, `<<`, 表示节点的相对位置
 
-<NImageGroup>
+<GkImagePreviewGroup>
 
-| 操作符 |        名称        |              图例               |                                  选择器                                   |
-| :----: | :----------------: | :-----------------------------: | :-----------------------------------------------------------------------: |
-|   +    |    前置兄弟节点    | <GImg src="0020.png" w-250px /> |   [\* + \[\_id=33\]](https://i.gkd.li/i/14045424?gkd=KiArIFtfaWQ9MzNd)    |
-|   -    |    后置兄弟节点    | <GImg src="0021.png" w-250px /> |   [\* - \[\_id=32\]](https://i.gkd.li/i/14045424?gkd=KiAtIFtfaWQ9MzJd)    |
-|   >    |      祖先节点      | <GImg src="0022.png" w-250px /> |   [\* > \[\_id=90\]](https://i.gkd.li/i/14045424?gkd=KiA-IFtfaWQ9OTBd)    |
-|   <    |     直接子节点     | <GImg src="0023.png" w-250px /> |   [\* < \[\_id=89\]](https://i.gkd.li/i/14045424?gkd=KiA8IFtfaWQ9ODld)    |
-|   <<   | 子孙节点(深度先序) | <GImg src="0024.png" w-250px /> | [\* <<2 \[\_id=29\]](https://i.gkd.li/i/14045424?gkd=KiA8PDIgW19pZD0yOV0) |
+| 操作符 |        名称        |                图例                |                                  选择器                                   |
+| :----: | :----------------: | :--------------------------------: | :-----------------------------------------------------------------------: |
+|   +    |    前置兄弟节点    | <GkImage src="0020.png" w-250px /> |   [\* + \[\_id=33\]](https://i.gkd.li/i/14045424?gkd=KiArIFtfaWQ9MzNd)    |
+|   -    |    后置兄弟节点    | <GkImage src="0021.png" w-250px /> |   [\* - \[\_id=32\]](https://i.gkd.li/i/14045424?gkd=KiAtIFtfaWQ9MzJd)    |
+|   >    |      祖先节点      | <GkImage src="0022.png" w-250px /> |   [\* > \[\_id=90\]](https://i.gkd.li/i/14045424?gkd=KiA-IFtfaWQ9OTBd)    |
+|   <    |     直接子节点     | <GkImage src="0023.png" w-250px /> |   [\* < \[\_id=89\]](https://i.gkd.li/i/14045424?gkd=KiA8IFtfaWQ9ODld)    |
+|   <<   | 子孙节点(深度先序) | <GkImage src="0024.png" w-250px /> | [\* <<2 \[\_id=29\]](https://i.gkd.li/i/14045424?gkd=KiA8PDIgW19pZD0yOV0) |
 
-</NImageGroup>
+</GkImagePreviewGroup>
 
 - 另外一种为 `->`, 用于查询过程中, 表示当前节点的之前节点
 
@@ -372,7 +372,7 @@ TextView[id=`com.byted.pangle:id/tt_item_tv`][text=`不感兴趣`] <n LinearLayo
 
 ### 正则表达式优化 {#regex-optimization}
 
-对 `matches`/`notMatches` 的优化: 如果正则表达式满足下面的条件, 选择器将使用内置的简单的函数匹配, 而不是真正地去运行一个正则表达式
+对 `matches`/`notMatches` 的优化：如果正则表达式满足下面的条件，选择器将使用内置的简单函数匹配，不再运行正则表达式
 
 - `[text~="(?is)abc.*"]` -> `startsWith('abc', ignoreCase = true)`
 - `[text~="(?is).*abc.*"]` -> `contains('abc', ignoreCase = true)`
@@ -381,38 +381,18 @@ TextView[id=`com.byted.pangle:id/tt_item_tv`][text=`不感兴趣`] <n LinearLayo
 - `[text!~="(?is).*abc.*"]` -> `notContains('abc', ignoreCase = true)`
 - `[text!~="(?is).*abc"]` -> `notEndsWith('abc', ignoreCase = true)`
 
-上面的 `abc` 指代不包含 `\^$.?*|+()[]{}` 这类特殊正则字符的任意字符串, 如 `ikun` 符合, `ikun?` 不符合, `ignoreCase = true` 表示忽略大小写
+上面的 `abc` 指代不包含 `\^$.?*|+()[]{}` 这类特殊正则字符的任意字符串，如 `ikun` 符合，`ikun?` 不符合。`ignoreCase = true` 表示忽略大小写
 
-简单来说就是如果你只想忽略大小写去简单匹配或不匹配一些字符串, 那么直接使用上面的格式
+如果只需要忽略大小写并进行简单的开头、包含或结尾匹配，可以直接使用上面的格式
 
 ### 正则表达式一致性 {#regex-multiplatform}
 
-由于 选择器 需要同时满足 浏览器/Js(审查工具), Android/Java(GKD) 运行, 而这两个平台的正则表达式的底层实现和语法表示略有不同
+除上一节列出的简单模式外，Android/JVM 使用 Kotlin `Regex`（Java `Pattern`），浏览器和 Node.js 使用 [`regex-wasm`](https://www.npmjs.com/package/regex-wasm) 提供的 Kotlin/Wasm `Regex`。JS 端不会回退到 JavaScript `RegExp`。
 
-因此为了在 Js 端实现和 Java 一致的正则表达式规范, 网页审查工具借助 [Kotlin Wasm](https://kotlinlang.org/docs/wasm-overview.html) 将正则表达式的 matches 函数接口编译为 wasm 提供给 Js 调用
+JVM 与 Wasm 对少数 JVM 专用字符类、Unicode 字符类和边界行为的支持可能不同。跨平台规则应避免 JVM 专用语法，并在两端分别验证。
 
-Kotlin Wasm 需要你的浏览器支持 [WasmGC](https://developer.chrome.com/blog/wasmgc?hl=zh-cn), 也就是版本需要满足下列条件
-
-<GImg src="0025.png" />
-
-如果你在 nodejs 使用 gkd 选择器, 需要 node>=22 版本
-
-如果你的 浏览器/nodejs 版本不满足, 正则表达式将自动回退到 Js 端实现, 以下是在 Js 端使用正则表达式需要注意的地方
-
-比如上面的正则表达式优化例子中开头的 `(?is)` 是 Java 正则表达式的 inline flags 语法, 但实际上 Js 并不支持这样写, 只是选择器内部做了一些兼容让它支持
-
-并且选择器的 Js 端只兼容在开头的 flags, 在内部的 flags 不支持, 此外 Java 和 Js 支持的 flags 也有不同, 某些特殊的表达式表现也不一致
-
-总之不要使用太过复杂(多复杂我也不知道)的正则表达式, 某些正则表达式有可能在审查工具上匹配, 但是在 GKD 上不匹配
-
-如果你能确保正则表达式在 Js 和 Java/Kotlin 的匹配行为一致, 那就没问题
-
-总之两种情况
-
-- 高版本 浏览器/nodejs 可以使用 **完整一致** 的正则表达式
-- 低版本 浏览器/nodejs 使用 **小范围不完整不一致** 的正则表达式
-
-如果你的选择器没有使用正则表达式则不用关心此问题
+> [!IMPORTANT] 运行环境要求
+> 浏览器必须使用支持 [WasmGC](https://developer.chrome.com/blog/wasmgc?hl=zh-cn) 的新版本，Node.js 必须使用 22 或更高版本。旧版浏览器和 Node.js 不受支持，也不会回退到 JavaScript 正则实现。
 
 ### 嵌套转义字符 {#nest-escape}
 

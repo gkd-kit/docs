@@ -99,7 +99,7 @@ sh /storage/emulated/0/Android/data/li.songe.gkd/files/sh/expose.sh
 - 在浏览器打开 [Github](https://github.com) 登录账号
 - 在 <https://github.com> 使用 f12 打开调试面板, 选中 网络-文档 后按 f5 刷新页面, 会出来一条 `github.com` 的记录
 - 点击这条记录, 选中 标头-请求标头-Cookie 的右侧文字, 按下 Ctrl+C 复制即可
-  <GImg src="0034.png" />
+  <GkImage src="0034.png" />
 - 复制成功后, 到 GKD 内 高级设置-快照-Github Cookie 编辑填入保存即可
 
 ### 在手机上获取 {#get-cookie-on-phone}
@@ -107,7 +107,7 @@ sh /storage/emulated/0/Android/data/li.songe.gkd/files/sh/expose.sh
 - 下载安装 [Via](https://viayoo.com) 浏览器
 - 在浏览器打开 [Github](https://github.com) 登录账号
 - 点击顶部地址栏左侧的图标, 在出现的菜单中点击 `查看 Cookies`, 出现的弹窗后点击 `复制文本`
-  <NImageGroup><GImg src="0035.png" class="w-[45%]" /> <GImg src="0036.png" class="w-[45%]" /></NImageGroup>
+  <GkImagePreviewGroup><GkImage src="0035.png" class="w-[45%]" /> <GkImage src="0036.png" class="w-[45%]" /></GkImagePreviewGroup>
 - 复制成功后, 到 GKD 内 高级设置-快照-Github Cookie 编辑填入保存即可
 
 ## 去除隐私信息 {#rm-privacy-info}

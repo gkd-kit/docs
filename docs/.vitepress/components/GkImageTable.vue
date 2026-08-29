@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { convertSrc } from '../utils/img';
-import GImg from './GImg';
-import { NImageGroup } from './naive';
+import GkImage from './GkImage.vue';
+import GkImagePreviewGroup from './GkImagePreviewGroup.vue';
 
 withDefaults(
   defineProps<{
@@ -13,13 +13,13 @@ withDefaults(
 <template>
   <table>
     <tbody>
-      <NImageGroup>
+      <GkImagePreviewGroup>
         <tr v-for="(imgs, i) in images" :key="i">
           <td v-for="src in imgs" :key="src">
-            <GImg :src="convertSrc(src)" />
+            <GkImage :src="convertSrc(src)" />
           </td>
         </tr>
-      </NImageGroup>
+      </GkImagePreviewGroup>
     </tbody>
   </table>
 </template>

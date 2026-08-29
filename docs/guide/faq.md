@@ -63,7 +63,7 @@ shizuku 是一个能让普通应用通过 ADB 或 Root 权限直接调用 Androi
 
 某些系统如 MagicOS9 需要打开 `允许后台活动`, 否则 GKD 在后台时会被系统暂停执行
 
-<GImg src="0038.jpg" />
+<GkImage src="0038.jpg" />
 
 ## 受限制的设置 {#restriction}
 
@@ -75,7 +75,7 @@ shizuku 是一个能让普通应用通过 ADB 或 Root 权限直接调用 Androi
 
 > 系统已拒绝向此应用授予访问权限
 
-<ImageTable :images="[['0014.png','0039.jpg',]]" />
+<GkImageTable :images="[['0014.png','0039.jpg',]]" />
 
 这是因为某些系统对于 不在应用商店等可信任来源安装的 不能直接开启无障碍权限
 
@@ -89,16 +89,16 @@ shizuku 是一个能让普通应用通过 ADB 或 Root 权限直接调用 Androi
     </tr>
   </thead>
   <tbody>
-    <NImageGroup>
+    <GkImagePreviewGroup>
       <tr>
         <td>
-          <GImg src="0016.png" />
+          <GkImage src="0016.png" />
         </td>
         <td>
-          <GImg src="0040.jpg" />
+          <GkImage src="0040.jpg" />
         </td>
       </tr>
-    </NImageGroup>
+    </GkImagePreviewGroup>
   </tbody>
 </table>
 
@@ -122,7 +122,7 @@ shizuku 是一个能让普通应用通过 ADB 或 Root 权限直接调用 Androi
 - 如果使用系统安装器, 但是在冻结了应用安装器 `com.oplus.appdetail` 状态下安装的 APK, 需解冻后重新安装
 
 - 使用 [App Ops](https://appops.rikka.app/) 在权限管理中手动授予 ACCESS_RESTRICTED_SETTINGS 权限
-  <GImg src="0037.png" />
+  <GkImage src="0037.png" />
 
 ## 关闭无障碍警告弹窗 {#close_warn_dialog}
 
@@ -135,7 +135,7 @@ shizuku 是一个能让普通应用通过 ADB 或 Root 权限直接调用 Androi
 
 若是只需要开启一次则无所谓但是如果开启次数比较多每次都有这个警告等待就很烦人了
 
-<ImageTable :images="[['0004.png', '0005.png']]" />
+<GkImageTable :images="[['0004.png', '0005.png']]" />
 
 你可能已经看到这个界面还有一个开关, 也就是下方的 `快捷方式` 开关
 
@@ -145,7 +145,7 @@ shizuku 是一个能让普通应用通过 ADB 或 Root 权限直接调用 Androi
 
 以 Xiaomi HyperOS 为例子, 下面是完整的关闭弹窗流程截图
 
-<ImageTable :images="[['0009.png', '0010.png', '0011.png', '0012.png']]" />
+<GkImageTable :images="[['0009.png', '0010.png', '0011.png', '0012.png']]" />
 
 ## adb 授权失败 {#adb_failed}
 

@@ -761,7 +761,7 @@ export type SwipeArg = {
 
   /**
    * 结束坐标, 计算方式同 {@link Position}, 默认值为 start 位置
-   * 
+   *
    * 如果开始坐标和结束坐标完全相同, 可以作为自定义时长的点击使用
    */
   end?: Position;
@@ -857,7 +857,7 @@ export type Position = {
 
   /**
    * 距离屏幕左侧的距离
-   * 
+   *
    * 需要注意的是，如果是小窗或分屏模式下，使用 x/y 定位时，坐标是相对于整个屏幕的，因此可能会导致点击位置在应用窗口外部
    */
   x?: string | number;

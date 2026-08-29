@@ -50,8 +50,8 @@
 
 但是 Android 提供了如下两个快速获取节点的 Api
 
-- [findAccessibilityNodeInfosByViewId](https://developer.android.google.cn/reference/android/view/accessibility/AccessibilityNodeInfo#findAccessibilityNodeInfosByViewId(java.lang.String))
-- [findAccessibilityNodeInfosByText](https://developer.android.google.cn/reference/android/view/accessibility/AccessibilityNodeInfo#findAccessibilityNodeInfosByText(java.lang.String))
+- [findAccessibilityNodeInfosByViewId](<https://developer.android.google.cn/reference/android/view/accessibility/AccessibilityNodeInfo#findAccessibilityNodeInfosByViewId(java.lang.String)>)
+- [findAccessibilityNodeInfosByText](<https://developer.android.google.cn/reference/android/view/accessibility/AccessibilityNodeInfo#findAccessibilityNodeInfosByText(java.lang.String)>)
 
 这使得可以通过 `id`/`vid`/`text` 直接获取子孙节点
 

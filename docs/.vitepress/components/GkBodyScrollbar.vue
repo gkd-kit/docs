@@ -139,7 +139,7 @@ useEventListener('selectstart', (e) => {
 });
 </script>
 <template>
-  <div fixed z-100 class="BodyScrollbar">
+  <div fixed z-100 class="GkBodyScrollbar">
     <div
       v-show="yShow"
       scrollbar-y

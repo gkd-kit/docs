@@ -8,11 +8,12 @@
     "declaration": true,
     "declarationMap": true,
     "sourceMap": true,
+    "types": ["node"],
     "esModuleInterop": true,
     "forceConsistentCasingInFileNames": true,
     "strict": true,
     "skipLibCheck": true,
-    "isolatedModules": true,
+    "isolatedModules": true
   },
-  "include": ["./src/**/*.ts", "./tests/**/*.ts"],
+  "include": ["./src/**/*.ts", "./tests/**/*.ts", "./docs/**/*.ts"]
 }

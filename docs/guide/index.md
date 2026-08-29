@@ -2,14 +2,14 @@
 
 ## 安装 {#install}
 
-<GkdOnly>
+<GkInAppOnly>
 
 > [!TIP] 下载提示
 > 检测到您在应用内无法下载 APK，请点击右上角-外部打开后下载
 
-</GkdOnly>
+</GkInAppOnly>
 
-<ApkTable />
+<GkApkTable />
 
 ::: details 手机浏览器下载失败?
 某些手机浏览器存在自定义拦截会导致下载失败, 建议使用 [Via](https://viayoo.com) 浏览器下载
@@ -30,6 +30,6 @@
 
 以 Xiaomi HyperOS 为例, 下面为完整的授权流程截图
 
-<ImageTable :images="[['0001.png','0002.png','0003.png','0004.png'], ['0005.png','0006.png','0007.png','0008.png']]" />
+<GkImageTable :images="[['0001.png','0002.png','0003.png','0004.png'], ['0005.png','0006.png','0007.png','0008.png']]" />
 
 如遇到问题可在 [常见问题](/guide/faq) 查阅解决方案

@@ -3,14 +3,12 @@ import type { ImportExpression, Literal } from 'acorn';
 import MagicString from 'magic-string';
 import fs from 'node:fs/promises';
 import process from 'node:process';
-import type { Plugin } from 'vite';
-import type selfPkgT from '../../package.json';
+import { minify, type Plugin } from 'vite';
 import path from 'node:path';
-import { transformWithEsbuild } from 'vite';
 
-const selfPkg: typeof selfPkgT = JSON.parse(
+const selfPkg = JSON.parse(
   await fs.readFile(process.cwd() + '/package.json', 'utf-8'),
-);
+) as { version: string };
 
 const useMirror = process.env.MIRROR == `ON`;
 
@@ -167,9 +165,7 @@ const getModernPolyfillsFilePath = async (): Promise<string> => {
 };
 
 const minifyCode = async (code: string): Promise<string> => {
-  const result = await transformWithEsbuild(code, 'any.js', {
-    minify: true,
-  });
+  const result = await minify('inline.js', code);
   return result.code;
 };
 

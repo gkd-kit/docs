@@ -1,8 +1,13 @@
 packages:
   - docs
   - api
-onlyBuiltDependencies:
-  - esbuild
-  - core-js
-public-hoist-pattern:
+registry: https://registry.npmjs.org/
+allowBuilds:
+  core-js: true
+  esbuild: true
+publicHoistPattern:
   - '@vitejs/*'
+  - vue
+  - vite
+  - rollup
+  - acorn

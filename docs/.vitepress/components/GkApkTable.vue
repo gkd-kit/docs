@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { onMounted } from 'vue';
-import DownloadText from './DownloadText.vue';
+import GkDownloadText from './GkDownloadText.vue';
 import {
   betaReleaseRef,
   stableReleaseRef,
@@ -24,7 +24,7 @@ onMounted(refreshRelease);
       <tr>
         <td>正式版</td>
         <td>
-          <DownloadText
+          <GkDownloadText
             :href="stableReleaseRef.href"
             :name="stableReleaseRef.filename"
           />
@@ -36,7 +36,7 @@ onMounted(refreshRelease);
       <tr v-if="betaReleaseRef.filename !== stableReleaseRef.filename">
         <td>测试版</td>
         <td>
-          <DownloadText
+          <GkDownloadText
             :href="betaReleaseRef.href"
             :name="betaReleaseRef.filename"
           />

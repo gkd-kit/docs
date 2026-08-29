@@ -1,1 +1,1 @@
-export * from './mirror';
+export * from './mirror.ts';

@@ -10,11 +10,11 @@ import {
   shallowRef,
   Teleport,
 } from 'vue';
-import components from '../components';
-import BodyScrollbar from '../components/BodyScrollbar.vue';
+import GkBodyScrollbar from '../components/GkBodyScrollbar.vue';
+import { registerComponents } from '../components/registerComponents';
 import './custom.css';
 
-const ScrollbarWrapper = defineComponent(() => {
+const GkScrollbarWrapper = defineComponent(() => {
   const show = shallowRef(false);
   onMounted(() => {
     const isMobile = 'ontouchstart' in document.documentElement;
@@ -26,7 +26,7 @@ const ScrollbarWrapper = defineComponent(() => {
   });
   return () => {
     return show.value
-      ? h(Teleport, { to: document.body }, h(BodyScrollbar))
+      ? h(Teleport, { to: document.body }, h(GkBodyScrollbar))
       : undefined;
   };
 });
@@ -197,7 +197,7 @@ if (!import.meta.env.SSR) {
   });
 }
 
-const Redirect = defineComponent(() => {
+const GkRedirect = defineComponent(() => {
   const router = useRouter();
   onMounted(() => {
     handleCompatRedirect(router);
@@ -216,13 +216,11 @@ export default {
   Layout() {
     return h(Fragment, null, [
       h(DefaultTheme.Layout),
-      h(ScrollbarWrapper),
-      h(Redirect),
+      h(GkScrollbarWrapper),
+      h(GkRedirect),
     ]);
   },
   enhanceApp({ app }) {
-    Object.entries(components).forEach(([name, component]) => {
-      app.component(name, component);
-    });
+    registerComponents(app);
   },
 } satisfies Theme;

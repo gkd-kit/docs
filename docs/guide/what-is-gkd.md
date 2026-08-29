@@ -16,7 +16,7 @@ GKD 是一款基于无障碍，高级选择器，订阅规则的自定义屏幕�
 
 ## 截图 {#screenshot}
 
-<ImageTable
+<GkImageTable
   :images="[
     ['0048.png', '0049.png', '0050.png', '0051.png'],
     ['0052.png', '0053.png', '0054.png', '0055.png']

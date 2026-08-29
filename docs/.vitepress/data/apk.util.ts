@@ -41,4 +41,3 @@ export const getApkVersionInfo = async (
     : 'https://registry.npmmirror.com/@gkd-kit/app-beta/latest/files/index.json';
   return getVersionInfo(url);
 };
-

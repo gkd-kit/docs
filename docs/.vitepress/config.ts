@@ -1,6 +1,6 @@
 import { defineConfig } from 'vitepress';
-import typedocSidebar from '../api/typedoc-sidebar.json';
-import { transformHtml, buildEnd } from './plugins';
+import typedocSidebar from '../api/typedoc-sidebar.json' with { type: 'json' };
+import { transformHtml, buildEnd } from './plugins/index.ts';
 
 export default defineConfig({
   title: 'GKD',
@@ -18,8 +18,9 @@ export default defineConfig({
   lastUpdated: true,
   themeConfig: {
     logo: 'https://registry.npmmirror.com/@gkd-kit/docs/0.0.1706371840771/files/.vitepress/dist/logo.svg',
-    lastUpdatedText: '最后更新于',
-    outlineTitle: '页面导航',
+    lastUpdated: {
+      text: '最后更新于',
+    },
     returnToTopLabel: '回到顶部',
     darkModeSwitchLabel: '深色主题',
     sidebarMenuLabel: '菜单',
@@ -27,7 +28,10 @@ export default defineConfig({
       prev: '上一页',
       next: '下一页',
     },
-    outline: [2, 3],
+    outline: {
+      level: [2, 3],
+      label: '页面导航',
+    },
     nav: [
       { text: '指引', link: '/guide/', activeMatch: '/guide/' },
       { text: 'API', link: '/api/', activeMatch: '/api/' },
@@ -65,10 +69,7 @@ export default defineConfig({
           ],
         },
       ],
-      '/api/': [
-        { link: '/api/', text: 'API Reference' },
-        ...typedocSidebar.map((v) => ({ ...v, collapsed: undefined })),
-      ],
+      '/api/': [{ link: '/api/', text: 'API 参考' }, ...typedocSidebar],
     },
     editLink: {
       pattern: 'https://github.com/gkd-kit/docs/edit/main/docs/:path',

@@ -13,20 +13,19 @@ jobs:
   deploy:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
+      - uses: actions/checkout@v7
 
-      - uses: actions/setup-node@v4
+      - uses: actions/setup-node@v7
         with:
-          node-version: 24
+          node-version-file: 'package.json'
 
-      - uses: pnpm/action-setup@v4
-      - run: pnpm -v
+      - uses: pnpm/action-setup@v6
 
-      - run: pnpm install --frozen-lockfile
+      - run: pnpm install
 
       - run: pnpm -F @gkd-kit/docs exec tsx ./.vitepress/scripts/updateVersion.ts
 
-      - run: pnpm -F @gkd-kit/api run predocs:build
+      - run: pnpm -F @gkd-kit/api run docs:build
       - run: pnpm -F @gkd-kit/docs run docs:build-mirror
 
       - run: pnpm -F @gkd-kit/docs publish --no-git-checks
@@ -43,7 +42,7 @@ jobs:
           publish-dir: ./docs/.vitepress/dist
           production-branch: main
           github-token: ${{ secrets.GITHUB_TOKEN }}
-          deploy-message: "Deploy from GitHub Actions"
+          deploy-message: 'Deploy from GitHub Actions'
           enable-pull-request-comment: false
           enable-commit-comment: false
         env:

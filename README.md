@@ -12,8 +12,6 @@ GKD 文档(尚未开发完毕), 基于 [vitepress](https://vitepress.dev/zh/) �
 
 然后 [Fork](https://github.com/gkd-kit/docs/fork) 仓库
 
-准备环境: node20+, pnpm9+ 最好使用最新版本
-
 安装依赖
 
 ```sh
