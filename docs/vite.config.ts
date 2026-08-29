@@ -7,7 +7,7 @@ import legacy from '@vitejs/plugin-legacy';
 export default defineConfig({
   plugins: [
     data({
-      include: (v) => v.endsWith('.load.ts'),
+      filter: /^(?!.*[\\\/]node_modules[\\\/]).*\.load\.(js|mjs|ts|mts)$/,
     }),
     unocss({ inspector: false }),
     mirror(),
