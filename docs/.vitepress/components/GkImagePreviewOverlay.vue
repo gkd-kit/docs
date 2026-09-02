@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { computed } from 'vue';
+import { computed, onMounted, shallowRef } from 'vue';
 import type { GkImagePreviewController } from './useImagePreview';
 
 const props = defineProps<{
@@ -21,7 +21,10 @@ const {
   handleWheel,
 } = props.controller;
 
-const isSsr = import.meta.env.SSR;
+const mounted = shallowRef(false);
+onMounted(() => {
+  mounted.value = true;
+});
 const imageStyle = computed(() => ({
   transform: `scale(${zoom.value}) rotate(${rotation.value}deg)`,
 }));
@@ -29,7 +32,7 @@ const zoomLabel = computed(() => `${Math.round(zoom.value * 100)}%`);
 </script>
 
 <template>
-  <Teleport v-if="!isSsr" to="body">
+  <Teleport v-if="mounted" to="body">
     <div
       v-if="currentItem"
       ref="overlay"
