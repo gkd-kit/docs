@@ -372,27 +372,29 @@ TextView[id=`com.byted.pangle:id/tt_item_tv`][text=`不感兴趣`] <n LinearLayo
 
 ### 正则表达式优化 {#regex-optimization}
 
-对 `matches`/`notMatches` 的优化：如果正则表达式满足下面的条件，选择器将使用内置的简单函数匹配，不再运行正则表达式
+对 `matches`/`notMatches` 的优化：如果正则表达式满足下面的条件，选择器将优先使用内置的简单函数匹配
 
-- `[text~="(?is)abc.*"]` -> `startsWith('abc', ignoreCase = true)`
-- `[text~="(?is).*abc.*"]` -> `contains('abc', ignoreCase = true)`
-- `[text~="(?is).*abc"]` -> `endsWith('abc', ignoreCase = true)`
-- `[text!~="(?is)abc.*"]` -> `notStartsWith('abc', ignoreCase = true)`
-- `[text!~="(?is).*abc.*"]` -> `notContains('abc', ignoreCase = true)`
-- `[text!~="(?is).*abc"]` -> `notEndsWith('abc', ignoreCase = true)`
+- `[text~="(?is)abc.*"]` -> ASCII 忽略大小写的 `startsWith('abc')`
+- `[text~="(?is).*abc.*"]` -> ASCII 忽略大小写的 `contains('abc')`
+- `[text~="(?is).*abc"]` -> ASCII 忽略大小写的 `endsWith('abc')`
+- `[text!~="(?is)abc.*"]` -> ASCII 忽略大小写的 `notStartsWith('abc')`
+- `[text!~="(?is).*abc.*"]` -> ASCII 忽略大小写的 `notContains('abc')`
+- `[text!~="(?is).*abc"]` -> ASCII 忽略大小写的 `notEndsWith('abc')`
 
-上面的 `abc` 指代不包含 `\^$.?*|+()[]{}` 这类特殊正则字符的任意字符串，如 `ikun` 符合，`ikun?` 不符合。`ignoreCase = true` 表示忽略大小写
+上面的 `abc` 指代不包含 `\^$.?*|+()[]{}` 这类特殊正则字符，且所有具有大小写形式的字符均属于 ASCII 的任意字符串。例如 `ikun` 和 `a你b好c` 符合，`äbc`、`ikun?` 不符合。没有大小写形式的 Unicode 字符会按原字符精确比较
+
+运行时只有能够确定结果时才使用快速匹配；如果输入涉及 `K`、`ſ` 等非 ASCII 大小写折叠，选择器会回退到当前平台的正则实现，保证优化不会改变该平台原有的匹配结果
 
 如果只需要忽略大小写并进行简单的开头、包含或结尾匹配，可以直接使用上面的格式
 
 ### 正则表达式一致性 {#regex-multiplatform}
 
-除上一节列出的简单模式外，Android/JVM 使用 Kotlin `Regex`（Java `Pattern`），浏览器和 Node.js 使用 [`regex-wasm`](https://www.npmjs.com/package/regex-wasm) 提供的 Kotlin/Wasm `Regex`。JS 端不会回退到 JavaScript `RegExp`。
+Android/JVM 使用 Kotlin `Regex`（Java `Pattern`），浏览器和 Node.js 使用 [`regex-wasm`](https://www.npmjs.com/package/regex-wasm) 提供的 Kotlin/Wasm `Regex`。
 
 JVM 与 Wasm 对少数 JVM 专用字符类、Unicode 字符类和边界行为的支持可能不同。跨平台规则应避免 JVM 专用语法，并在两端分别验证。
 
 > [!IMPORTANT] 运行环境要求
-> 浏览器必须使用支持 [WasmGC](https://developer.chrome.com/blog/wasmgc?hl=zh-cn) 的新版本，Node.js 必须使用 22 或更高版本。旧版浏览器和 Node.js 不受支持，也不会回退到 JavaScript 正则实现。
+> JS 包会在导入时初始化 `regex-wasm`，因此运行环境必须支持 [WebAssembly GC](https://developer.chrome.com/blog/wasmgc?hl=zh-cn)，即使只调用 `Selector.tokenize` 进行语法高亮也不例外。请使用 Node.js 22 或更高版本，或支持 WebAssembly GC 的新版浏览器。
 
 ### 嵌套转义字符 {#nest-escape}
 
