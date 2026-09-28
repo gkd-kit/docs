@@ -7,6 +7,20 @@ export default defineConfig({
   description: '自定义屏幕点击应用',
   head: [
     [
+      'script',
+      {},
+      `(() => {
+        try {
+          const host = globalThis.gkd;
+          if (typeof host?.isDarkTheme !== 'function') return;
+          const dark = host.isDarkTheme();
+          if (typeof dark !== 'boolean') return;
+          localStorage.setItem('vitepress-theme-appearance', dark ? 'dark' : 'light');
+          document.documentElement.classList.toggle('dark', dark);
+        } catch (_) {}
+      })();`,
+    ],
+    [
       'link',
       {
         rel: 'icon',
