@@ -11,6 +11,7 @@ import {
   Teleport,
 } from 'vue';
 import GkBodyScrollbar from '../components/GkBodyScrollbar.vue';
+import { setupHostTheme } from './hostTheme';
 import { registerComponents } from '../components/registerComponents';
 import './custom.css';
 
@@ -213,6 +214,7 @@ const GkRedirect = defineComponent(() => {
 
 export default {
   extends: DefaultTheme,
+  setup: setupHostTheme,
   Layout() {
     return h(Fragment, null, [
       h(DefaultTheme.Layout),
