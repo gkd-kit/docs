@@ -14,5 +14,10 @@
   "scripts": {
     "docs:build": "tsx docs/generate.ts",
     "postpublish": "curl -X PUT https://registry-direct.npmmirror.com/@gkd-kit/api/sync"
+  },
+  "devDependencies": {
+    "typedoc": "catalog:",
+    "typedoc-plugin-markdown": "catalog:",
+    "typescript": "catalog:typedoc"
   }
 }

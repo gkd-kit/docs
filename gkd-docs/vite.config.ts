@@ -1,4 +1,4 @@
-import unocss from 'unocss/vite';
+import tailwindcss from '@tailwindcss/vite';
 import { defineConfig } from 'vite';
 import { mirror } from './.vitepress/plugins/index.ts';
 import data from 'unplugin-data/vite';
@@ -9,7 +9,7 @@ export default defineConfig({
     data({
       filter: /^(?!.*[\\\/]node_modules[\\\/]).*\.load\.(js|mjs|ts|mts)$/,
     }),
-    unocss({ inspector: false }),
+    tailwindcss(),
     mirror(),
     legacy({
       renderLegacyChunks: false,

@@ -86,7 +86,7 @@ export default defineConfig({
       '/api/': [{ link: '/api/', text: 'API 参考' }, ...typedocSidebar],
     },
     editLink: {
-      pattern: 'https://github.com/gkd-kit/docs/edit/main/docs/:path',
+      pattern: 'https://github.com/gkd-kit/docs/edit/main/gkd-docs/:path',
       text: '为此页提供修改建议',
     },
     search: {

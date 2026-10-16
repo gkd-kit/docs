@@ -29,7 +29,7 @@ type SidebarItem = {
 const currentDir = path.dirname(fileURLToPath(import.meta.url));
 const apiRoot = path.resolve(currentDir, '..');
 const repositoryRoot = path.resolve(apiRoot, '..');
-const destinationDir = path.resolve(repositoryRoot, 'docs/api');
+const destinationDir = path.resolve(repositoryRoot, 'gkd-docs/api');
 const cacheOutputDir = path.join(apiRoot, '.cache', 'typedoc');
 const toPosixPath = (value: string) => value.replaceAll('\\', '/');
 

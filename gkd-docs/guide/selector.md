@@ -69,7 +69,7 @@
 <table>
   <thead>
     <tr>
-      <th colspan="2"> <div text-center>值表达式</div> </th>
+      <th colspan="2"> <div class="text-center">值表达式</div> </th>
       <th>示例</th>
     </tr>
   </thead>
@@ -262,13 +262,13 @@
 
 <GkImagePreviewGroup>
 
-| 操作符 |        名称        |                图例                |                                  选择器                                   |
-| :----: | :----------------: | :--------------------------------: | :-----------------------------------------------------------------------: |
-|   +    |    前置兄弟节点    | <GkImage src="0020.png" w-250px /> |   [\* + \[\_id=33\]](https://i.gkd.li/i/14045424?gkd=KiArIFtfaWQ9MzNd)    |
-|   -    |    后置兄弟节点    | <GkImage src="0021.png" w-250px /> |   [\* - \[\_id=32\]](https://i.gkd.li/i/14045424?gkd=KiAtIFtfaWQ9MzJd)    |
-|   >    |      祖先节点      | <GkImage src="0022.png" w-250px /> |   [\* > \[\_id=90\]](https://i.gkd.li/i/14045424?gkd=KiA-IFtfaWQ9OTBd)    |
-|   <    |     直接子节点     | <GkImage src="0023.png" w-250px /> |   [\* < \[\_id=89\]](https://i.gkd.li/i/14045424?gkd=KiA8IFtfaWQ9ODld)    |
-|   <<   | 子孙节点(深度先序) | <GkImage src="0024.png" w-250px /> | [\* <<2 \[\_id=29\]](https://i.gkd.li/i/14045424?gkd=KiA8PDIgW19pZD0yOV0) |
+| 操作符 |        名称        |                     图例                     |                                  选择器                                   |
+| :----: | :----------------: | :------------------------------------------: | :-----------------------------------------------------------------------: |
+|   +    |    前置兄弟节点    | <GkImage src="0020.png" class="w-[250px]" /> |   [\* + \[\_id=33\]](https://i.gkd.li/i/14045424?gkd=KiArIFtfaWQ9MzNd)    |
+|   -    |    后置兄弟节点    | <GkImage src="0021.png" class="w-[250px]" /> |   [\* - \[\_id=32\]](https://i.gkd.li/i/14045424?gkd=KiAtIFtfaWQ9MzJd)    |
+|   >    |      祖先节点      | <GkImage src="0022.png" class="w-[250px]" /> |   [\* > \[\_id=90\]](https://i.gkd.li/i/14045424?gkd=KiA-IFtfaWQ9OTBd)    |
+|   <    |     直接子节点     | <GkImage src="0023.png" class="w-[250px]" /> |   [\* < \[\_id=89\]](https://i.gkd.li/i/14045424?gkd=KiA8IFtfaWQ9ODld)    |
+|   <<   | 子孙节点(深度先序) | <GkImage src="0024.png" class="w-[250px]" /> | [\* <<2 \[\_id=29\]](https://i.gkd.li/i/14045424?gkd=KiA8PDIgW19pZD0yOV0) |
 
 </GkImagePreviewGroup>
 

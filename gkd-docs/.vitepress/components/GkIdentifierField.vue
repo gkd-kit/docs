@@ -20,12 +20,12 @@ const test = computed(() => {
       placeholder="请输入标识符测试是否合法"
       type="text"
       v-model="value"
-      class="flex h-9 w-full rounded-md border border-input bg-transparent px-3 py-1 text-sm shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-muted-foreground focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-ring disabled:cursor-not-allowed disabled:opacity-50"
+      class="flex h-9 w-full rounded-md border border-[var(--vp-c-divider)] bg-transparent px-3 py-1 text-sm shadow-sm transition-colors file:border-0 file:bg-transparent file:text-sm file:font-medium placeholder:text-[var(--vp-c-text-3)] focus-visible:outline-none focus-visible:ring-1 focus-visible:ring-[var(--vp-c-brand-1)] disabled:cursor-not-allowed disabled:opacity-50"
     />
     <div
-      mt-4px
+      class="mt-[4px]"
       :class="{
-        'color-red': !test,
+        'text-red-500': !test,
         'opacity-0': !lazyValue || !value,
       }"
     >

@@ -139,50 +139,38 @@ useEventListener('selectstart', (e) => {
 });
 </script>
 <template>
-  <div fixed z-100 class="GkBodyScrollbar">
+  <div class="GkBodyScrollbar fixed z-100">
     <div
       v-show="yShow"
       scrollbar-y
-      fixed
-      right-2px
-      top-0
-      bottom-0
-      w-8px
+      class="fixed right-[2px] top-0 bottom-0 w-[8px]"
       @pointerdown="pointerdownY"
       @click="clickBoxY"
     >
       <div
         @click.stop
-        w-full
-        bg="#909399"
-        opacity-30
-        hover:opacity="50"
+        class="w-full bg-[#909399] hover:opacity-50"
         :style="yStyle"
         :class="{
           'opacity-50': yDragging,
+          'opacity-30': !yDragging,
         }"
       ></div>
     </div>
     <div
       v-if="xShow"
       scrollbar-x
-      fixed
-      bottom-2px
-      left-0
-      right-0
-      h-8px
+      class="fixed bottom-[2px] left-0 right-0 h-[8px]"
       @pointerdown="pointerdownX"
       @click="clickBoxX"
     >
       <div
         @click.stop
-        h-full
-        bg="#909399"
-        opacity-30
-        hover:opacity="50"
+        class="h-full bg-[#909399] hover:opacity-50"
         :style="xStyle"
         :class="{
           'opacity-50': xDragging,
+          'opacity-30': !xDragging,
         }"
       ></div>
     </div>

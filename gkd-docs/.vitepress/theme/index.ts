@@ -1,4 +1,4 @@
-import 'uno.css';
+import './tailwind.css';
 import { type Router, type Theme, useRouter } from 'vitepress';
 import DefaultTheme from 'vitepress/theme';
 import {

@@ -35,7 +35,7 @@ const download = async () => {
 </script>
 <template>
   <a
-    relative
+    class="relative"
     :class="{
       'cursor-progress': loading,
       'cursor-pointer': !loading,
@@ -52,16 +52,9 @@ const download = async () => {
     </span>
     <div
       v-if="loading"
-      pointer-events-none
-      absolute
-      left="1/1"
-      top-0
-      bottom-0
-      flex
-      items-center
-      pl-4px
+      class="pointer-events-none absolute left-full top-0 bottom-0 flex items-center pl-[4px]"
     >
-      <svg animate-spin size-16px viewBox="0 0 16 16" fill="none">
+      <svg class="animate-spin size-[16px]" viewBox="0 0 16 16" fill="none">
         <circle
           cx="8"
           cy="8"
