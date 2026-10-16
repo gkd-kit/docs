@@ -1,0 +1,41 @@
+{
+  "name": "@gkd-kit/tools",
+  "type": "module",
+  "version": "0.8.0",
+  "main": "./src/index.ts",
+  "sideEffects": false,
+  "files": [
+    "dist"
+  ],
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/",
+    "main": "./dist/index.mjs",
+    "types": "./dist/index.d.mts",
+    "bin": {
+      "gkd-tools": "./dist/cli.mjs"
+    }
+  },
+  "scripts": {
+    "build": "tsdown",
+    "prepublish": "tsdown",
+    "postpublish": "curl -X PUT https://registry-direct.npmmirror.com/@gkd-kit/tools/sync",
+    "test": "node --test src/*.test.ts"
+  },
+  "peerDependencies": {
+    "@gkd-kit/api": "*",
+    "json5": "*",
+    "@gkd-kit/selector": "catalog:"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gkd-kit/docs",
+    "directory": "gkd-tools"
+  },
+  "bin": {
+    "gkd-tools": "./src/cli.ts"
+  },
+  "engines": {
+    "node": ">=22.18.0"
+  }
+}

@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed, onBeforeUnmount } from 'vue';
 import GkImagePreviewOverlay from './GkImagePreviewOverlay.vue';
-import { useImagePreview, useInjectedImagePreview } from './useImagePreview';
+import { useImagePreview, useInjectedImagePreview } from './useImagePreview.ts';
 
 defineOptions({ inheritAttrs: false });
 

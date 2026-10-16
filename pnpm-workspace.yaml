@@ -1,9 +1,13 @@
 packages:
   - gkd-docs
   - gkd-api
+  - gkd-tools
+  - gkd-define
+  - gkd-template
 registry: https://registry.npmjs.org/
 allowBuilds:
   core-js: true
+  simple-git-hooks: false
   esbuild: true
 publicHoistPattern:
   - '@vitejs/*'
@@ -11,8 +15,19 @@ publicHoistPattern:
   - vite
   - rollup
   - acorn
-
 catalog:
+  '@eslint/js': ^9.33.0
+  acorn: ^8.15.0
+  dayjs: ^1.11.13
+  eslint: ^9.33.0
+  eslint-config-prettier: ^10.1.8
+  eslint-plugin-prettier: ^5.5.7
+  eslint-plugin-unused-imports: ^4.1.4
+  json5: ^2.2.3
+  lint-staged: ^16.1.5
+  simple-git-hooks: ^2.13.1
+  typescript-eslint: ^8.39.1
+  tsdown: ^0.23.1
   '@gkd-kit/selector': ^0.6.1
   '@tailwindcss/vite': ^4.3.3
   '@types/file-saver': ^2.0.7
@@ -20,26 +35,20 @@ catalog:
   '@types/node': ^26.6.5
   '@vitejs/plugin-legacy': ^8.2.3
   '@vueuse/core': ^15.0.0
-  'acorn-walk': ^8.3.5
-  'cross-env': ^10.1.0
-  'file-saver': ^2.0.5
-  'jsdom': ^30.1.3
-  'magic-string': ^1.4.3
-  'markdown-it-mathjax3': ^5.2.0
-  'prettier': ^3.9.10
-  'tailwindcss': ^4.3.3
-  'terser': ^5.51.2
-  'tsx': ^4.23.15
-  'typedoc': ^0.28.20
-  'typedoc-plugin-markdown': ^4.14.0
-  'typescript': ^7.0.2
-  'unplugin-data': ^0.2.0
-  'vite': ^8.3.4
-  'vitepress': 2.0.0-alpha.20
-
+  acorn-walk: ^8.3.5
+  cross-env: ^10.1.0
+  file-saver: ^2.0.5
+  jsdom: ^30.1.3
+  magic-string: ^1.4.3
+  markdown-it-mathjax3: ^5.2.0
+  prettier: ^3.9.10
+  tailwindcss: ^4.3.3
+  terser: ^5.51.2
+  typedoc: ^0.28.20
+  typedoc-plugin-markdown: ^4.14.0
+  typescript: ^6.0.3
+  unplugin-data: ^0.2.0
+  vite: ^8.3.4
+  vitepress: ^2.0.0-alpha.20
 minimumReleaseAgeExclude:
   - jsdom@30.1.3
-
-catalogs:
-  typedoc:
-    typescript: ^6.0.3

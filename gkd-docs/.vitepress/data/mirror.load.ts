@@ -1,4 +1,4 @@
-import { customFetch } from './fetch';
+import { customFetch } from './fetch.ts';
 
 const getPkgLatestVersion = async (name: string): Promise<string> => {
   const url = `https://registry.npmmirror.com/${name}/latest`;

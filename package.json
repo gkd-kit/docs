@@ -7,27 +7,45 @@
     "dev": "pnpm build:api && pnpm -F @gkd-kit/docs docs:dev",
     "build:api": "pnpm -F @gkd-kit/api docs:build",
     "build": "pnpm build:api && pnpm -F @gkd-kit/docs docs:build",
-    "preview": "pnpm -F @gkd-kit/docs docs:preview"
+    "preview": "pnpm -F @gkd-kit/docs docs:preview",
+    "build:packages": "pnpm --filter @gkd-kit/define --filter @gkd-kit/tools build",
+    "lint": "eslint --cache --fix ."
   },
   "dependencies": {
+    "@eslint/js": "catalog:",
+    "@gkd-kit/api": "workspace:*",
+    "@gkd-kit/define": "workspace:*",
     "@gkd-kit/selector": "catalog:",
+    "@gkd-kit/tools": "workspace:*",
     "@tailwindcss/vite": "catalog:",
     "@types/file-saver": "catalog:",
     "@types/jsdom": "catalog:",
     "@types/node": "catalog:",
     "@vitejs/plugin-legacy": "catalog:",
     "@vueuse/core": "catalog:",
+    "acorn": "catalog:",
     "acorn-walk": "catalog:",
     "cross-env": "catalog:",
+    "dayjs": "catalog:",
+    "eslint": "catalog:",
+    "eslint-config-prettier": "catalog:",
+    "eslint-plugin-prettier": "catalog:",
+    "eslint-plugin-unused-imports": "catalog:",
     "file-saver": "catalog:",
     "jsdom": "catalog:",
+    "json5": "catalog:",
+    "lint-staged": "catalog:",
     "magic-string": "catalog:",
     "markdown-it-mathjax3": "catalog:",
     "prettier": "catalog:",
+    "simple-git-hooks": "catalog:",
     "tailwindcss": "catalog:",
     "terser": "catalog:",
-    "tsx": "catalog:",
+    "tsdown": "catalog:",
+    "typedoc": "catalog:",
+    "typedoc-plugin-markdown": "catalog:",
     "typescript": "catalog:",
+    "typescript-eslint": "catalog:",
     "unplugin-data": "catalog:",
     "vite": "catalog:",
     "vitepress": "catalog:"
@@ -43,5 +61,11 @@
       "version": "11.24.0",
       "onFail": "error"
     }
+  },
+  "simple-git-hooks": {
+    "pre-commit": "pnpm exec lint-staged"
+  },
+  "lint-staged": {
+    "**/*.{js,cjs,mjs,cts,ts}": "eslint --cache --fix"
   }
 }

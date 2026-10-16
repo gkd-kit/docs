@@ -11,8 +11,8 @@ import {
   Teleport,
 } from 'vue';
 import GkBodyScrollbar from '../components/GkBodyScrollbar.vue';
-import { setupHostTheme } from './hostTheme';
-import { registerComponents } from '../components/registerComponents';
+import { setupHostTheme } from './hostTheme.ts';
+import { registerComponents } from '../components/registerComponents.ts';
 import './custom.css';
 
 const GkScrollbarWrapper = defineComponent(() => {
@@ -161,7 +161,7 @@ const handleCompatRedirect = async (router: Router) => {
       const href = location.href;
       let i = 0;
       while (i < 25) {
-        if (href !== location.href) return;
+        if (href !== location.href) return undefined;
         const el = document.querySelector<HTMLElement>(location.hash);
         if (el) {
           return el;
@@ -169,6 +169,7 @@ const handleCompatRedirect = async (router: Router) => {
         i++;
         await delay(100);
       }
+      return undefined;
     })();
     if (hashEl) {
       if (!isInViewport(hashEl)) {

@@ -1,0 +1,34 @@
+name: Release Packages
+
+on:
+  push:
+    tags: ['release-*']
+
+permissions:
+  id-token: write
+  contents: read
+
+concurrency:
+  group: release-packages
+  cancel-in-progress: false
+
+jobs:
+  release:
+    runs-on: ubuntu-latest
+    timeout-minutes: 15
+    steps:
+      - uses: actions/checkout@v7
+      - uses: pnpm/setup@v3
+        with:
+          cache: true
+          require-lockfile: true
+      - name: Build tools
+        run: pnpm build:packages
+      - name: Test tools
+        run: pnpm --filter @gkd-kit/tools test
+      - name: Check subscription template
+        run: pnpm --filter @gkd-kit/template check
+      - name: Publish packages
+        run: >-
+          pnpm --filter @gkd-kit/api --filter @gkd-kit/define --filter @gkd-kit/tools
+          -r publish --no-git-checks

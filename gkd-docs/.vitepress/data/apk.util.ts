@@ -1,4 +1,4 @@
-import { customFetch } from './fetch';
+import { customFetch } from './fetch.ts';
 
 export interface VersionInfo {
   name: string;

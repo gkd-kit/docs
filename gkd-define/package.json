@@ -1,0 +1,28 @@
+{
+  "name": "@gkd-kit/define",
+  "type": "module",
+  "version": "0.0.1",
+  "main": "./src/index.ts",
+  "sideEffects": false,
+  "files": [
+    "dist"
+  ],
+  "publishConfig": {
+    "access": "public",
+    "registry": "https://registry.npmjs.org/",
+    "main": "./dist/index.mjs",
+    "types": "./dist/index.d.mts"
+  },
+  "scripts": {
+    "build": "tsdown",
+    "prepublish": "tsdown"
+  },
+  "peerDependencies": {
+    "@gkd-kit/api": "*"
+  },
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gkd-kit/docs",
+    "directory": "gkd-define"
+  }
+}

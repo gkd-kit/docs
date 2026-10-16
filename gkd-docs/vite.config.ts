@@ -7,7 +7,7 @@ import legacy from '@vitejs/plugin-legacy';
 export default defineConfig({
   plugins: [
     data({
-      filter: /^(?!.*[\\\/]node_modules[\\\/]).*\.load\.(js|mjs|ts|mts)$/,
+      filter: /^(?!.*[\\/]node_modules[\\/]).*\.load\.(js|mjs|ts|mts)$/,
     }),
     tailwindcss(),
     mirror(),

@@ -1,5 +1,5 @@
 <script setup lang="ts">
-import { convertSrc } from '../utils/img';
+import { convertSrc } from '../utils/img.ts';
 import GkImage from './GkImage.vue';
 import GkImagePreviewGroup from './GkImagePreviewGroup.vue';
 

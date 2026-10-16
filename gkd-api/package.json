@@ -12,12 +12,11 @@
     "registry": "https://registry.npmjs.org/"
   },
   "scripts": {
-    "docs:build": "tsx docs/generate.ts",
-    "postpublish": "curl -X PUT https://registry-direct.npmmirror.com/@gkd-kit/api/sync"
+    "docs:build": "node docs/generate.ts"
   },
-  "devDependencies": {
-    "typedoc": "catalog:",
-    "typedoc-plugin-markdown": "catalog:",
-    "typescript": "catalog:typedoc"
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/gkd-kit/docs",
+    "directory": "gkd-api"
   }
 }

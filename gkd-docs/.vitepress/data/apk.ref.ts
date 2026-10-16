@@ -1,6 +1,6 @@
 import { shallowRef } from 'vue';
-import { stableRelease, betaRelease } from './apk.load';
-import { getApkVersionInfo } from './apk.util';
+import { stableRelease, betaRelease } from './apk.load.ts';
+import { getApkVersionInfo } from './apk.util.ts';
 
 export const stableReleaseRef = shallowRef(stableRelease);
 export const betaReleaseRef = shallowRef(betaRelease);

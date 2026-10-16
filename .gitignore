@@ -18,11 +18,12 @@ node_modules
 *.sln
 *.sw?
 .eslintcache
-gkd-docs/.vitepress/dist
+dist
+!gkd-template/dist/
 gkd-docs/.vitepress/cache
 
 /gkd-docs/api
 /gkd-docs/_config.json
 /gkd-api/.cache/
 
-vite.config.ts.timestamp-*
+vite.config.{ts,js}.timestamp-*

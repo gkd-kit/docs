@@ -18,7 +18,7 @@ import {
   type NavigationItem,
   type PluginOptions,
 } from 'typedoc-plugin-markdown';
-import { getGkNavigation, loadGkMarkdownTheme } from './theme.js';
+import { getGkNavigation, loadGkMarkdownTheme } from './theme.ts';
 
 type SidebarItem = {
   text: string;

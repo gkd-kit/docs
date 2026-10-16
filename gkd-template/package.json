@@ -1,0 +1,10 @@
+{
+  "name": "@gkd-kit/template",
+  "private": true,
+  "type": "module",
+  "version": "0.0.0",
+  "scripts": {
+    "check": "gkd-tools check",
+    "build": "gkd-tools build"
+  }
+}

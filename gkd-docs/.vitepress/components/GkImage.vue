@@ -1,7 +1,7 @@
 <script setup lang="ts">
 import { computed } from 'vue';
-import { imageSizeList } from '../data/mirror.load';
-import { convertSrc } from '../utils/img';
+import { imageSizeList } from '../data/mirror.load.ts';
+import { convertSrc } from '../utils/img.ts';
 import GkImagePreview from './GkImagePreview.vue';
 
 defineOptions({ inheritAttrs: false });

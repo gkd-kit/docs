@@ -5,7 +5,7 @@ import {
   betaReleaseRef,
   stableReleaseRef,
   refreshRelease,
-} from '../data/apk.ref';
+} from '../data/apk.ref.ts';
 
 onMounted(refreshRelease);
 </script>

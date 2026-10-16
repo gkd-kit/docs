@@ -1,29 +1,39 @@
-name: deploy
+name: Deploy Docs
 
 on:
   workflow_dispatch:
   push:
     branches: ['main']
+    paths:
+      - 'gkd-docs/**'
+      - 'gkd-api/**'
+      - 'package.json'
+      - 'pnpm-lock.yaml'
+      - 'pnpm-workspace.yaml'
+      - 'tsconfig.base.json'
+      - '.github/workflows/deloy-docs.yml'
 
 permissions:
   id-token: write
   contents: write
 
+concurrency:
+  group: deploy-docs-${{ github.ref }}
+  cancel-in-progress: false
+
 jobs:
   deploy:
     runs-on: ubuntu-latest
+    timeout-minutes: 20
     steps:
       - uses: actions/checkout@v7
 
-      - uses: actions/setup-node@v7
+      - uses: pnpm/setup@v3
         with:
-          node-version-file: 'package.json'
+          cache: true
+          require-lockfile: true
 
-      - uses: pnpm/action-setup@v6
-
-      - run: pnpm install
-
-      - run: pnpm -F @gkd-kit/docs exec tsx ./.vitepress/scripts/updateVersion.ts
+      - run: pnpm -F @gkd-kit/docs exec node ./.vitepress/scripts/updateVersion.ts
 
       - run: pnpm -F @gkd-kit/api run docs:build
       - run: pnpm -F @gkd-kit/docs run docs:build-mirror

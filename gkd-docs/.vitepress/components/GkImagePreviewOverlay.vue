@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import { computed, onMounted, shallowRef } from 'vue';
-import type { GkImagePreviewController } from './useImagePreview';
+import type { GkImagePreviewController } from './useImagePreview.ts';
 
 const props = defineProps<{
   controller: GkImagePreviewController;
