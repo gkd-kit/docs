@@ -114,9 +114,6 @@
 
 ## 关闭无障碍警告弹窗 {#close_warn_dialog}
 
-> [!TIP] 建议
-> 授予 `写入安全设置权限` 后可自行开启无障碍, 而无需设置此项
-
 这个方案不一定适用所有机型
 
 大多数设备开启无障碍时都会出现 10s 的无障碍警告弹窗
@@ -134,46 +131,3 @@
 以 Xiaomi HyperOS 为例子, 下面是完整的关闭弹窗流程截图
 
 <GkImageTable :images="[['0009.png', '0010.png', '0011.png', '0012.png']]" />
-
-## adb 授权失败 {#adb_failed}
-
-在使用 adb 手动授予 `写入安全设置权限` 时可能会提示权限不够，具体报错如下:
-
-```text
-adb shell pm grant li.songe.gkd android.permission.WRITE_SECURE_SETTINGS
-
-Exception occurred while executing 'grant':
-java.lang.SecurityException: grantRuntimePermission: Neither user 2000 nor current process has android.permission.GRANT_RUNTIME_PERMISSIONS.
-  at android.app.ContextImpl.enforce(ContextImpl.java:2384)
-  at android.app.ContextImpl.enforceCallingOrSelfPermission(ContextImpl.java:2412)
-  at com.android.server.pm.permission.PermissionManagerServiceImpl.grantRuntimePermissionInternal(PermissionManagerServiceImpl.java:1383)
-  at com.android.server.pm.permission.PermissionManagerServiceImpl.grantRuntimePermission(PermissionManagerServiceImpl.java:1365)
-  at com.android.server.pm.permission.PermissionManagerService.grantRuntimePermission(PermissionManagerService.java:573)
-  at android.permission.PermissionManager.grantRuntimePermission(PermissionManager.java:610)
-  at com.android.server.pm.PackageManagerShellCommand.runGrantRevokePermission(PackageManagerShellCommand.java:2717)
-  at com.android.server.pm.PackageManagerShellCommand.onCommand(PackageManagerShellCommand.java:301)
-  at com.android.modules.utils.BasicShellCommandHandler.exec(BasicShellCommandHandler.java:97)
-  at android.os.ShellCommand.exec(ShellCommand.java:38)
-  at com.android.server.pm.PackageManagerService$IPackageManagerImpl.onShellCommand(PackageManagerService.java:6840)
-  at android.os.Binder.shellCommand(Binder.java:1092)
-  at android.os.Binder.onTransact(Binder.java:912)
-  at android.content.pm.IPackageManager$Stub.onTransact(IPackageManager.java:4352)
-  at com.android.server.pm.PackageManagerService$IPackageManagerImpl.onTransact(PackageManagerService.java:6824)
-  at android.os.Binder.execTransactInternal(Binder.java:1392)
-  at android.os.Binder.execTransact(Binder.java:1299)
-```
-
-不同系统可尝试以下解决方案
-
-- HyperOS/MIUI（小米、POCO）\
-  在 `开发者选项` 中开启 `USB 调试（安全设置）`，注意不是 `USB 调试`，然后执行 adb kill-server（否则仍然可能报错）后重新执行adb命令\
-  如果开启 `USB 调试（安全设置）`后继续报错，可以尝试在 adb 命令前添加 sudo \
-  提升权限后再执行 adb 命令
-
-- ColorOS（OPPO & OnePlus）\
-  在 `开发者选项` 中关闭 `权限监控` 或打开 `禁止权限监控`
-
-- Flyme（魅族）\
-  在 `开发者选项` 中关闭 `Flyme 支付保护`
-
-关闭限制后重新运行命令即可

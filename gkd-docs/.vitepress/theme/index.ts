@@ -123,9 +123,7 @@ const handleCompatRedirect = async (router: Router) => {
       go('/guide/snapshot#how-to-upload');
     } else if (r === '2') {
       go('/guide/faq#restriction');
-    } else if (r === '3') {
-      go('/guide/faq#adb_failed');
-    } else if (r === '4') {
+    } else if (r === '3' || r === '4') {
       go('/guide/faq');
     } else if (r === '5') {
       go('/guide/subscription');
@@ -152,8 +150,11 @@ const handleCompatRedirect = async (router: Router) => {
     } else {
       removeHiddenLayoutStyle();
     }
-  } else if (u === '/guide/faq#fail_setting_secure_settings') {
-    location.hash = 'adb_failed';
+  } else if (
+    u === '/guide/faq#adb_failed' ||
+    u === '/guide/faq#fail_setting_secure_settings'
+  ) {
+    await replace('/guide/faq');
   }
   await nextTick();
   if (location.hash) {
