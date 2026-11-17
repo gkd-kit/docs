@@ -37,18 +37,6 @@
 
 长时间下使用此类软件的规则会比较耗电，请自行考虑后再启用
 
-## shizuku
-
-shizuku 是一个能让普通应用通过 ADB 或 Root 权限直接调用 Android 系统 API 的框架
-
-简而言之， **授权 shizuku 后 GKD 可以调用更多系统 API 获取更多状态，启用更多优化**
-
-官方原版 [RikkaApps/Shizuku](https://github.com/RikkaApps/Shizuku) 已很久未有维护记录，issue/pr 也被垃圾机器人淹没
-
-此外在某些设备上原版 shizuku 只能部分工作，此时 GKD 会提示 `服务连接部分失败`
-
-目前建议使用另一位开发者的分支项目 [thedjchi/Shizuku](https://github.com/thedjchi/Shizuku)，或[点击前往下载](https://github.com/thedjchi/Shizuku/releases/latest)
-
 ## 后台运行 {#persistent}
 
 如何尽量保持后台运行不被系统暂停/杀死
@@ -175,7 +163,7 @@ java.lang.SecurityException: grantRuntimePermission: Neither user 2000 nor curre
   at android.os.Binder.execTransact(Binder.java:1299)
 ```
 
-下面参考 [shizuku 文档](https://shizuku.rikka.app/guide/setup/#faq) 的解决方案
+不同系统可尝试以下解决方案
 
 - HyperOS/MIUI（小米、POCO）\
   在 `开发者选项` 中开启 `USB 调试（安全设置）`，注意不是 `USB 调试`，然后执行 adb kill-server（否则仍然可能报错）后重新执行adb命令\

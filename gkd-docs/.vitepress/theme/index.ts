@@ -126,7 +126,7 @@ const handleCompatRedirect = async (router: Router) => {
     } else if (r === '3') {
       go('/guide/faq#adb_failed');
     } else if (r === '4') {
-      go('/guide/faq#shizuku');
+      go('/guide/faq');
     } else if (r === '5') {
       go('/guide/subscription');
     } else if (r === '6') {
@@ -146,7 +146,7 @@ const handleCompatRedirect = async (router: Router) => {
     } else if (r === '13') {
       go('/guide/#install');
     } else if (r === '14') {
-      go('/guide/faq#shizuku');
+      go('/guide/faq');
     } else if (r === '15') {
       go('/guide/snapshot#by-screenshot');
     } else {
